@@ -4,6 +4,7 @@
   .form-inputs
     = f.input :name
     = f.input :url
+    = f.text_field :tagslist, value: @source.tagslist
 
   .form-actions
     = f.button :submit

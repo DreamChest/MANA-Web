@@ -6,6 +6,9 @@
 %p
   %b Url:
   = @source.url
+%p
+  %b Tags:
+  = @source.tagslist
 
 = link_to "Show entries", "#{source_path(@source)}/entries"
 %br
