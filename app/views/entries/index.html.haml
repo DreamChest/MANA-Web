@@ -5,6 +5,7 @@
     %tr
       %th Title
       %th Url
+      %th Read
       %th Fav
       %th
       %th
@@ -15,6 +16,7 @@
       %tr
         %td= entry.title
         %td= entry.url
+        %td= entry.read
         %td= entry.fav
         %td= link_to 'Show', entry
         %td= link_to 'Edit', edit_entry_path(entry)

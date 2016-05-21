@@ -5,6 +5,7 @@ class CreateEntries < ActiveRecord::Migration
 			t.string :title
 			t.string :url
 			t.boolean :fav
+			t.boolean :read
 
 			t.timestamps null: false
 		end
