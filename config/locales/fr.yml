@@ -19,7 +19,7 @@
 # To learn more, please read the Rails Internationalization guide
 # available at http://guides.rubyonrails.org/i18n.html.
 
-en:
-    label_name: "Name: "
-    label_url: "URL: "
-    label_tags: "Tags: "
+fr:
+    label_name: "Name : "
+    label_url: "URL : "
+    label_tags: "Tags : "

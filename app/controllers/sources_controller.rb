@@ -58,6 +58,7 @@ class SourcesController < ApplicationController
 
 		respond_to do |format|
 			if @source.update(source_params)
+				@source.tags.clear
 				tag
 
 				unless feed.nil?

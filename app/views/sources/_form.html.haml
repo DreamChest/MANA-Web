@@ -2,9 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :url
-    = f.text_field :tagslist, value: @source.tagslist
+    = f.input :name, label: t("label_name")
+    = f.input :url, label: t("label_url")
+    = f.input :tagslist, label: t("label_tags"), value: @source.tagslist
 
   .form-actions
     = f.button :submit
