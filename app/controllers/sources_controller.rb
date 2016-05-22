@@ -37,7 +37,7 @@ class SourcesController < ApplicationController
 				tag
 
 				feed.entries.each do |e|
-					@entry = @source.entries.create!(:title => e.title, :url => e.url, :fav => false)
+					@entry = @source.entries.create!(title: e.title, url: e.url, fav: false)
 				end
 
 				format.html { redirect_to @source, notice: 'Source was successfully created.' }
@@ -63,7 +63,7 @@ class SourcesController < ApplicationController
 
 				unless feed.nil?
 					feed.entries.each do |e|
-						@entry = @source.entries.create!(:title => e.title, :url => e.url, :fav => false)
+						@entry = @source.entries.create!(title: e.title, url: e.url, fav: false)
 					end
 				end
 
@@ -88,7 +88,8 @@ class SourcesController < ApplicationController
 
 	# Shows entries for the source
 	def show_entries
-		render @source.entries
+		#render @source.entries
+		render :partial => "entries/entries", locals: { entries: @source.entries }
 	end
 
 	private
@@ -97,7 +98,7 @@ class SourcesController < ApplicationController
 		params[:source]["tagslist"].split(',').each do |t|
 			tag = Tag.where("name = '#{t}'").take
 			if tag.nil?
-				@source.tags.create!(:name => t, :color => "#ffffff")
+				@source.tags.create!(name: t, color: "#ffffff")
 			else
 				@source.tags<<(tag)
 			end
