@@ -37,7 +37,7 @@ class SourcesController < ApplicationController
 				tag
 
 				feed.entries.each do |e|
-					@entry = @source.entries.create!(title: e.title, url: e.url, fav: false)
+					@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, content: Content.create({ html: e.content }))
 				end
 
 				format.html { redirect_to @source, notice: 'Source was successfully created.' }
@@ -62,8 +62,9 @@ class SourcesController < ApplicationController
 				tag
 
 				unless feed.nil?
+					@source.entries.clear
 					feed.entries.each do |e|
-						@entry = @source.entries.create!(title: e.title, url: e.url, fav: false)
+						@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false)
 					end
 				end
 
