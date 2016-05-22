@@ -1,7 +1,7 @@
 class SourcesController < ApplicationController
 	require "feedjira"
 
-	before_action :set_source, only: [:show, :edit, :update, :destroy, :show_entries]
+	before_action :set_source, only: [:show, :edit, :update, :destroy, :show_entries, :update_entries]
 
 	# GET /sources
 	# GET /sources.json
@@ -36,9 +36,11 @@ class SourcesController < ApplicationController
 			if @source.save
 				tag
 
-				feed.entries.each do |e|
-					@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, content: Content.create({ html: e.content }))
+				feed.entries.reverse.each do |e|
+					@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content }))
 				end
+
+				@source.update(last_update: feed.entries.first.published)
 
 				format.html { redirect_to @source, notice: 'Source was successfully created.' }
 				format.json { render :show, status: :created, location: @source }
@@ -63,10 +65,12 @@ class SourcesController < ApplicationController
 
 				unless feed.nil?
 					@source.entries.clear
-					feed.entries.each do |e|
-						@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false)
+					feed.entries.reverse.each do |e|
+						@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content }))
 					end
 				end
+
+				@source.update(last_update: feed.entries.first.published)
 
 				format.html { redirect_to @source, notice: 'Source was successfully updated.' }
 				format.json { render :show, status: :ok, location: @source }
@@ -89,8 +93,21 @@ class SourcesController < ApplicationController
 
 	# Shows entries for the source
 	def show_entries
-		#render @source.entries
 		render :partial => "entries/entries", locals: { entries: @source.entries }
+	end
+
+	def update_entries
+		feed = Feedjira::Feed.fetch_and_parse(@source.url)
+
+		feed.entries.reverse.each do |e|
+			if e.published > @source.last_update
+				@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content }))
+			end
+		end
+
+		@source.update(last_update: feed.entries.first.published)
+
+		redirect_to :back
 	end
 
 	private

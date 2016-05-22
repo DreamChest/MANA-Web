@@ -10,7 +10,7 @@
       %th
 
   %tbody
-    - entries.each do |entry|
+    - entries.reverse.each do |entry|
       %tr
         %td= entry.title
         %td= entry.url

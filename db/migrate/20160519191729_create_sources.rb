@@ -3,6 +3,7 @@ class CreateSources < ActiveRecord::Migration
     create_table :sources do |t|
       t.string :name
       t.string :url
+	  t.datetime :last_update
 
       t.timestamps null: false
     end

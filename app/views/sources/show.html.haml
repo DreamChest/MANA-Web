@@ -10,6 +10,8 @@
   %b Tags:
   = @source.tagslist
 
+= link_to "Updated entries", "#{source_url}/update_entries"
+
 = render "entries/entries", entries: @source.entries
 
 = link_to 'Edit', edit_source_path(@source)

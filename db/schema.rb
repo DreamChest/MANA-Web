@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20160522140243) do
     t.string   "url"
     t.boolean  "fav"
     t.boolean  "read"
+    t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -33,8 +34,9 @@ ActiveRecord::Schema.define(version: 20160522140243) do
   create_table "sources", force: :cascade do |t|
     t.string   "name"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "last_update"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "sources_tags", id: false, force: :cascade do |t|
