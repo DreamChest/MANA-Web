@@ -68,9 +68,9 @@ class SourcesController < ApplicationController
 					feed.entries.reverse.each do |e|
 						@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content }))
 					end
-				end
 
-				@source.update(last_update: feed.entries.first.published)
+					@source.update(last_update: feed.entries.first.published)
+				end
 
 				format.html { redirect_to @source, notice: 'Source was successfully updated.' }
 				format.json { render :show, status: :ok, location: @source }
