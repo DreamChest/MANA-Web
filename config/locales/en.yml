@@ -21,6 +21,7 @@
 
 en:
     words:
+        lang: "Language"
         back: "Back"
         update: "Update"
         edit: "Edit"
@@ -40,7 +41,7 @@ en:
         tag:
             zero: "No tags"
             one: "Tag"
-            other: "tags"
+            other: "Tags"
 
         title: "Title"
         url: "URL"

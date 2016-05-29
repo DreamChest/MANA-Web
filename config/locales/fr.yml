@@ -21,6 +21,7 @@
 
 fr:
     words:
+        lang: "Langue"
         back: "Retour"
         update: "Mettre à jour"
         edit: "Modifier"

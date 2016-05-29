@@ -24,5 +24,12 @@
         %li= link_to t("words.source", count: 2), sources_path
         %li= link_to t("words.tag", count: 2), tags_path
 
-      -#%ul.nav.navbar-nav.navbar-right
+      %ul.nav.navbar-nav.navbar-right
+        %li.dropdown
+          %a{ class: "dropdown-toggle", data: { toggle: "dropdown", href: "#"} }
+            = t("words.lang")
+            %span.caret
+          %ul.dropdown-menu
+            %li= link_to "English", "?locale=en"
+            %li= link_to "Français", "?locale=fr"
         -#%li= link_to "", settings_path, :class => "glyphicon glyphicon-wrench"

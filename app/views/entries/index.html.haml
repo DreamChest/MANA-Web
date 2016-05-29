@@ -1,9 +1,11 @@
 %h1= t("words.entry", count: 2)
 
-- Tag.all.each do |t|
-  .checkbox-inline
-    = check_box_tag t.name, t.id, false, { class: "tag_cb" }
-    = t.name
+- unless @entries.empty? or Tag.all.empty?
+  %p Tags :
+  - Tag.all.each do |t|
+    .checkbox-inline
+      = check_box_tag t.name, t.id, false, { class: "tag_cb" }
+      = t.name
 
 = render "entries", entries: @entries
 
