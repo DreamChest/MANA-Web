@@ -1,5 +1,28 @@
-= link_to "Sources", sources_url
-\|
-= link_to "Entries", entries_url
-\|
-= link_to "Tags", tags_url
+:javascript
+  $(document).ready(function() {
+
+    var loc = location.pathname;
+    if(loc=="/") loc = "/entries";
+
+    $('navbar-nav.li.active').removeClass('active');
+    $('a[href="'+loc+'"]').closest('li').addClass('active');
+  });
+
+%nav.navbar.navbar-default
+  .container-fluid
+    .navbar-header
+      %button{ :class => "navbar-toggle", :data => { :toggle => "collapse", :target => "#navbar" } }
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "/"} MANA
+
+    .collapse.navbar-collapse#navbar
+      %ul.nav.navbar-nav
+        %li= link_to "Entries", entries_path
+        %li= link_to "Sources", sources_path
+        %li= link_to "Tags", tags_path
+
+      -#%ul.nav.navbar-nav.navbar-right
+        -#%li= link_to "", settings_path, :class => "glyphicon glyphicon-wrench"

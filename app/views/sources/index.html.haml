@@ -1,6 +1,6 @@
 %h1 Listing sources
 
-%table
+%table.table.table-striped.table-hover.table-responsive
   %thead
     %tr
       %th Name
@@ -18,10 +18,8 @@
         %td= source.url
         %td= source.tagslist
         %td= source.last_update
-        %td= link_to 'Show', source
-        %td= link_to 'Edit', edit_source_path(source)
-        %td= link_to 'Destroy', source, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to '', source, class: "btn btn-info glyphicon glyphicon-eye-open"
+        %td= link_to '', edit_source_path(source), class: "btn btn-warning glyphicon glyphicon-edit"
+        %td= link_to '', source, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger glyphicon glyphicon-trash"
 
-%br
-
-= link_to 'New Source', new_source_path
+= link_to '', new_source_path, class: "btn btn-primary glyphicon glyphicon-plus"

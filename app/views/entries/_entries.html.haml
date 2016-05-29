@@ -1,4 +1,4 @@
-%table
+%table.table.table-striped.table-hover.table-responsive
   %thead
     %tr
       %th Title
@@ -6,8 +6,6 @@
       %th Read
       %th Fav
       %th Tags
-      %th
-      %th
       %th
 
   %tbody
@@ -18,6 +16,4 @@
         %td= entry.read
         %td= entry.fav
         %td= entry.source.tagslist
-        %td= link_to 'Show', entry
-        %td= link_to 'Edit', edit_entry_path(entry)
-        %td= link_to 'Destroy', entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to '', entry, class: "btn btn-info glyphicon glyphicon-eye-open"

@@ -10,11 +10,9 @@
   %b Tags:
   = @source.tagslist
 
-= link_to "Update", "#{source_url}/update_entries"
-\|
-= link_to 'Edit', edit_source_path(@source)
-\|
-= link_to 'Back', sources_path
+= link_to "Update", "#{source_url}/update_entries", class: "btn btn-primary"
+= link_to 'Edit', edit_source_path(@source), class: "btn btn-warning"
+= link_to 'Back', sources_path, class: "btn btn-default"
 
 %hr
 

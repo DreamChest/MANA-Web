@@ -7,6 +7,5 @@
   %b Color:
   = @tag.color
 
-= link_to 'Edit', edit_tag_path(@tag)
-\|
-= link_to 'Back', tags_path
+= link_to 'Edit', edit_tag_path(@tag), class: "btn btn-warning"
+= link_to 'Back', tags_path, class: "btn btn-default"
