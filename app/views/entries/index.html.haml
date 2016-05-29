@@ -1,7 +1,16 @@
 %h1 Listing entries
 
+- Tag.all.each do |t|
+  = check_box_tag t.name, t.id, false, { class: "tag_cb" }
+  = t.name
+
 = render "entries", entries: @entries
 
 %br
 
 = link_to 'New Entry', new_entry_path
+
+:javascript
+  $(document).ready(function() {
+    init();
+  });

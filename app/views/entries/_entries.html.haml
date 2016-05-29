@@ -5,17 +5,19 @@
       %th Url
       %th Read
       %th Fav
+      %th Tags
       %th
       %th
       %th
 
   %tbody
     - entries.reverse.each do |entry|
-      %tr
+      %tr{ class: "#{entry.source.tagslist.gsub(',', '.')}" }
         %td= entry.title
         %td= entry.url
         %td= entry.read
         %td= entry.fav
+        %td= entry.source.tagslist
         %td= link_to 'Show', entry
         %td= link_to 'Edit', edit_entry_path(entry)
         %td= link_to 'Destroy', entry, :method => :delete, :data => { :confirm => 'Are you sure?' }
