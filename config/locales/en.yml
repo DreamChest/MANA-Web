@@ -20,6 +20,40 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-    label_name: "Name: "
-    label_url: "URL: "
-    label_tags: "Tags: "
+    words:
+        back: "Back"
+        update: "Update"
+        edit: "Edit"
+        show: "Show"
+        new_m: "New"
+        new_f: "New"
+        editing: "Editing"
+
+        entry:
+            zero: "No entries"
+            one: "Entry"
+            other: "Entries"
+        source:
+            zero: "No sources"
+            one: "Source"
+            other: "Sources"
+        tag:
+            zero: "No tags"
+            one: "Tag"
+            other: "tags"
+
+        title: "Title"
+        url: "URL"
+        read: "Read"
+        fav: "Favorite"
+        name: "Name"
+        last_update: "Last update"
+        color: "Color"
+
+    label: "%{label}: "
+
+    helpers:
+        submit:
+            create: "Create"
+            submit: "Save"
+            update: "Update"

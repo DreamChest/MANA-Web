@@ -1,7 +1,7 @@
-%h1 Editing source
+%h1 #{t("words.editing")} #{t("words.source", count: 1).downcase}
 
 = render 'form'
 
 %br
-= link_to 'Show', @source, class: "btn btn-info"
-= link_to 'Back', sources_path, class: "btn btn-default"
+= link_to t("words.show"), @source, class: "btn btn-info"
+= link_to t("words.back"), sources_path, class: "btn btn-default"

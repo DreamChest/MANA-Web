@@ -1,12 +1,12 @@
-%h1 Listing sources
+%h1= t("words.source", count: 2)
 
 %table.table.table-striped.table-hover.table-responsive
   %thead
     %tr
-      %th Name
-      %th Url
-      %th Tags
-      %th Last update
+      %th= t("words.name")
+      %th= t("words.url")
+      %th= t("words.tag", count: 2)
+      %th= t("words.last_update")
       %th
       %th
       %th

@@ -1,18 +1,16 @@
-%p#notice= notice
-
 %p
-  %b Name:
+  %b= l("words.name")
   = @source.name
 %p
-  %b Url:
+  %b= l("words.url")
   = @source.url
 %p
-  %b Tags:
+  %b= l("words.tag", count: 2)
   = @source.tagslist
 
-= link_to "Update", "#{source_url}/update_entries", class: "btn btn-primary"
-= link_to 'Edit', edit_source_path(@source), class: "btn btn-warning"
-= link_to 'Back', sources_path, class: "btn btn-default"
+= link_to t("words.update"), "#{source_url}/update_entries", class: "btn btn-primary"
+= link_to t("words.edit"), edit_source_path(@source), class: "btn btn-warning"
+= link_to t("words.back"), sources_path, class: "btn btn-default"
 
 %hr
 

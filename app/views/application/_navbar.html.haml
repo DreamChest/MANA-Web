@@ -20,9 +20,9 @@
 
     .collapse.navbar-collapse#navbar
       %ul.nav.navbar-nav
-        %li= link_to "Entries", entries_path
-        %li= link_to "Sources", sources_path
-        %li= link_to "Tags", tags_path
+        %li= link_to t("words.entry", count: 2), entries_path
+        %li= link_to t("words.source", count: 2), sources_path
+        %li= link_to t("words.tag", count: 2), tags_path
 
       -#%ul.nav.navbar-nav.navbar-right
         -#%li= link_to "", settings_path, :class => "glyphicon glyphicon-wrench"

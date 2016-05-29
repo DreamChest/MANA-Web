@@ -1,11 +1,9 @@
-%p#notice= notice
-
 %p
-  %b Name:
+  %b= l("words.name")
   = @tag.name
 %p
-  %b Color:
+  %b= l("words.color")
   = @tag.color
 
-= link_to 'Edit', edit_tag_path(@tag), class: "btn btn-warning"
-= link_to 'Back', tags_path, class: "btn btn-default"
+= link_to t("words.edit"), edit_tag_path(@tag), class: "btn btn-warning"
+= link_to t("words.back"), tags_path, class: "btn btn-default"

@@ -1,7 +1,7 @@
-%h1 Editing tag
+%h1 #{t("words.editing")} #{t("words.tag", count: 1).downcase}
 
 = render 'form'
 
 %br
-= link_to 'Show', @tag, class: "btn btn-info"
-= link_to 'Back', tags_path, class: "btn btn-default"
+= link_to t("words.show"), @tag, class: "btn btn-info"
+= link_to t("words.back"), tags_path, class: "btn btn-default"
