@@ -10,7 +10,7 @@
 
   %tbody
     - entries.reverse.each do |entry|
-      %tr{ class: "#{entry.source.tagslist.gsub(',', '.')}" }
+      %tr{ class: "#{entry.source.tagslist.gsub(',', ' ')}" }
         %td= entry.title
         %td= entry.url
         %td= entry.read

@@ -6,15 +6,13 @@ function init() {
 // Handle tags filtering (Entries index)
 function handle_tags() {
 
-	var filter = false;
-	$("tr").hide();
+	var tags = $(".tag_cb").filter(":checked");
 
-	$(".tag_cb").each(function() {
-		if(this.checked==true) {
-			filter = true;
-			$("tr[class*='"+this.name+"']").show();
-		}
-	});
-
-	if(filter==false) $("tr").show();
+	if(tags.size()>0) {
+		$("tr").hide();
+		tags.each(function() { $("tr").filter("."+this.name).show(); });
+	}
+	else {
+		$("tr").show();
+	}
 }
