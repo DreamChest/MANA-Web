@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   resources :entries
 
   resources :sources
-  get "/sources/:id/entries", to: "sources#show_entries"
-  get "/sources/:id/update_entries", to: "sources#update_entries"
+  get "/sources/:id/entries", to: "sources#show_entries", as: "source_entries"
+  get "/sources/:id/update_entries", to: "sources#update_entries", as: "update_source"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

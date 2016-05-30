@@ -8,7 +8,7 @@
   %b= l("words.tag", count: 2)
   = @source.tagslist
 
-= link_to t("words.update"), "#{source_url}/update_entries", class: "btn btn-primary"
+= link_to t("words.update"), update_source_path, class: "btn btn-primary"
 = link_to t("words.edit"), edit_source_path(@source), class: "btn btn-warning"
 = link_to t("words.back"), sources_path, class: "btn btn-default"
 
