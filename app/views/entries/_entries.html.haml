@@ -1,19 +1,20 @@
-%table.table.table-striped.table-hover.table-responsive
-  %thead
-    %tr
-      %th= t("words.title")
-      %th= t("words.url")
-      %th= t("words.read")
-      %th= t("words.fav")
-      %th= t("words.tag", count: 2)
-      %th
+.panel-group#accord
+  - entries.reverse.each do |e|
+    - collapse_id = "#{e.id}"
+    %div{ class: "panel panel-default #{e.source.tagslist.gsub(',', ' ')}" }
+      .panel-heading
+        %a{ data: { toggle: "collapse", parent: "#accord" }, href: "##{collapse_id}" }
+          = e.source.name
+          \|
+          = e.title
+        %div.tags
+          = e.source.tagslist
+        %div.date
+          = I18n.localize(e.date, format: :long)
+      %div{ class: "panel-collapse collapse", id: collapse_id }
+        .panel-body
 
-  %tbody
-    - entries.reverse.each do |entry|
-      %tr{ class: "#{entry.source.tagslist.gsub(',', ' ')}" }
-        %td= entry.title
-        %td= entry.url
-        %td= entry.read
-        %td= entry.fav
-        %td= entry.source.tagslist
-        %td= link_to '', entry, class: "btn btn-info glyphicon glyphicon-eye-open"
+:javascript
+  $(document).ready(function() {
+    handle_collapses();
+  });

@@ -58,3 +58,11 @@ fr:
             create: "Créer"
             submit: "Sauvegarder"
             update: "Mettre à jour"
+
+    date:
+        month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
+        abbr_month_names: [~, Jan, Fev, Mar, Avr, Mai, Jui, Juil, Auo, Sep, Oct, Nov, Dec]
+
+    time:
+        formats:
+            long: "%d %B %Y %H:%M"

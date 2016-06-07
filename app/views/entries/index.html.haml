@@ -7,6 +7,8 @@
       = check_box_tag t.name, t.id, false, { class: "tag_cb" }
       = t.name
 
+%hr
+
 = render "entries", entries: @entries
 
 :javascript
