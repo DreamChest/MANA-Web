@@ -5,7 +5,7 @@ class Source < ActiveRecord::Base
 	
 	has_many :entries, dependent: :destroy
 	has_and_belongs_to_many :tags
-	attr_accessor :tagslist
+	attr_accessor :tagslist_attr
 
 	validates :name, :url, presence: true
 

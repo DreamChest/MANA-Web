@@ -5,4 +5,14 @@ class Tag < ActiveRecord::Base
 	has_and_belongs_to_many :sources
 	
 	validates :name, :color, presence: true
+
+	def self.list
+		str = ""
+
+		Tag.all.each do |t|
+			str += "#{t.name},"
+		end
+
+		return str[0..-2]
+	end
 end

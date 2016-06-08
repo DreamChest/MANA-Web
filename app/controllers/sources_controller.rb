@@ -113,7 +113,7 @@ class SourcesController < ApplicationController
 	private
 	# Tags the source
 	def tag
-		params[:source]["tagslist"].split(',').each do |t|
+		params[:source]["tagslist_attr"].split(',').each do |t|
 			tag = Tag.where("name = '#{t}'").take
 			if tag.nil?
 				@source.tags.create!(name: t, color: "#ffffff")
@@ -130,6 +130,6 @@ class SourcesController < ApplicationController
 
 	# Never trust parameters from the scary internet, only allow the white list through.
 	def source_params
-		params.require(:source).permit(:name, :url, :tagslist)
+		params.require(:source).permit(:name, :url, :tagslist_attr)
 	end
 end

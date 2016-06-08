@@ -3,9 +3,8 @@ function init() {
 	$(".tag_cb").on("change", handle_tags);
 }
 
-// Handle tags filtering (entries index)
+// Handles tags filtering (entries index)
 function handle_tags() {
-
 	var tags = $(".tag_cb").filter(":checked");
 
 	if(tags.size()>0) {
@@ -17,7 +16,7 @@ function handle_tags() {
 	}
 }
 
-// Handle panel collapses (entries index)
+// Handles panel collapses (entries index)
 function handle_collapses() {
 	$(".panel-collapse").on("show.bs.collapse", function() {
 		var panel_body = $(this).children();

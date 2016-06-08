@@ -4,7 +4,12 @@
   .form-inputs
     = f.input :name, label: l("words.name")
     = f.input :url, label: l("words.url")
-    = f.input :tagslist, label: l("words.tag", count: 2), value: @source.tagslist
+    = f.input :tagslist_attr, label: l("words.tag", count: 2), input_html: { value: Tag.list, default_values: @source.tagslist }
 
   .form-actions
     = f.button :submit, class: "btn btn-primary"
+
+:javascript
+  $(document).ready(function() {
+    handle_selectize();
+  });
