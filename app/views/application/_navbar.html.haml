@@ -5,7 +5,7 @@
     if(loc=="/") loc = "/entries";
 
     $('navbar-nav.li.active').removeClass('active');
-    $('a[href*="'+loc+'"]').closest('li').addClass('active');
+    $('a[href^="'+loc+'"]').closest('li').addClass('active');
   });
 
 %nav.navbar.navbar-default
@@ -25,6 +25,7 @@
         %li= link_to t("words.tag", count: 2), tags_path
 
       %ul.nav.navbar-nav.navbar-right
+        %li= link_to "", update_sources_url, :class => "glyphicon glyphicon-refresh"
         %li.dropdown
           %a{ class: "dropdown-toggle", data: { toggle: "dropdown", href: "#"} }
             = t("words.lang")

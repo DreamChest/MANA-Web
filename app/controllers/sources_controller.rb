@@ -97,17 +97,18 @@ class SourcesController < ApplicationController
 	end
 
 	def update_entries
-		feed = Feedjira::Feed.fetch_and_parse(@source.url)
+		fetch
 
-		feed.entries.reverse.each do |e|
-			if e.published > @source.last_update
-				@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
-			end
+		redirect_to :back, notice: "Source successfully updated."
+	end
+
+	def update_all
+		Source.all.each do |s|
+			@source = s
+			fetch
 		end
 
-		@source.update(last_update: feed.entries.first.published)
-
-		redirect_to :back
+		redirect_to :back, notice: "Sources successfully updated."
 	end
 
 	private
@@ -121,6 +122,19 @@ class SourcesController < ApplicationController
 				@source.tags<<(tag)
 			end
 		end
+	end
+
+	# Fetches and saves the new entries
+	def fetch
+		feed = Feedjira::Feed.fetch_and_parse(@source.url)
+
+		feed.entries.reverse.each do |e|
+			if e.published > @source.last_update
+				@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
+			end
+		end
+
+		@source.update(last_update: feed.entries.first.published)
 	end
 
 	# Use callbacks to share common setup or constraints between actions.
