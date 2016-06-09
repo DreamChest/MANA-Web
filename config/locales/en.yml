@@ -50,6 +50,7 @@ en:
         name: "Name"
         last_update: "Last update"
         color: "Color"
+        open: "Open"
 
     label: "%{label}: "
 
