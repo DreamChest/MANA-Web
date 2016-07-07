@@ -2,12 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-a {
-	display: block;
-	height: 100%;
-	padding: 10px 15px 0px 15px;
-}
-
 img,iframe {
 	width: auto;
 	height: auto;
@@ -17,6 +11,12 @@ img,iframe {
 
 .panel-heading {
 	padding: 0px;
+}
+
+.feedtitle {
+	display: block;
+	height: 100%;
+	padding: 10px 15px 0px 15px;
 }
 
 .tags {
