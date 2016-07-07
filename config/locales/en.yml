@@ -54,6 +54,17 @@ en:
 
     label: "%{label}: "
 
+    notices:
+        entry_created: "Entry was successfully created."
+        entry_updated: "Entry was successfully updated."
+        entry_destroyed: "Entry was sucessfully destroyed."
+        source_created: "Source was successfully created."
+        source_updated: "Source was successfully updated."
+        source_destroyed: "Source was sucessfully destroyed."
+        tag_created: "Tag was successfully created."
+        tag_updated: "Tag was successfully updated."
+        tag_destroyed: "Tag was sucessfully destroyed."
+
     helpers:
         submit:
             create: "Create"

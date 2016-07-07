@@ -42,7 +42,7 @@ class SourcesController < ApplicationController
 
 				@source.update(last_update: feed.entries.first.published)
 
-				format.html { redirect_to @source, notice: 'Source was successfully created.' }
+				format.html { redirect_to @source, notice: I18n.t("notices.source_created") }
 				format.json { render :show, status: :created, location: @source }
 			else
 				format.html { render :new }
@@ -72,7 +72,7 @@ class SourcesController < ApplicationController
 					@source.update(last_update: feed.entries.first.published)
 				end
 
-				format.html { redirect_to @source, notice: 'Source was successfully updated.' }
+				format.html { redirect_to @source, notice: I18n.t("notices.source_updated") }
 				format.json { render :show, status: :ok, location: @source }
 			else
 				format.html { render :edit }
@@ -86,14 +86,17 @@ class SourcesController < ApplicationController
 	def destroy
 		@source.destroy
 		respond_to do |format|
-			format.html { redirect_to sources_url, notice: 'Source was successfully destroyed.' }
+			format.html { redirect_to sources_url, notice: I18n.t("notices.source_destroyed") }
 			format.json { head :no_content }
 		end
 	end
 
 	# Shows entries for the source
 	def show_entries
-		render :partial => "entries/entries", locals: { entries: @source.entries }
+		respond_to do |format|
+			format.html { render :partial => "entries/entries", locals: { entries: @source.entries } }
+			format.json { render json: @source.entries }
+		end
 	end
 
 	def update_entries
