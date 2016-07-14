@@ -65,6 +65,9 @@ fr:
         tag_updated: "Tag mis à jour avec succès."
         tag_destroyed: "Tag supprimé avec succès."
 
+    messages:
+        no_entries: "Oups, on dirait qu'il n'y a aucune entrée à afficher ¯\\_(ツ)_/¯"
+
     helpers:
         submit:
             create: "Créer"
