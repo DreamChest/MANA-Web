@@ -37,7 +37,7 @@ class SourcesController < ApplicationController
 				tag
 
 				feed.entries.reverse.each do |e|
-					@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content }))
+					@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
 				end
 
 				@source.update(last_update: feed.entries.first.published)
