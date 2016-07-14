@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rails s --binding 0.0.0.0 -p 3000
+
+exit 0
