@@ -8,7 +8,7 @@
           \|
           = e.title
         %div.tags
-          = e.source.tagslist
+          = e.source.tagslist.gsub(",", ", ")
         %div.right
           = link_to t("words.open").downcase, e.url, class: "small", target: "_blank"
           .small= I18n.localize(e.date, format: :long)
