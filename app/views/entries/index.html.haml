@@ -10,7 +10,7 @@
 %hr
 
 - unless @entries.empty?
-  = render "entries", entries: @entries
+  = render "entries", entries: @entries.order("date ASC")
 - else
   = I18n.translate("messages.no_entries")
 

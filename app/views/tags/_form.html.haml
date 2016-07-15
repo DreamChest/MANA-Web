@@ -1,9 +1,14 @@
+:javascript
+  $(document).ready(function() {
+    window.jscolor("tag_color", {hash: true, uppercase: false});
+  });
+
 = simple_form_for(@tag) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name, label: l("words.name")
-    = f.input :color, label: l("words.color")
+    = f.input :color, label: l("words.color"), input_html: { value: @tag.color || "#ffffff" }
 
   .form-actions
     = f.button :submit, class: "btn btn-primary"
