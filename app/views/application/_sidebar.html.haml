@@ -1,0 +1,7 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top#sidebar-wrapper{role: "navigation"}
+  %ul.nav.sidebar-nav
+    %li.sidebar-brand
+      %a{href: root_url} MANA
+    %li= link_to t("words.entry", count: 2), entries_path
+    %li= link_to t("words.source", count: 2), sources_path
+    %li= link_to t("words.tag", count: 2), tags_path
