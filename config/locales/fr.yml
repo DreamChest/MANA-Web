@@ -68,6 +68,10 @@ fr:
     messages:
         no_entries: "Oups, on dirait qu'il n'y a aucune entrée à afficher ¯\\_(ツ)_/¯"
 
+    sidebar:
+        source_filtering: "Filtrage par source"
+        tag_filtering: "Filtrage par tag"
+
     helpers:
         submit:
             create: "Créer"

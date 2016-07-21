@@ -67,6 +67,10 @@ en:
 
     messages:
         no_entries: "Woops, it looks like there are no entries to be show ¯\\_(ツ)_/¯"
+    
+    sidebar:
+        source_filtering: "Source filtering"
+        tag_filtering: "Tag filtering"
 
     helpers:
         submit:
