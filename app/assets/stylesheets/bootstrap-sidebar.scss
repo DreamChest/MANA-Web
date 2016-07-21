@@ -1,16 +1,9 @@
 // Modified version of j_holtslander "Awesome Bootstrap 3 Sidebar Navigation": https://codepen.io/j_holtslander/pen/XmpMEp
 
-/*-------------------------------*/
+// Variable
 
-
-/*           VARIABLES           */
-
-
-/*-------------------------------*/
-
-// TEXT COLOR
 $text-color: #000000;
-// SIDEBAR LINK COLOR VARIABLES
+
 $side-color-1: #1a1a1a;
 $side-color-2: darken($side-color-1, 5%);
 $side-color-3: darken($side-color-2, 5%);
@@ -20,16 +13,15 @@ $side-color-6: lighten($side-color-5, 5%);
 $side-color-7: lighten($side-color-6, 5%);
 $side-color-8: lighten($side-color-7, 5%);
 $side-color-9: lighten($side-color-8, 5%);
-// HAMBURGER COLOR
-/*$hamburger-color-closed: fadeout($text-color, 30);*/
+
 $hamburger-color-closed: $text-color;
 $hamburger-color-open: $text-color;
-// WIDTH VARIABLES
+
 $width1: 220px;
 $width2: 100px;
 $full-width: 100%;
-// HEIGHT VARIABLES
 $full-height: 100%;
+
 body {
 	position: relative;
 	overflow-x: hidden;
@@ -52,14 +44,7 @@ html {
 	}
 }
 
-
-/*-------------------------------*/
-
-
-/*           Wrappers            */
-
-
-/*-------------------------------*/
+// Wrappers
 
 #wrapper {
 	-moz-transition: all 0.5s ease;
@@ -103,14 +88,7 @@ html {
 	width: $full-width;
 }
 
-
-/*-------------------------------*/
-
-
-/*     Sidebar nav styles        */
-
-
-/*-------------------------------*/
+// Sidebar nav styles
 
 .sidebar-nav {
 	list-style: none;
@@ -231,14 +209,7 @@ html {
 	line-height: 44px;
 }
 
-
-/*-------------------------------*/
-
-
-/*       Hamburger-Cross         */
-
-
-/*-------------------------------*/
+// Hamburger-Cross
 
 .hamburger {
 	background: transparent;
@@ -361,14 +332,7 @@ html {
 	}
 }
 
-
-/*-------------------------------*/
-
-
-/*          Dark Overlay         */
-
-
-/*-------------------------------*/
+// Dark Overlay
 
 .overlay {
 	position: fixed;
