@@ -4,7 +4,6 @@
       %a{href: root_url} MANA
     %li= link_to t("words.entry", count: 2), entries_path
 
-    -#%li= link_to t("words.source", count: 2), sources_path
     %li.drowdown
       %a{href: "#", class: "dropdown-toggle", data: { toggle: "dropdown" }}
         Sources
@@ -32,3 +31,7 @@
             %span.glyphicon.glyphicon-edit
           %a{href: new_tag_path, style: "display: inline-block"}
             %span.glyphicon.glyphicon-plus
+
+  %ul.nav.sidebar-bottom
+    %li
+      %a pin (todo)

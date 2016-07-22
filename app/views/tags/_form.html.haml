@@ -1,8 +1,3 @@
-:javascript
-  $(document).ready(function() {
-    window.jscolor("tag_color", {hash: true, uppercase: false});
-  });
-
 = simple_form_for(@tag) do |f|
   = f.error_notification
 
@@ -12,3 +7,8 @@
 
   .form-actions
     = f.button :submit, class: "btn btn-primary"
+
+:javascript
+  $(document).ready(function() {
+    window.jscolor("tag_color", {hash: true, uppercase: false});
+  });

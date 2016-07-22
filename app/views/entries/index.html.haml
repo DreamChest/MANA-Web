@@ -2,13 +2,6 @@
   = t("words.entry", count: 2)
   = link_to "", update_sources_url, class: "btn btn-default glyphicon glyphicon-refresh"
 
-- unless @entries.empty? or Tag.all.empty?
-  %p Tags :
-  - Tag.all.each do |t|
-    .checkbox-inline
-      = check_box_tag t.name, t.id, false, { class: "tag_cb" }
-      = t.name
-
 %hr
 
 - unless @entries.empty?
