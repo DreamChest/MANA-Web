@@ -27,3 +27,17 @@ function handle_hamburger() {
 				$('#wrapper').toggleClass('toggled');
 			});  
 }
+
+// Makes the sidebar permanent
+function pin() {
+	$(".overlay").hide();
+	$(".hamburger").hide();
+	$("#pin").addClass("pinned");
+}
+
+// Makes the sidebar dynamic
+function unpin() {
+	$(".overlay").show();
+	$(".hamburger").show();
+	$("#pin").removeClass("pinned");
+}
