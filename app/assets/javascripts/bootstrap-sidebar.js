@@ -33,6 +33,8 @@ function pin() {
 	$(".overlay").hide();
 	$(".hamburger").hide();
 	$("#pin").addClass("pinned");
+	$("#page-content-wrapper").css("position", "relative");
+	$("#page-content-wrapper").css("padding-top", "28px");
 }
 
 // Makes the sidebar dynamic
@@ -40,4 +42,6 @@ function unpin() {
 	$(".overlay").show();
 	$(".hamburger").show();
 	$("#pin").removeClass("pinned");
+	$("#page-content-wrapper").css("position", "absolute");
+	$("#page-content-wrapper").css("padding-top", "70px");
 }

@@ -35,15 +35,3 @@
   %ul.nav.sidebar-bottom
     %li
       %a.glyphicon.glyphicon-pushpin#pin{href: "#"}
-
-:javascript
-  $(document).ready(function() {
-    $("#pin").click(function() {
-      if($("#pin").hasClass("pinned")) {
-        unpin();
-      }
-      else {
-        pin();
-      }
-    });
-  });

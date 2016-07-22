@@ -24,13 +24,25 @@
 
 :javascript
   $(document).ready(function() {
+
     $("a.dyn").click(function() {
       $.get($(this).attr("href"), function(result) {
         $result = $(result);
         $("#page-content").html($result.find("#page-content"));
-        $result.find("script").appendTo("#page-content");
+        $result.find("script").appendTo("body");
       });
       return false;
     });
+
+    $("#pin").click(function() {
+      if($("#pin").hasClass("pinned")) {
+        unpin();
+      }
+      else {
+        pin();
+      }
+      return false;
+    });
+
     handle_hamburger();
   });
