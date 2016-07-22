@@ -18,10 +18,15 @@
           %span.hamb-middle
           %span.hamb-bottom
         .container-fluid
-          = render "notice"
-          = yield
+          #page-content
+            = render "notice"
+            = yield
 
 :javascript
   $(document).ready(function() {
+    $("a.dyn").click(function() {
+        $("#page-content").load($(this).attr("href")+" #page-content");
+        return false;
+    });
     handle_hamburger();
   });

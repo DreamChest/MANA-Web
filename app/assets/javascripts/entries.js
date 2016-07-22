@@ -1,8 +1,3 @@
-// Adds all needed listeners (and stuff)
-function init() {
-	tag_filtering();
-}
-
 // Handles tag filtering (entries index)
 function tag_filtering() {
 	var args = location.search.split("tags=");
