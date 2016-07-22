@@ -4,7 +4,17 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-    @entries = Entry.all
+	  if not params["tags"].nil?
+		  @entries = Entry.all.order("date ASC").select do |e|
+			  e.source.tagslist.include? params["tags"]
+		  end
+	  elsif not params["source"].nil?
+			  @entries = Entry.all.order("date ASC").select do |e|
+				  e.source.name == params["source"]
+			  end
+	  else
+		  @entries = Entry.all.order("date ASC")
+	  end
   end
 
   # GET /entries/1

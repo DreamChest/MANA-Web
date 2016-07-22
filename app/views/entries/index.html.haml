@@ -1,15 +1,10 @@
 %h1{style: "display: inline;"}
   = t("words.entry", count: 2)
-  = link_to "", update_sources_url, class: "btn btn-default glyphicon glyphicon-refresh"
+  = link_to "", update_sources_url, class: "btn btn-default glyphicon glyphicon-refresh dyn", id: "refresh"
 
 %hr
 
 - unless @entries.empty?
-  = render "entries", entries: @entries.order("date ASC")
+  = render "entries", entries: @entries
 - else
   = I18n.translate("messages.no_entries")
-
-:javascript
-  $(document).ready(function() {
-    tag_filtering();
-  });

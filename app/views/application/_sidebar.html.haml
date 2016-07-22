@@ -11,7 +11,7 @@
       %ul.dropdown-menu{role: "menu"}
         %li.dropdown-header= t("sidebar.source_filtering")
         - Source.all.each do |s|
-          %li= link_to s.name, source_url(s), class: "dyn"
+          %li= link_to s.name, entries_path(source: s.name), class: "dyn"
         %li
           %a.dyn{href: sources_path, style: "display: inline-block"}
             %span.glyphicon.glyphicon-edit
