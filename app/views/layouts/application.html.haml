@@ -25,8 +25,12 @@
 :javascript
   $(document).ready(function() {
     $("a.dyn").click(function() {
-        $("#page-content").load($(this).attr("href")+" #page-content");
-        return false;
+      $.get($(this).attr("href"), function(result) {
+        $result = $(result);
+        $("#page-content").html($result.find("#page-content"));
+        $result.find("script").appendTo("#page-content");
+      });
+      return false;
     });
     handle_hamburger();
   });
