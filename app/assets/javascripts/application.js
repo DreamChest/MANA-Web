@@ -15,6 +15,5 @@
 //= require bootstrap
 //= require selectize
 //= require jscolor.min
-//= require bootstrap-sidebar
 //= require turbolinks
 //= require_tree .

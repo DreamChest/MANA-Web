@@ -111,7 +111,9 @@ class SourcesController < ApplicationController
 			fetch
 		end
 
-		redirect_to :back, notice: "Sources successfully updated."
+		@entries = Entry.all.order("date ASC")
+		flash[:notice] = "Sources successfully updated."
+		render template: "entries/index"
 	end
 
 	private

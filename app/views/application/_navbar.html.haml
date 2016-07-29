@@ -10,12 +10,12 @@
 
     .collapse.navbar-collapse#navbar
       %ul.nav.navbar-nav
-        %li= link_to t("words.entry", count: 2), entries_path
-        %li= link_to t("words.source", count: 2), sources_path
-        %li= link_to t("words.tag", count: 2), tags_path
+        %li= link_to t("words.entry", count: 2), entries_path, class: "dyn"
+        %li= link_to t("words.source", count: 2), sources_path, class: "dyn"
+        %li= link_to t("words.tag", count: 2), tags_path, class: "dyn"
 
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "", update_sources_url, class: "glyphicon glyphicon-refresh"
+        %li= link_to "", update_sources_url, class: "glyphicon glyphicon-refresh dyn", id: "refresh"
         %li.dropdown
           %a{ class: "dropdown-toggle", data: { toggle: "dropdown", href: "#"} }
             = t("words.lang")
@@ -25,11 +25,23 @@
             %li= link_to "Français", "?locale=fr"
 
 :javascript
-  $(document).ready(function() {
-
+  function set_active() {
     var loc = location.pathname;
     if(loc=="/") loc = "/entries";
 
-    $('navbar-nav.li.active').removeClass('active');
+    $('.nav').find(".active").removeClass('active');
     $('a[href^="'+loc+'"]').closest('li').addClass('active');
+  }
+
+  $(document).ready(function() {
+    set_active();
+
+    $(".nav a").click(function() {
+      $(".nav").find(".active").removeClass("active");
+      $(this).parent().addClass("active");
+    });
+
+    $("#refresh").click(function() {
+      set_active();
+    });
   });

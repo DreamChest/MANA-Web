@@ -8,23 +8,14 @@
     = csrf_meta_tags
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
   %body
-    -#= render "navbar"
-    #wrapper
-      .overlay
-      = render "sidebar"
-      #page-content-wrapper
-        %button.hamburger.is-closed.animated.fadeInleft{type: "button", data: {toggle: "offcanvas"}}
-          %span.hamb-top
-          %span.hamb-middle
-          %span.hamb-bottom
-        .container-fluid
-          #page-content
-            = render "notice"
-            = yield
+    = render "navbar"
+    .container-fluid
+      #page-content
+        = render "notice"
+        = yield
 
 :javascript
   $(document).ready(function() {
-
     $("a.dyn").click(function() {
       $.get($(this).attr("href"), function(result) {
         $result = $(result);
@@ -33,16 +24,4 @@
       });
       return false;
     });
-
-    $("#pin").click(function() {
-      if($("#pin").hasClass("pinned")) {
-        unpin();
-      }
-      else {
-        pin();
-      }
-      return false;
-    });
-
-    handle_hamburger();
   });
