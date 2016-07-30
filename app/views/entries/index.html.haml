@@ -1,4 +1,7 @@
-%h1= t("words.entry", count: 2)
+%h1
+  = t("words.entry", count: 2)
+  - unless @filter.nil?
+    = "(#{@filter})"
 
 %hr
 

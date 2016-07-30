@@ -8,10 +8,12 @@ class EntriesController < ApplicationController
 		  @entries = Entry.all.order("date ASC").select do |e|
 			  e.source.tagslist.include? params["tags"]
 		  end
+		  @filter = params["tags"]
 	  elsif not params["source"].nil?
 			  @entries = Entry.all.order("date ASC").select do |e|
 				  e.source.name == params["source"]
 			  end
+			  @filter = params["source"]
 	  else
 		  @entries = Entry.all.order("date ASC")
 	  end

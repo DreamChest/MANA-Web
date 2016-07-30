@@ -9,10 +9,14 @@
     %meta{:content => "width=device-width, initial-scale=1", :name => "viewport"}
   %body
     = render "navbar"
-    .container-fluid
-      #page-content
-        = render "notice"
-        = yield
+    #wrapper
+      #sidebar-wrapper
+        = render "sidebar"
+      #page-content-wrapper
+        .container-fluid
+          #page-content
+            = render "notice"
+            = yield
 
 :javascript
   $(document).ready(function() {

@@ -1,4 +1,4 @@
-%nav.navbar.navbar-default
+%nav.navbar.navbar-default.navbar-fixed-top
   .container-fluid
     .navbar-header
       %button{ class: "navbar-toggle", data: { toggle: "collapse", target: "#navbar" } }
@@ -6,7 +6,7 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand{href: root_url} MANA
+      %a.navbar-brand#sidebar-toggle{href: root_url} MANA
 
     .collapse.navbar-collapse#navbar
       %ul.nav.navbar-nav
@@ -30,7 +30,7 @@
     if(loc=="/") loc = "/entries";
 
     $('.nav').find(".active").removeClass('active');
-    $('a[href^="'+loc+'"]').closest('li').addClass('active');
+    $('.nav a[href^="'+loc+'"]').closest('li').addClass('active');
   }
 
   $(document).ready(function() {
@@ -38,10 +38,16 @@
 
     $(".nav a").click(function() {
       $(".nav").find(".active").removeClass("active");
+      $(".sidebar-nav").find(".active").removeClass("active");
       $(this).parent().addClass("active");
     });
 
     $("#refresh").click(function() {
       set_active();
+    });
+
+    $("#sidebar-toggle").click(function() {
+      $("#wrapper").toggleClass("toggled");
+      return false;
     });
   });

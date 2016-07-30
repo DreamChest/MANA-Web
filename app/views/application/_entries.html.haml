@@ -1,0 +1,21 @@
+.panel-group#accord
+  - entries.reverse.each do |e|
+    - collapse_id = "#{e.id}"
+    %div{ class: "panel panel-default #{e.source.tagslist.gsub(',', ' ')}" }
+      .panel-heading
+        %a{href: "##{collapse_id}", class: "feedtitle", data: { toggle: "collapse", parent: "#accord" }}
+          = e.source.name
+          \|
+          = e.title
+        %div.tags
+          = e.source.tagslist.gsub(",", ", ")
+        %div.right
+          = link_to t("words.open").downcase, e.url, class: "small", target: "_blank"
+          .small= I18n.localize(e.date, format: :long)
+      %div{ class: "panel-collapse collapse", id: collapse_id }
+        .panel-body
+
+:javascript
+  $(document).ready(function() {
+    handle_collapses();
+  });

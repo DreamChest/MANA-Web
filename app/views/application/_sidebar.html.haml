@@ -1,0 +1,11 @@
+%ul.sidebar-nav
+  - Source.all.each do |s|
+    %li= link_to s.name, entries_path(source: s.name), class: "dyn"
+
+:javascript
+  $(document).ready(function() {
+    $(".sidebar-nav a").click(function() {
+      $(".sidebar-nav").find(".active").removeClass("active");
+      $(this).parent().addClass("active");
+    });
+  });
