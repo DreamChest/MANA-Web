@@ -17,15 +17,42 @@
           #page-content
             = render "notice"
             = yield
+          #page-modal.modal.fade{role: "dialog"}
+            .modal-dialog.modal-lg
+              .modal-content
+                .modal-header
+                  %a.close{data: { dismiss: "modal"}} &times
+                  %h4.modal-title#page-modal-title title
+                .modal-body#page-modal-content
+                  foo
 
 :javascript
   $(document).ready(function() {
-    $("a.dyn").click(function() {
+    $(document).on("click", ".dyn", function() {
       $.get($(this).attr("href"), function(result) {
-        $result = $(result);
-        $("#page-content").html($result.find("#page-content"));
-        $result.find("script").appendTo("body");
+        var result = $(result);
+
+        $("#page-content").html(result.find("#page-content"));
+        result.find("script").appendTo("body");
       });
+
+      $("#page-modal").modal("hide");
+
+      return false;
+    });
+
+    $(document).on("click", ".dyn-modal", function() {
+      $.get($(this).attr("href"), function(result) {
+        var result = $(result);
+
+        $("#page-modal-title").text(result.find("#page-title").text());
+        result.find("#page-title").remove();
+        $("#page-modal-content").html(result.find("#page-content"));
+        result.find("script").appendTo("body");
+      });
+
+      $("#page-modal").modal("show");
+
       return false;
     });
   });

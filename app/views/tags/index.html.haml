@@ -1,4 +1,4 @@
-%h1= t("words.tags", count: 2)
+%h1#page-title= t("words.tags", count: 2)
 
 %table.table.table-striped.table-hover.table-responsive
   %thead
@@ -14,8 +14,7 @@
       %tr
         %td= tag.name
         %td= tag.color
-        %td= link_to '', tag, class: "btn btn-info glyphicon glyphicon-eye-open"
-        %td= link_to '', edit_tag_path(tag), class: "btn btn-info btn-warning glyphicon glyphicon-edit"
+        %td= link_to '', edit_tag_path(tag), class: "btn btn-info btn-warning glyphicon glyphicon-edit dyn-modal"
         %td= link_to '', tag, :method => :delete, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger glyphicon glyphicon-trash"
 
-= link_to '', new_tag_path, class: "btn btn-primary glyphicon glyphicon-plus"
+= link_to '', new_tag_path, class: "btn btn-primary glyphicon glyphicon-plus dyn-modal"
