@@ -72,7 +72,7 @@ class SourcesController < ApplicationController
 					@source.update(last_update: feed.entries.first.published)
 				end
 
-				format.html { redirect_to @source, notice: I18n.t("notices.source_updated") }
+				format.html { redirect_to @source, notice: I18n.t("notices.source_updated", count: 1) }
 				format.json { render :show, status: :ok, location: @source }
 			else
 				format.html { render :edit }
@@ -102,7 +102,7 @@ class SourcesController < ApplicationController
 	def update_entries
 		fetch
 
-		redirect_to :back, notice: "Source successfully updated."
+		redirect_to :back, notice: I18n.t("notices.source_updated", count: 1)
 	end
 
 	def update_all
@@ -112,7 +112,7 @@ class SourcesController < ApplicationController
 		end
 
 		@entries = Entry.all.order("date ASC")
-		flash[:notice] = "Sources successfully updated."
+		flash[:notice] = I18n.t("notices.source_updated", count: 2)
 		render template: "entries/index"
 	end
 

@@ -55,15 +55,17 @@ en:
     label: "%{label}: "
 
     notices:
-        entry_created: "Entry was successfully created."
-        entry_updated: "Entry was successfully updated."
-        entry_destroyed: "Entry was sucessfully destroyed."
-        source_created: "Source was successfully created."
-        source_updated: "Source was successfully updated."
-        source_destroyed: "Source was sucessfully destroyed."
-        tag_created: "Tag was successfully created."
-        tag_updated: "Tag was successfully updated."
-        tag_destroyed: "Tag was sucessfully destroyed."
+        entry_created: "Entry successfully created."
+        entry_updated: "Entry successfully updated."
+        entry_destroyed: "Entry sucessfully destroyed."
+        source_created: "Source successfully created."
+        source_updated:
+            one: "Source successfully updated."
+            other: "Sources successfully updated."
+        source_destroyed: "Source sucessfully destroyed."
+        tag_created: "Tag successfully created."
+        tag_updated: "Tag successfully updated."
+        tag_destroyed: "Tag sucessfully destroyed."
 
     messages:
         no_entries: "Woops, it looks like there are no entries to be show ¯\\_(ツ)_/¯"
