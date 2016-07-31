@@ -1,12 +1,14 @@
 %nav.navbar.navbar-default.navbar-fixed-top
-  .container-fluid
+  %a.navbar-brand.glyphicon.glyphicon-menu-down.neveractive#sidebar-toggle{href: ""}
+  %a.navbar-brand.glyphicon.glyphicon-menu-down.pull-right.neveractive#sidebar-toggle-right{href: ""}
+  .container
     .navbar-header
       %button{ class: "navbar-toggle", data: { toggle: "collapse", target: "#navbar" } }
         %span.sr-only Toggle navigation
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      %a.navbar-brand#sidebar-toggle{href: root_url} MANA
+      %a.navbar-brand{href: root_url} MANA
 
     .collapse.navbar-collapse#navbar
       %ul.nav.navbar-nav
@@ -15,7 +17,7 @@
         %li= link_to t("words.tag", count: 2), tags_path, class: "dyn"
 
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "", update_sources_url, class: "glyphicon glyphicon-refresh dyn", id: "refresh"
+        %li= link_to "", update_sources_url, class: "glyphicon glyphicon-refresh dyn neveractive redirect"
         %li.dropdown
           %a{ class: "dropdown-toggle", data: { toggle: "dropdown", href: "#"} }
             = t("words.lang")
@@ -36,18 +38,23 @@
   $(document).ready(function() {
     set_active();
 
-    $(".nav a").click(function() {
+    $(".nav a").not(".neveractive").click(function() {
       $(".nav").find(".active").removeClass("active");
       $(".sidebar-nav").find(".active").removeClass("active");
       $(this).parent().addClass("active");
     });
 
-    $("#refresh").click(function() {
+    $(".redirect").click(function() {
       set_active();
     });
 
     $("#sidebar-toggle").click(function() {
       $("#wrapper").toggleClass("toggled");
+      return false;
+    });
+
+    $("#sidebar-toggle-right").click(function() {
+      $("#wrapper").toggleClass("toggled-right");
       return false;
     });
   });
