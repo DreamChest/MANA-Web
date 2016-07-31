@@ -37,7 +37,7 @@ class SourcesController < ApplicationController
 				tag
 
 				feed.entries.reverse.each do |e|
-					@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
+					@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
 				end
 
 				@source.update(last_update: feed.entries.first.published)
@@ -66,7 +66,7 @@ class SourcesController < ApplicationController
 				unless feed.nil?
 					@source.entries.clear
 					feed.entries.reverse.each do |e|
-						@entry = @source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
+						@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
 					end
 
 					@source.update(last_update: feed.entries.first.published)
@@ -86,7 +86,11 @@ class SourcesController < ApplicationController
 	def destroy
 		@source.destroy
 		respond_to do |format|
-			format.html { redirect_to sources_url, notice: I18n.t("notices.source_destroyed") }
+			format.html {
+				@sources = Source.all
+				flash[:notice] = I18n.t("notices.source_destroyed")
+				render :index
+			}
 			format.json { head :no_content }
 		end
 	end

@@ -56,7 +56,11 @@ class TagsController < ApplicationController
   def destroy
     @tag.destroy
     respond_to do |format|
-      format.html { redirect_to tags_url, notice: I18n.t("notices.tag_destroyed") }
+      format.html {
+		  @tags = Tag.all
+		  flash[:notice] = I18n.t("notices.tag_destroyed")
+		  render :index
+	  }
       format.json { head :no_content }
     end
   end

@@ -24,22 +24,21 @@
               .modal-content
                 .modal-header
                   %a.close{data: { dismiss: "modal"}} &times
-                  %h4.modal-title#page-modal-title title
+                  %h4.modal-title#page-modal-title
                 .modal-body#page-modal-content
-                  foo
 
 :javascript
   $(document).ready(function() {
-    $(document).on("click", ".dyn", function() {
-      $.get($(this).attr("href"), function(result) {
-        var result = $(result);
+    function dynamic_load(result) {
+      var result = $(result);
 
-        $("#page-content").html(result.find("#page-content"));
-        result.find("script").appendTo("body");
-      });
-
+      $("#page-content").html(result.find("#page-content"));
+      result.find("script").appendTo("body");
       $("#page-modal").modal("hide");
+    }
 
+    $(document).on("click", ".dyn", function() {
+      $.get($(this).attr("href"), dynamic_load);
       return false;
     });
 
@@ -55,6 +54,20 @@
 
       $("#page-modal").modal("show");
 
+      return false;
+    });
+
+    $(document).on("click", ".dyn-delete", function() {
+      $.ajax({
+        url: $(this).attr("href"),
+        type: "DELETE",
+        success: function(result) {
+          dynamic_load(result);
+          var result = $(result)
+          $("#sidebar-wrapper").html(result.find("#sidebar-wrapper"));
+          $("#sidebar-wrapper-right").html(result.find("#sidebar-wrapper-right"));
+        }
+      });
       return false;
     });
   });
