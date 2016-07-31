@@ -4,12 +4,13 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-	  if not params["tags"].nil?
+	  if params["tags"].present?
 		  @entries = Entry.all.order("date ASC").select do |e|
-			  e.source.tagslist.include? params["tags"]
+			  #e.source.tagslist.include? params["tags"]
+			  not (e.source.tagslist.split(",") & params["tags"].split(",")).empty?
 		  end
 		  @filter = params["tags"]
-	  elsif not params["source"].nil?
+	  elsif params["source"].present?
 			  @entries = Entry.all.order("date ASC").select do |e|
 				  e.source.name == params["source"]
 			  end
