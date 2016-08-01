@@ -66,6 +66,8 @@ GEM
       faraday_middleware (~> 0.9)
       loofah (~> 2.0)
       sax-machine (~> 1.0)
+    font-awesome-sass (4.6.2)
+      sass (>= 3.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     haml (4.0.7)
@@ -151,6 +153,7 @@ GEM
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
+    spawnling (2.1.6)
     spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
@@ -183,6 +186,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   feedjira
+  font-awesome-sass
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
@@ -191,6 +195,7 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selectize-rails
   simple_form
+  spawnling
   spring
   sqlite3
   turbolinks

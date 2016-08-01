@@ -1,6 +1,6 @@
 %nav.navbar.navbar-default.navbar-fixed-top
-  %a.navbar-brand.glyphicon.glyphicon-menu-down.neveractive#sidebar-toggle{href: ""}
-  %a.navbar-brand.glyphicon.glyphicon-menu-down.pull-right.neveractive#sidebar-toggle-right{href: ""}
+  %a.navbar-brand.fa.fa-2x.fa-bars.neveractive#sidebar-toggle{href: ""}
+  %a.navbar-brand.fa.fa-2x.fa-bars.pull-right.neveractive#sidebar-toggle-right{href: ""}
   .container
     .navbar-header
       %button{ class: "navbar-toggle", data: { toggle: "collapse", target: "#navbar" } }
@@ -17,7 +17,7 @@
         %li= link_to t("words.tag", count: 2), tags_path, class: "dyn"
 
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "", update_sources_url, class: "glyphicon glyphicon-refresh dyn neveractive redirect"
+        %li= link_to "", update_sources_url, class: "fa fa-refresh dyn neveractive redirect"
         %li.dropdown
           %a{ class: "dropdown-toggle", data: { toggle: "dropdown", href: "#"} }
             = t("words.lang")
