@@ -7,27 +7,5 @@
 
 :javascript
   $(document).ready(function() {
-    $(".sidebar-nav a").click(function() {
-      $(".sidebar-nav").find(".active").removeClass("active");
-      $(this).parent().addClass("active");
-    });
-
-    $(document).on("click", ".tag_cb", function() {
-      var $tags = $(".tag_cb").filter(":checked");
-      var len = $tags.length;
-      var val = "";
-      $tags.each(function(index) {
-        val += $(this).val();
-        if(index != len-1) val += ",";
-      });
-
-      $.get($(this).attr("url")+val, function(result) {
-        var result = $(result);
-
-        $("#page-content").html(result.find("#page-content"));
-        result.find("script").appendTo("body");
-      });
-
-      $("#page-modal").modal("hide");
-    });
+    $(document).on("click", ".tag_cb", handle_tag_filtering);
   });

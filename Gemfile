@@ -48,7 +48,6 @@ end
 gem "haml-rails"
 gem "simple_form"
 gem "bootstrap-sass"
+gem "font-awesome-sass"
 gem "feedjira"
 gem "selectize-rails"
-gem "spawnling"
-gem "font-awesome-sass"

@@ -6,7 +6,6 @@ class EntriesController < ApplicationController
   def index
 	  if params["tags"].present?
 		  @entries = Entry.all.order("date ASC").select do |e|
-			  #e.source.tagslist.include? params["tags"]
 			  not (e.source.tagslist.split(",") & params["tags"].split(",")).empty?
 		  end
 		  @filter = params["tags"]

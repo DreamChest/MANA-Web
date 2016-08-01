@@ -29,45 +29,7 @@
 
 :javascript
   $(document).ready(function() {
-    function dynamic_load(result) {
-      var result = $(result);
-
-      $("#page-content").html(result.find("#page-content"));
-      result.find("script").appendTo("body");
-      $("#page-modal").modal("hide");
-    }
-
-    $(document).on("click", ".dyn", function() {
-      $.get($(this).attr("href"), dynamic_load);
-      return false;
-    });
-
-    $(document).on("click", ".dyn-modal", function() {
-      $.get($(this).attr("href"), function(result) {
-        var result = $(result);
-
-        $("#page-modal-title").text(result.find("#page-title").text());
-        result.find("#page-title").remove();
-        $("#page-modal-content").html(result.find("#page-content"));
-        result.find("script").appendTo("body");
-      });
-
-      $("#page-modal").modal("show");
-
-      return false;
-    });
-
-    $(document).on("click", ".dyn-delete", function() {
-      $.ajax({
-        url: $(this).attr("href"),
-        type: "DELETE",
-        success: function(result) {
-          dynamic_load(result);
-          var result = $(result)
-          $("#sidebar-wrapper").html(result.find("#sidebar-wrapper"));
-          $("#sidebar-wrapper-right").html(result.find("#sidebar-wrapper-right"));
-        }
-      });
-      return false;
-    });
+    $(document).on("click", ".dyn-content", dynamic_content_load);
+    $(document).on("click", ".dyn-modal", dynamic_modal_load);
+    $(document).on("click", ".dyn-delete", dynamic_delete_load);
   });

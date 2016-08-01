@@ -12,12 +12,12 @@
 
     .collapse.navbar-collapse#navbar
       %ul.nav.navbar-nav
-        %li= link_to t("words.entry", count: 2), entries_path, class: "dyn"
-        %li= link_to t("words.source", count: 2), sources_path, class: "dyn"
-        %li= link_to t("words.tag", count: 2), tags_path, class: "dyn"
+        %li= link_to t("words.entry", count: 2), entries_path, class: "dyn-content"
+        %li= link_to t("words.source", count: 2), sources_path, class: "dyn-content"
+        %li= link_to t("words.tag", count: 2), tags_path, class: "dyn-content"
 
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "", update_sources_url, class: "fa fa-refresh dyn neveractive redirect"
+        %li= link_to "", update_sources_url, class: "fa fa-refresh dyn-content neveractive redirect"
         %li.dropdown
           %a{ class: "dropdown-toggle", data: { toggle: "dropdown", href: "#"} }
             = t("words.lang")
@@ -27,34 +27,11 @@
             %li= link_to "Français", "?locale=fr"
 
 :javascript
-  function set_active() {
-    var loc = location.pathname;
-    if(loc=="/") loc = "/entries";
-
-    $('.nav').find(".active").removeClass('active');
-    $('.nav a[href^="'+loc+'"]').closest('li').addClass('active');
-  }
-
   $(document).ready(function() {
     set_active();
 
-    $(".nav a").not(".neveractive").click(function() {
-      $(".nav").find(".active").removeClass("active");
-      $(".sidebar-nav").find(".active").removeClass("active");
-      $(this).parent().addClass("active");
-    });
-
-    $(".redirect").click(function() {
-      set_active();
-    });
-
-    $("#sidebar-toggle").click(function() {
-      $("#wrapper").toggleClass("toggled");
-      return false;
-    });
-
-    $("#sidebar-toggle-right").click(function() {
-      $("#wrapper").toggleClass("toggled-right");
-      return false;
-    });
+    $(".nav a").not(".neveractive").click(handle_navbar_nav);
+    $("#sidebar-toggle").click(toggle_sidebar);
+    $("#sidebar-toggle-right").click(toggle_sidebar_right);
+    $(".redirect").click(set_active);
   });

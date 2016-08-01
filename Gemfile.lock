@@ -153,7 +153,6 @@ GEM
     simple_form (3.2.1)
       actionpack (> 4, < 5.1)
       activemodel (> 4, < 5.1)
-    spawnling (2.1.6)
     spring (1.7.1)
     sprockets (3.6.0)
       concurrent-ruby (~> 1.0)
@@ -195,7 +194,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selectize-rails
   simple_form
-  spawnling
   spring
   sqlite3
   turbolinks
@@ -203,4 +201,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.12.4
+   1.12.5

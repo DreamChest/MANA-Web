@@ -1,12 +1,9 @@
 %ul.sidebar-nav
   %li.sidebar-brand= t("sidebar.source_filtering")
   - Source.all.each do |s|
-    %li= link_to s.name, entries_path(source: s.name), class: "dyn"
+    %li= link_to s.name, entries_path(source: s.name), class: "dyn-content"
 
 :javascript
   $(document).ready(function() {
-    $(".sidebar-nav a").click(function() {
-      $(".sidebar-nav").find(".active").removeClass("active");
-      $(this).parent().addClass("active");
-    });
+    $(document).on("click", ".sidebar-nav a", handle_sidebar_nav);
   });

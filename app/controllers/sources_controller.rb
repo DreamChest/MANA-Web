@@ -98,7 +98,7 @@ class SourcesController < ApplicationController
 	# Shows entries for the source
 	def show_entries
 		respond_to do |format|
-			format.html { render :partial => "entries/entries", locals: { entries: @source.entries } }
+			format.html { render :partial => "entries", locals: { entries: @source.entries } }
 			format.json { render json: @source.entries }
 		end
 	end
