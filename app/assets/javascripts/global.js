@@ -2,6 +2,7 @@
 function dynamic_content_load() {
 	$("#page-modal").modal("hide");
 	$("#page-content").load($(this).attr("href")+" #page-content");
+	handle_all();
 
 	return false;
 }
@@ -13,6 +14,7 @@ function dynamic_modal_load() {
 
 		$("#page-modal-title").text(title.text());
 		title.remove();
+		handle_all();
 	});
 	$("#page-modal").modal("show");
 
@@ -31,4 +33,18 @@ function dynamic_delete_load() {
 		}
 	});
 	return false;
+}
+
+// Yup, that's dirty, but temporary (maybe)
+function ftry(f) {
+	try {
+		f();
+	} catch(err) {};
+}
+
+// Calls all (all needed at least) handlers
+function handle_all() {
+	ftry(handle_collapses);
+	ftry(handle_selectize);
+	ftry(handle_jscolor);
 }
