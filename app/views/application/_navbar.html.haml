@@ -33,5 +33,7 @@
     $(".nav a").not(".neveractive").click(handle_navbar_nav);
     $("#sidebar-toggle").click(toggle_sidebar);
     $("#sidebar-toggle-right").click(toggle_sidebar_right);
-    $(".redirect").click(set_active);
+    $(".redirect").on("click", function() {
+        set_active("/entries");
+    });
   });

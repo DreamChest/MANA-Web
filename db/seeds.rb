@@ -10,9 +10,7 @@ tag2 = Tag.create(name: "general", color: "#ffffff")
 
 source1 = Source.create(name: "Korben", url: "http://korben.info/feed", last_update: Time.at(0))
 source2 = Source.create(name: "Slashdot", url: "http://rss.slashdot.org/Slashdot/slashdotMain", last_update: Time.at(0))
-source3 = Source.create(name: "Le Monde", url: "http://www.lemonde.fr/rss/une.xml", last_update: Time.at(0))
 
 source1.tags<<(tag1)
 source2.tags<<(tag1)
 source2.tags<<(tag2)
-source3.tags<<(tag1)

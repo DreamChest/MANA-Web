@@ -16,4 +16,10 @@
 !/log/.keep
 /tmp
 
+# Own
+
 *.swp
+resetdb.sh
+tags
+todo
+*.taghl

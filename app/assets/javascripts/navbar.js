@@ -1,6 +1,8 @@
 // Sets active navbar nav link according to current url
-function set_active() {
-	var loc = location.pathname;
+function set_active(l) {
+	if(l == null) var loc = location.pathname;
+	else var loc = l;
+
 	if(loc=="/") loc = "/entries";
 
 	$('.nav').find(".active").removeClass('active');
