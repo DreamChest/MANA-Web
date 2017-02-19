@@ -32,7 +32,7 @@
     $(document).on("click", ".dyn-content", dynamic_content_load);
     $(document).on("click", ".dyn-modal", dynamic_modal_load);
     $(document).on("click", ".dyn-delete", dynamic_delete_load);
-    $(document).on("ajax:complete", ".dyn-form", function() { $("#back").click(); });
+    $(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
     
     handle_all();
   });
