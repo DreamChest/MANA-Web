@@ -17,7 +17,7 @@
       #page-content-wrapper
         .container-fluid
           #page-content
-            = render "notice"
+            = render "notice" #TODO: MINOR BUG FIX (semi-permanent notices)
             = yield
           #page-modal.modal.fade{role: "dialog"}
             .modal-dialog.modal-lg
@@ -32,6 +32,7 @@
     $(document).on("click", ".dyn-content", dynamic_content_load);
     $(document).on("click", ".dyn-modal", dynamic_modal_load);
     $(document).on("click", ".dyn-delete", dynamic_delete_load);
-
+    $(document).on("ajax:complete", ".dyn-form", function() { $("#back").click(); });
+    
     handle_all();
   });

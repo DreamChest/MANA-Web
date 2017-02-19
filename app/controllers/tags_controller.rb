@@ -1,10 +1,10 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
+  before_action :set_tags, only: [:index, :update]
 
   # GET /tags
   # GET /tags.json
   def index
-    @tags = Tag.all
   end
 
   # GET /tags/1
@@ -42,8 +42,11 @@ class TagsController < ApplicationController
   def update
     respond_to do |format|
       if @tag.update(tag_params)
-        format.html { redirect_to @tag, notice: I18n.t("notices.tag_updated") }
-        format.json { render :show, status: :ok, location: @tag }
+		format.html {
+			flash[:notice] = I18n.t("notices.tag_updated")
+			render :index
+		}
+		format.json { render :show, status: :ok, location: @tag }
       else
         format.html { render :edit }
         format.json { render json: @tag.errors, status: :unprocessable_entity }
@@ -70,6 +73,10 @@ class TagsController < ApplicationController
     def set_tag
       @tag = Tag.find(params[:id])
     end
+
+	def set_tags
+	  @tags = Tag.all
+	end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tag_params

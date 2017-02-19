@@ -2,11 +2,11 @@ class SourcesController < ApplicationController
 	require "feedjira"
 
 	before_action :set_source, only: [:show, :edit, :update, :destroy, :show_entries, :update_entries]
+	before_action :set_sources, only: [:index, :update]
 
 	# GET /sources
 	# GET /sources.json
 	def index
-		@sources = Source.all
 	end
 
 	# GET /sources/1
@@ -72,7 +72,10 @@ class SourcesController < ApplicationController
 					@source.update(last_update: feed.entries.first.published)
 				end
 
-				format.html { redirect_to @source, notice: I18n.t("notices.source_updated", count: 1) }
+				format.html {
+					flash[:notice] = I18n.t("notices.source_updated", count: 1)
+					render :index
+				}
 				format.json { render :show, status: :ok, location: @source }
 			else
 				format.html { render :edit }
@@ -149,6 +152,10 @@ class SourcesController < ApplicationController
 	# Use callbacks to share common setup or constraints between actions.
 	def set_source
 		@source = Source.find(params[:id])
+	end
+
+	def set_sources
+		@sources = Source.all
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

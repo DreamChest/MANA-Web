@@ -3,5 +3,5 @@
 = render 'form'
 
 %br
-= link_to t("words.show"), @source, class: "btn btn-info"
-= link_to t("words.back"), sources_path, class: "btn btn-default"
+= link_to t("words.show"), @source, class: "btn btn-info dyn-modal"
+= link_to t("words.back"), sources_path, class: "btn btn-default dyn-content", id: "back"
