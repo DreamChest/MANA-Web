@@ -7,7 +7,10 @@
   %b= l("words.tag", count: 2)
   = @source.tagslist
 
-= link_to t("words.update"), update_source_path, class: "btn btn-primary"
+= link_to t("words.update"), update_source_path, class: "btn btn-primary load"
+= image_tag "loading.gif", class: "loading-icon"
+%br
+%br
 = link_to t("words.edit"), edit_source_path(@source), class: "btn btn-warning dyn-modal"
 = link_to t("words.back"), sources_path, class: "btn btn-default dyn-content"
 

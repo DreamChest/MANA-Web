@@ -1,7 +1,9 @@
 // Dynamically loads a link into the page content wrapper
 function dynamic_content_load() {
 	$("#page-modal").modal("hide");
-	$("#page-content").load($(this).attr("href")+" #page-content");
+	$("#page-content").load($(this).attr("href")+" #page-content", function() {
+		$("#update_all").removeClass("fa-spin");
+	});
 	handle_all();
 
 	return false;
@@ -46,6 +48,12 @@ function dynamic_form_load() {
 		success: dynamic_full_load
 	});
 	$("#page-modal").modal("hide");
+}
+
+// Disable button and show loading icon when needed
+function show_loading_icon() {
+	$(this).attr("disabled", "");
+	$(".loading-icon").css("visibility", "visible");
 }
 
 // Yup, that's dirty, but temporary (maybe)

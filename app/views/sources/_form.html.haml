@@ -7,4 +7,5 @@
     = f.input :tagslist_attr, label: l("words.tag", count: 2), input_html: { value: Tag.list, default_values: @source.tagslist }
 
   .form-actions
-    = f.button :submit, class: "btn btn-primary"
+    = f.button :submit, class: "btn btn-primary load"
+    = image_tag "loading.gif", class: "loading-icon"

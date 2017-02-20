@@ -33,6 +33,7 @@
     $(document).on("click", ".dyn-modal", dynamic_modal_load);
     $(document).on("click", ".dyn-delete", dynamic_delete_load);
     $(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
+    $(document).on("click", ".load", show_loading_icon);
     
     handle_all();
   });
