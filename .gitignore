@@ -16,6 +16,9 @@
 !/log/.keep
 /tmp
 
+# Ignore static assets
+/public/assets/
+
 # Own
 
 *.swp

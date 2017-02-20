@@ -1,5 +1,24 @@
 #!/bin/sh
 
-rails s --binding 0.0.0.0 -p 3000
+print_usage() {
+	echo "Usage: ${0##*/} start|stop"
+}
+
+case $1 in
+	start)
+		echo "Starting MANA..."
+		export RAILS_ENV=production
+		export SECRET_KEY_BASE=$(rake secret)
+		export RAILS_SERVE_STATIC_FILES=true
+		rake assets:precompile
+		rails s --binding 0.0.0.0 -p 3000 -e production -d
+		echo "MANA started.";;
+	stop)
+		kill -9 $(cat tmp/pids/server.pid 2> /dev/null) 2> /dev/null
+		echo "MANA stopped.";;
+	*)
+		print_usage
+		exit 1;;
+esac
 
 exit 0
