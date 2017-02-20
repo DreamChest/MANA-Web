@@ -9,3 +9,6 @@
   .form-actions
     = f.button :submit, class: "btn btn-primary load"
     = image_tag "loading.gif", class: "loading-icon"
+
+:javascript
+  $(document).ready(handle_selectize);

@@ -1,5 +1,5 @@
 // Handles panel collapses (entries index)
-function handle_collapses() {
+function handle_entries() {
 	$(document).on("show.bs.collapse", ".panel-collapse", function() {
 		var panel_body = $(this).children();
 		if(panel_body.html()=="") {
@@ -8,4 +8,9 @@ function handle_collapses() {
 			});
 		}
 	});
+}
+
+//...
+function entries_js() {
+	handle_entries();
 }

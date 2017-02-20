@@ -28,12 +28,4 @@
                 .modal-body#page-modal-content
 
 :javascript
-  $(document).ready(function() {
-    $(document).on("click", ".dyn-content", dynamic_content_load);
-    $(document).on("click", ".dyn-modal", dynamic_modal_load);
-    $(document).on("click", ".dyn-delete", dynamic_delete_load);
-    $(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
-    $(document).on("click", ".load", show_loading_icon);
-    
-    handle_all();
-  });
+  $(document).ready(set_listeners);

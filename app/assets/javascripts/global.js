@@ -1,27 +1,33 @@
 // Dynamically loads a link into the page content wrapper
 function dynamic_content_load() {
-	if($(this).hasClass("neveractive")) update_navbar = true;
+	var source = $(this);
+	var update_navbar = false;
+
+	if(source.hasClass("neveractive")) update_navbar = true;
 
 	$("#page-modal").modal("hide");
-	$("#page-content").load($(this).attr("href")+" #page-content", function() {
-		$("#update_all").removeClass("fa-spin");
-		if(update_navbar) {
+	$("#page-content").load(source.attr("href")+" #page-content", function() {
+
+		if(update_navbar == true) {
 			set_navbar_active();
+			$("#update_all").removeClass("fa-spin");
 		}
 	});
-	handle_all();
 
 	return false;
 }
 
 // Dynamically loads a link into a modal
 function dynamic_modal_load() {
-	$("#page-modal-content").load($(this).attr("href")+" #page-content", function() {
+	var source = $(this);
+
+	$("#page-modal-content").load(source.attr("href")+" #page-content", function() {
 		var title = $("#page-modal-content").find("#page-title");
 
 		$("#page-modal-title").text(title.text());
 		title.remove();
-		handle_all();
+
+		post_load(source);
 	});
 	$("#page-modal").modal("show");
 
@@ -61,16 +67,16 @@ function show_loading_icon() {
 	$(".loading-icon").css("visibility", "visible");
 }
 
-// Yup, that's dirty, but temporary (maybe)
-function ftry(f) {
-	try {
-		f();
-	} catch(err) {};
+// Sets all needed listeners
+function set_listeners() {
+    $(document).on("click", ".dyn-content", dynamic_content_load);
+    $(document).on("click", ".dyn-modal", dynamic_modal_load);
+    $(document).on("click", ".dyn-delete", dynamic_delete_load);
+    $(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
+    $(document).on("click", ".load", show_loading_icon);
 }
 
-// Calls all (all needed at least) handlers
-function handle_all() {
-	ftry(handle_collapses);
-	ftry(handle_selectize);
-	ftry(handle_jscolor);
+function post_load(source) {
+	if(source.hasClass("selectize")) handle_selectize();
+	if(source.hasClass("jscolor")) handle_jscolor();
 }
