@@ -1,8 +1,13 @@
 // Dynamically loads a link into the page content wrapper
 function dynamic_content_load() {
+	if($(this).hasClass("neveractive")) update_navbar = true;
+
 	$("#page-modal").modal("hide");
 	$("#page-content").load($(this).attr("href")+" #page-content", function() {
 		$("#update_all").removeClass("fa-spin");
+		if(update_navbar) {
+			set_navbar_active();
+		}
 	});
 	handle_all();
 

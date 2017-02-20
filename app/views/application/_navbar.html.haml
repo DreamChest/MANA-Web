@@ -17,9 +17,9 @@
         %li= link_to t("words.tag", count: 2), tags_path, class: "dyn-content"
 
       %ul.nav.navbar-nav.navbar-right
-        %li= link_to "", update_sources_url, class: "fa fa-refresh dyn-content neveractive redirect", id: "update_all"
+        %li= link_to "", update_sources_url, class: "fa fa-refresh dyn-content neveractive", id: "update_all"
         %li.dropdown
-          %a{ class: "dropdown-toggle", data: { toggle: "dropdown", href: "#"} }
+          %a{ class: "dropdown-toggle neveractive", data: { toggle: "dropdown", href: "#"} }
             = t("words.lang")
             %span.caret
           %ul.dropdown-menu
@@ -28,14 +28,13 @@
 
 :javascript
   $(document).ready(function() {
-    set_active();
+    set_navbar_active();
 
     $(".nav a").not(".neveractive").click(handle_navbar_nav);
+
     $("#sidebar-toggle").click(toggle_sidebar);
     $("#sidebar-toggle-right").click(toggle_sidebar_right);
-    $(".redirect").on("click", function() {
-        set_active("/entries");
-    });
+
     $("#update_all").on("click", function() {
         $(this).toggleClass("fa-spin");
         $(this).blur();

@@ -1,7 +1,6 @@
 // Sets active navbar nav link according to current url
-function set_active(l) {
-	if(l == null) var loc = location.pathname;
-	else var loc = l;
+function set_navbar_active() {
+	var loc = location.pathname;
 
 	if(loc=="/") loc = "/entries";
 
@@ -12,8 +11,9 @@ function set_active(l) {
 // Handles navbar nav links
 function handle_navbar_nav() {
 	$(".nav").find(".active").removeClass("active");
-	$(".sidebar-nav").find(".active").removeClass("active");
 	$(this).parent().addClass("active");
+
+	$(".sidebar-nav").find(".active").removeClass("active");
 }
 
 // Toggles (left) sidebar
