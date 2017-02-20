@@ -19,7 +19,7 @@
         %td= source.tagslist
         %td= source.last_update
         %td= link_to '', source, class: "btn btn-info fa fa-eye dyn-modal"
-        %td= link_to '', edit_source_path(source), class: "btn btn-warning fa fa-edit dyn-modal"
+        %td= link_to '', edit_source_path(source), class: "btn btn-warning fa fa-edit dyn-modal selectize"
         %td= link_to '', source, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger fa fa-trash dyn-delete"
 
 = link_to '', new_source_path, class: "btn btn-primary fa fa-plus dyn-modal selectize"
