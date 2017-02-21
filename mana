@@ -11,6 +11,7 @@ case $1 in
 		export SECRET_KEY_BASE=$(rake secret)
 		export RAILS_SERVE_STATIC_FILES=true
 		rake assets:precompile
+		rake db:migrate
 		rails s --binding 0.0.0.0 -p 3000 -e production -d
 		echo "MANA started.";;
 	stop)

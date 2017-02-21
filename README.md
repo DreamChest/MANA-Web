@@ -24,6 +24,7 @@ MANA is currently in early phases of development and is highly incomplete and ma
 
 - Ruby 2.3.0
 - Ruby on Rails 4.2.6
+- Any [ExecJS](https://github.com/rails/execjs) supported Javascript runtime
 
 ### Quickstart
 
