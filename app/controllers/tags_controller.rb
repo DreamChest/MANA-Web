@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
   before_action :set_tag, only: [:show, :edit, :update, :destroy]
-  before_action :set_tags, only: [:index, :update]
+  before_action :set_tags, only: [:index, :create, :update, :destroy]
 
   # GET /tags
   # GET /tags.json
@@ -28,7 +28,10 @@ class TagsController < ApplicationController
 
     respond_to do |format|
       if @tag.save
-        format.html { redirect_to @tag, notice: I18n.t("notices.tag_created") }
+        format.html {
+			flash[:notice] = I18n.t("notices.tag_created")
+			render :index
+		}
         format.json { render :show, status: :created, location: @tag }
       else
         format.html { render :new }
@@ -60,7 +63,6 @@ class TagsController < ApplicationController
     @tag.destroy
     respond_to do |format|
       format.html {
-		  @tags = Tag.all
 		  flash[:notice] = I18n.t("notices.tag_destroyed")
 		  render :index
 	  }

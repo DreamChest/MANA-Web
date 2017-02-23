@@ -2,7 +2,7 @@ class SourcesController < ApplicationController
 	require "feedjira"
 
 	before_action :set_source, only: [:show, :edit, :update, :destroy, :show_entries, :update_entries]
-	before_action :set_sources, only: [:index, :update]
+	before_action :set_sources, only: [:index, :create, :update, :update_entries]
 
 	# GET /sources
 	# GET /sources.json
@@ -42,7 +42,10 @@ class SourcesController < ApplicationController
 
 				@source.update(last_update: feed.entries.first.published)
 
-				format.html { redirect_to @source, notice: I18n.t("notices.source_created") }
+				format.html {
+					flash[:notice] = I18n.t("notices.source_created")
+					render :index
+				}
 				format.json { render :show, status: :created, location: @source }
 			else
 				format.html { render :new }
@@ -106,12 +109,15 @@ class SourcesController < ApplicationController
 		end
 	end
 
+	# Updates entries for the source
 	def update_entries
 		fetch
 
-		redirect_to :back, notice: I18n.t("notices.source_updated", count: 1)
+		flash[:notice] = I18n.t("notices.source_updated", count: 1)
+		render :index
 	end
 
+	# Updates all sources (fetches entries for each source)
 	def update_all
 		Source.all.each do |s|
 			@source = s
