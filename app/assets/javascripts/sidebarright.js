@@ -10,5 +10,5 @@ function handle_tag_filtering() {
 	});
 
 	$("#page-modal").modal("hide");
-	$("#page-content").load($(this).attr("url")+val+" #page-content");
+	$("#page-content").load(encodeURI($(this).attr("url")+val)+" #page-content");
 }
