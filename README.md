@@ -36,4 +36,4 @@ MANA will run in background, to stop it: `./mana stop`
 
 ## Licence
 
-[See LICENCE](https://github.com/DreamChest/MANA-Web/blob/master/LICENSE)
+[See LICENSE](https://github.com/DreamChest/MANA-Web/blob/master/LICENSE)
