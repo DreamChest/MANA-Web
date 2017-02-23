@@ -5,7 +5,6 @@ function dynamic_content_load() {
 
 	if(source.hasClass("neveractive")) update_navbar = true;
 
-	$("#page-modal").modal("hide");
 	$("#page-content").load(source.attr("href")+" #page-content", function() {
 
 		if(update_navbar == true) {
@@ -14,6 +13,7 @@ function dynamic_content_load() {
 		}
 
 		post_load(source);
+		$("#page-modal").modal("hide");
 	});
 
 	return false;
