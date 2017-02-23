@@ -12,6 +12,8 @@ function dynamic_content_load() {
 			set_navbar_active();
 			$("#update_all").removeClass("fa-spin");
 		}
+
+		post_load(source);
 	});
 
 	return false;
@@ -77,6 +79,7 @@ function set_listeners() {
 }
 
 function post_load(source) {
+	if(source.hasClass("entries")) entries_js();
 	if(source.hasClass("selectize")) handle_selectize();
 	if(source.hasClass("jscolor")) handle_jscolor();
 }
