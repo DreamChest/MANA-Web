@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_action :set_locale
-  #before_action :hang, only: [:create, :update_entries, :update_all]
+  #before_action :hang, only: [:index]
 
   private
   def default_url_options(options = {})
@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
 
   def hang
 	  sleep 5
-	  redirect_to :back
 	  return
   end
 end

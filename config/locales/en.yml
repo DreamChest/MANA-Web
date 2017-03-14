@@ -51,6 +51,8 @@ en:
         last_update: "Last update"
         color: "Color"
         open: "Open"
+        show_more: "Show more"
+        back_top: "Back to top"
 
     label: "%{label}: "
 

@@ -51,6 +51,8 @@ fr:
         last_update: "Dernière mise à jour"
         color: "Couleur"
         open: "Ouvrir"
+        show_more: "Charger plus"
+        back_top: "Retour en haut"
 
     label: "%{label} : "
 

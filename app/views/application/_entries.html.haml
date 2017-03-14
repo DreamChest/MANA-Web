@@ -1,7 +1,7 @@
-.panel-group#accord
-  - entries.reverse.each do |e|
+.panel-group#accord#entries
+  - entries.each do |e|
     - collapse_id = "#{e.id}"
-    %div{ class: "panel panel-default #{e.source.tagslist.gsub(',', ' ')}" }
+    %div{ class: "panel panel-default entry #{e.source.tagslist.gsub(',', ' ')}", date: e.date.strftime("%Y-%m-%d %H:%M:%S") }
       .panel-heading
         %a{href: "##{collapse_id}", class: "feedtitle", data: { toggle: "collapse", parent: "#accord" }}
           = e.source.name
@@ -15,5 +15,11 @@
       %div{ class: "panel-collapse collapse", id: collapse_id }
         .panel-body
 
+#load-more-div
+  %button{href: entries_path, class: "btn btn-default", id: "load-more-btn"}= t("words.show_more")
+  %a#totop= t("words.back_top")
+  = image_tag "loading.gif", class: "loading-icon"
+
+
 :javascript
-  $(document).ready(handle_entries);
+  $(document).ready(entries_js);

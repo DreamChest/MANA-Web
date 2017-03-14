@@ -66,16 +66,16 @@ function dynamic_form_load() {
 // Disable button and show loading icon when needed
 function show_loading_icon() {
 	$(this).attr("disabled", "");
-	$(".loading-icon").css("visibility", "visible");
+	$(".loading-icon").css("display", "inline");
 }
 
 // Sets all needed listeners
 function set_listeners() {
-    $(document).on("click", ".dyn-content", dynamic_content_load);
-    $(document).on("click", ".dyn-modal", dynamic_modal_load);
-    $(document).on("click", ".dyn-delete", dynamic_delete_load);
-    $(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
-    $(document).on("click", ".load", show_loading_icon);
+	$(document).on("click", ".dyn-content", dynamic_content_load);
+	$(document).on("click", ".dyn-modal", dynamic_modal_load);
+	$(document).on("click", ".dyn-delete", dynamic_delete_load);
+	$(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
+	$(document).on("click", ".load", show_loading_icon);
 }
 
 function post_load(source) {
