@@ -12,7 +12,6 @@ function dynamic_content_load() {
 			$("#update_all").removeClass("fa-spin");
 		}
 
-		post_load(source);
 		$("#page-modal").modal("hide");
 	});
 
@@ -28,8 +27,6 @@ function dynamic_modal_load() {
 
 		$("#page-modal-title").text(title.text());
 		title.remove();
-
-		post_load(source);
 	});
 	$("#page-modal").modal("show");
 
@@ -69,17 +66,11 @@ function show_loading_icon() {
 	$(".loading-icon").css("visibility", "visible");
 }
 
-// Sets all needed listeners
-function set_listeners() {
-    $(document).on("click", ".dyn-content", dynamic_content_load);
-    $(document).on("click", ".dyn-modal", dynamic_modal_load);
-    $(document).on("click", ".dyn-delete", dynamic_delete_load);
-    $(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
-    $(document).on("click", ".load", show_loading_icon);
-}
-
-function post_load(source) {
-	if(source.hasClass("entries")) entries_js();
-	if(source.hasClass("selectize")) handle_selectize();
-	if(source.hasClass("jscolor")) handle_jscolor();
+// Sets listeners for application-wide functions
+function set_application_listeners() {
+    $(".dyn-content").on("click", dynamic_content_load);
+    $(".dyn-modal").on("click", dynamic_modal_load);
+    $(".dyn-delete").on("click", dynamic_delete_load);
+    $(".dyn-form").on("ajax:complete", dynamic_form_load);
+    $(".load").on("click", show_loading_icon);
 }

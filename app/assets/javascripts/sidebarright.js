@@ -12,3 +12,8 @@ function handle_tag_filtering() {
 	$("#page-modal").modal("hide");
 	$("#page-content").load(encodeURI($(this).attr("url")+val)+" #page-content");
 }
+
+// Sets right sidebar listeners
+function set_right_sidebar_listeners() {
+	$(".tag_cb").on("click", handle_tag_filtering);
+}
