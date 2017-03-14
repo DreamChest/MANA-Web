@@ -3,16 +3,17 @@ function dynamic_content_load() {
 	var source = $(this);
 	var update_navbar = false;
 
-	if(source.hasClass("neveractive")) update_navbar = true;
-
 	$("#page-content").load(source.attr("href")+" #page-content", function() {
 
-		if(update_navbar == true) {
+		if(source.hasClass("neveractive")) {
 			set_navbar_active();
 			$("#update_all").removeClass("fa-spin");
 		}
 
 		$("#page-modal").modal("hide");
+
+		set_application_listeners();
+		set_page_listeners(source);
 	});
 
 	return false;
@@ -27,6 +28,9 @@ function dynamic_modal_load() {
 
 		$("#page-modal-title").text(title.text());
 		title.remove();
+
+		set_application_listeners();
+		set_page_listeners(source);
 	});
 	$("#page-modal").modal("show");
 
@@ -38,6 +42,8 @@ function dynamic_full_load(result) {
 	$("#page-content").html($(result).find("#page-content").html());
 	$("#sidebar-wrapper").html($(result).find("#sidebar-wrapper").html());
 	$("#sidebar-wrapper-right").html($(result).find("#sidebar-wrapper-right").html());
+
+	set_application_listeners();
 }
 
 // Dynamically loads a link into the page sidebars and page content (for delete http method)
@@ -47,6 +53,7 @@ function dynamic_delete_load() {
 		type: "DELETE",
 		success: dynamic_full_load
 	});
+
 	return false;
 }
 
@@ -68,9 +75,17 @@ function show_loading_icon() {
 
 // Sets listeners for application-wide functions
 function set_application_listeners() {
-    $(".dyn-content").on("click", dynamic_content_load);
-    $(".dyn-modal").on("click", dynamic_modal_load);
-    $(".dyn-delete").on("click", dynamic_delete_load);
-    $(".dyn-form").on("ajax:complete", dynamic_form_load);
-    $(".load").on("click", show_loading_icon);
+    $(".dyn-content").off("click.dyn-content").on("click.dyn-content", dynamic_content_load);
+	$(".dyn-modal").off("click.dyn-modal").on("click.dyn-modal", dynamic_modal_load);
+    $(".dyn-delete").off("click.dyn-delete").on("click.dyn-delete", dynamic_delete_load);
+	$(".load").off("click.load").on("click.load", show_loading_icon);
+
+    $(".dyn-form").off("ajax:complete").on("ajax:complete", dynamic_form_load);
+}
+
+// Sets listeners for modal depending on it's class
+function set_page_listeners(source) {
+	if(source.hasClass("entries")) handle_entries();
+	if(source.hasClass("selectize")) handle_selectize();
+	if(source.hasClass("jscolor")) handle_jscolor();
 }
