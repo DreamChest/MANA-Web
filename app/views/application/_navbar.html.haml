@@ -29,14 +29,5 @@
 :javascript
   $(document).ready(function() {
     set_navbar_active();
-
-    $(".nav a").not(".neveractive").click(handle_navbar_nav);
-
-    $("#sidebar-toggle").click(toggle_sidebar);
-    $("#sidebar-toggle-right").click(toggle_sidebar_right);
-
-    $("#update_all").on("click", function() {
-        $(this).toggleClass("fa-spin");
-        $(this).blur();
-    });
+    set_navbar_listeners();
   });

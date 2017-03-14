@@ -9,7 +9,7 @@ function set_navbar_active() {
 }
 
 // Handles navbar nav links
-function handle_navbar_nav() {
+function handle_navbar_active() {
 	$(".nav").find(".active").removeClass("active");
 	$(this).parent().addClass("active");
 
@@ -26,4 +26,18 @@ function toggle_sidebar() {
 function toggle_sidebar_right() {
 	$("#wrapper").toggleClass("toggled-right");
 	return false;
+}
+
+// Handles "update all" button
+function handle_update_all() {
+	$(this).toggleClass("fa-spin");
+	$(this).blur();
+}
+
+// Sets listeners for the navbar
+function set_navbar_listeners() {
+	$(".nav a").not(".neveractive").click(handle_navbar_active);
+	$("#sidebar-toggle").click(toggle_sidebar);
+	$("#sidebar-toggle-right").click(toggle_sidebar_right);
+	$("#update_all").on("click", handle_update_all);
 }

@@ -3,17 +3,17 @@ function dynamic_content_load() {
 	var source = $(this);
 	var update_navbar = false;
 
-	if(source.hasClass("neveractive")) update_navbar = true;
-
 	$("#page-content").load(source.attr("href")+" #page-content", function() {
 
-		if(update_navbar == true) {
+		if(source.hasClass("neveractive")) {
 			set_navbar_active();
 			$("#update_all").removeClass("fa-spin");
 		}
 
-		post_load(source);
 		$("#page-modal").modal("hide");
+
+		set_application_listeners();
+		set_page_listeners(source);
 	});
 
 	return false;
@@ -29,7 +29,8 @@ function dynamic_modal_load() {
 		$("#page-modal-title").text(title.text());
 		title.remove();
 
-		post_load(source);
+		set_application_listeners();
+		set_page_listeners(source);
 	});
 	$("#page-modal").modal("show");
 
@@ -41,6 +42,8 @@ function dynamic_full_load(result) {
 	$("#page-content").html($(result).find("#page-content").html());
 	$("#sidebar-wrapper").html($(result).find("#sidebar-wrapper").html());
 	$("#sidebar-wrapper-right").html($(result).find("#sidebar-wrapper-right").html());
+
+	set_application_listeners();
 }
 
 // Dynamically loads a link into the page sidebars and page content (for delete http method)
@@ -50,6 +53,7 @@ function dynamic_delete_load() {
 		type: "DELETE",
 		success: dynamic_full_load
 	});
+
 	return false;
 }
 
@@ -66,20 +70,22 @@ function dynamic_form_load() {
 // Disable button and show loading icon when needed
 function show_loading_icon() {
 	$(this).attr("disabled", "");
-	$(".loading-icon").css("display", "inline");
+	$(".loading-icon").css("visibility", "visible");
 }
 
-// Sets all needed listeners
-function set_listeners() {
-	$(document).on("click", ".dyn-content", dynamic_content_load);
-	$(document).on("click", ".dyn-modal", dynamic_modal_load);
-	$(document).on("click", ".dyn-delete", dynamic_delete_load);
-	$(document).on("ajax:complete", ".dyn-form", dynamic_form_load);
-	$(document).on("click", ".load", show_loading_icon);
+// Sets listeners for application-wide functions
+function set_application_listeners() {
+    $(".dyn-content").off("click.dyn-content").on("click.dyn-content", dynamic_content_load);
+	$(".dyn-modal").off("click.dyn-modal").on("click.dyn-modal", dynamic_modal_load);
+    $(".dyn-delete").off("click.dyn-delete").on("click.dyn-delete", dynamic_delete_load);
+	$(".load").off("click.load").on("click.load", show_loading_icon);
+
+    $(".dyn-form").off("ajax:complete").on("ajax:complete", dynamic_form_load);
 }
 
-function post_load(source) {
-	if(source.hasClass("entries")) entries_js();
+// Sets listeners for modal depending on it's class
+function set_page_listeners(source) {
+	if(source.hasClass("entries")) handle_entries();
 	if(source.hasClass("selectize")) handle_selectize();
 	if(source.hasClass("jscolor")) handle_jscolor();
 }

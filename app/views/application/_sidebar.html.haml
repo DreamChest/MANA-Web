@@ -4,6 +4,4 @@
     %li= link_to s.name, entries_path(source: s.name), class: "dyn-content"
 
 :javascript
-  $(document).ready(function() {
-    $(document).on("click", ".sidebar-nav a", handle_sidebar_nav);
-  });
+  $(document).ready(set_sidebar_listeners);
