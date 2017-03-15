@@ -16,6 +16,7 @@
 @import "font-awesome";
 @import "selectize";
 @import "selectize.bootstrap3";
+@import "animate";
 @import "entries";
 @import "navbar";
 @import "sidebar";
@@ -28,5 +29,5 @@
 .loading-icon {
 	width: 20px;
 	height: 20px;
-	display: none;
+	visibility: hidden;
 }

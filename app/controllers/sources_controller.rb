@@ -94,7 +94,7 @@ class SourcesController < ApplicationController
 		respond_to do |format|
 			format.html {
 				@sources = Source.all
-				flash[:notice] = I18n.t("notices.source_destroyed")
+				flash.now[:notice] = I18n.t("notices.source_destroyed")
 				render :index
 			}
 			format.json { head :no_content }
@@ -113,7 +113,7 @@ class SourcesController < ApplicationController
 	def update_entries
 		fetch
 
-		flash[:notice] = I18n.t("notices.source_updated", count: 1)
+		flash.now[:notice] = I18n.t("notices.source_updated", count: 1)
 		render :index
 	end
 
@@ -125,7 +125,7 @@ class SourcesController < ApplicationController
 		end
 
 		@entries = Entry.all.order("date ASC")
-		flash[:notice] = I18n.t("notices.source_updated", count: 2)
+		flash.now[:notice] = I18n.t("notices.source_updated", count: 2)
 		render template: "entries/index"
 	end
 

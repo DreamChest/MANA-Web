@@ -3,7 +3,7 @@
 
   .form-inputs
     = f.input :name, label: l("words.name")
-    = f.input :color, label: l("words.color"), input_html: { value: @tag.color || "#ffffff" }
+    = f.input :color, label: l("words.color"), input_html: { value: @tag.color || "#ffffff", class: "jscolor" }
 
   .form-actions
     = f.button :submit, class: "btn btn-primary"

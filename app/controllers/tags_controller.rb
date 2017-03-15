@@ -63,7 +63,7 @@ class TagsController < ApplicationController
     @tag.destroy
     respond_to do |format|
       format.html {
-		  flash[:notice] = I18n.t("notices.tag_destroyed")
+		  flash.now[:notice] = I18n.t("notices.tag_destroyed")
 		  render :index
 	  }
       format.json { head :no_content }

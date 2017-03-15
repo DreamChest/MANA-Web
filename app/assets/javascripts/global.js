@@ -1,19 +1,22 @@
 // Dynamically loads a link into the page content wrapper
 function dynamic_content_load() {
 	var source = $(this);
-	var update_navbar = false;
 
-	$("#page-content").load(source.attr("href")+" #page-content", function() {
+	$.ajax({
+		url: source.attr("href"),
+		type: "GET",
+		success: function(result) {
+			$("#page-content").html($(result).find("#page-content").html());
 
-		if(source.hasClass("neveractive")) {
-			set_navbar_active();
-			$("#update_all").removeClass("fa-spin");
+			if(source.hasClass("neveractive")) {
+				set_navbar_active();
+				$("#update_all").removeClass("fa-spin");
+			}
+
+			$("#page-modal").modal("hide");
+
+			set_application_listeners();
 		}
-
-		$("#page-modal").modal("hide");
-
-		set_application_listeners();
-		set_page_listeners(source);
 	});
 
 	return false;
@@ -23,16 +26,21 @@ function dynamic_content_load() {
 function dynamic_modal_load() {
 	var source = $(this);
 
-	$("#page-modal-content").load(source.attr("href")+" #page-content", function() {
-		var title = $("#page-modal-content").find("#page-title");
+	$.ajax({
+		url: source.attr("href"),
+		type: "GET",
+		success: function(result) {
+			$("#page-modal-content").html($(result).find("#page-content").html());
 
-		$("#page-modal-title").text(title.text());
-		title.remove();
+			var title = $("#page-modal-content").find("#page-title");
+			$("#page-modal-title").text(title.text());
+			title.remove();
 
-		set_application_listeners();
-		set_page_listeners(source);
+			$("#page-modal").modal("show");
+
+			set_application_listeners();
+		}
 	});
-	$("#page-modal").modal("show");
 
 	return false;
 }
@@ -64,6 +72,7 @@ function dynamic_form_load() {
 		type: "GET",
 		success: dynamic_full_load
 	});
+
 	$("#page-modal").modal("hide");
 }
 
@@ -81,11 +90,7 @@ function set_application_listeners() {
 	$(".load").off("click.load").on("click.load", show_loading_icon);
 
     $(".dyn-form").off("ajax:complete").on("ajax:complete", dynamic_form_load);
-}
 
-// Sets listeners for modal depending on it's class
-function set_page_listeners(source) {
-	if(source.hasClass("entries")) handle_entries();
-	if(source.hasClass("selectize")) handle_selectize();
-	if(source.hasClass("jscolor")) handle_jscolor();
+	$(".entries").off("click.entries").on("click.entries", handle_entries);
+	$(".selectize").off("click.selectize").on("click.selectize", handle_selectize);
 }

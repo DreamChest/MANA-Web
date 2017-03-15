@@ -17,4 +17,5 @@
 //= require selectize
 //= require jscolor
 //= require jquery.transit.js
+//= require bootstrap-notify
 //= require_tree .
