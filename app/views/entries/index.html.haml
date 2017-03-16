@@ -2,6 +2,7 @@
   = t("words.entry", count: 2)
   - unless @filter.nil?
     = "(#{@filter})"
+    = link_to "clear", entries_path, class: "btn btn-small btn-default dyn-content"
 
 %hr
 

@@ -14,6 +14,13 @@ function handle_tag_filtering() {
 	$(".sidebar-nav").find(".active").removeClass("active");
 }
 
+// Unchecks all checkboxes of sidebar
+function right_sidebar_uncheck() {
+	$(".tag_cb").filter(":checked").each(function () {
+		$(this).removeAttr("checked");
+	});
+}
+
 // Sets right sidebar listeners
 function set_right_sidebar_listeners() {
 	$(".tag_cb").on("click", handle_tag_filtering);

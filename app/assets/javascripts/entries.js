@@ -14,7 +14,9 @@ function handle_entries() {
 function load_more() {
 	var last_date = $(".entry").last().attr("date");
 	var source = $(this);
+
 	source.hide();
+	$("#totop").hide();
 	$(".loading-icon").css("display", "inline");
 
 	$.ajax({
@@ -26,11 +28,10 @@ function load_more() {
 		success: function(result) {
 			$("#entries").append($(result).find(".entry"));
 			source.show();
+			$("#totop").show();
 			$(".loading-icon").css("display", "none");
 		},
 	});
-
-	console.log("foo");
 }
 
 // Handles the "back to top" link
@@ -39,20 +40,7 @@ function go_to_top() {
 		scrollTop: 0
 	}, 600);
 
-	console.log("bar");
-
 	return false;
-}
-
-// Handles the "back to top" link display
-function handle_gtt() {
-    if ($(this).scrollTop() > 50) {
-		$("#load-more-btn").css({transformOrigin: "0px 0px"}).transition({scale: [1, 1]});
-		$("#totop").transition({opacity: 1});
-    } else {
-		$("#load-more-btn").css({transformOrigin: "0px 0px"}).transition({scale: [1.04, 1]});
-		$("#totop").transition({opacity: 0});
-    }
 }
 
 //...
@@ -60,5 +48,4 @@ function entries_js() {
     handle_entries();
     $("#load-more-btn").click(load_more);
     $("#totop").click(go_to_top);
-    $(window).scroll(handle_gtt);
 }

@@ -79,7 +79,7 @@ function dynamic_form_load() {
 // Disable button and show loading icon when needed
 function show_loading_icon() {
 	$(this).attr("disabled", "");
-	$(".loading-icon").css("visibility", "visible");
+	$(".loading-icon").css("display", "none");
 }
 
 // Sets listeners for application-wide functions
@@ -91,6 +91,6 @@ function set_application_listeners() {
 
     $(".dyn-form").off("ajax:complete").on("ajax:complete", dynamic_form_load);
 
-	$(".entries").off("click.entries").on("click.entries", handle_entries);
+	$(".entries").off("click.entries").on("click.entries", entries_js);
 	$(".selectize").off("click.selectize").on("click.selectize", handle_selectize);
 }

@@ -4,26 +4,21 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-	  if params["date"]
-		  entries = Entry.all.order("date DESC").where("date < ?", params["date"])
-	  else
-		  entries = Entry.all.order("date DESC")
-	  end
-
 	  if params["tags"].present?
-		  @entries = entries.select do |e|
-			  not (e.source.tagslist.split(",") & params["tags"].split(",")).empty?
-		  end
+		  @entries = Entry.joins("inner join sources_tags on entries.source_id = sources_tags.source_id inner join tags on sources_tags.tag_id = tags.id").where("tags.name in (?)", params["tags"].split(','))
 		  @filter = params["tags"]
 	  elsif params["source"].present?
-		  @entries = entries.select do |e|
-			  e.source.name == params["source"]
-		  end
+		  @entries = Entry.joins(:source).where("sources.name=?", params["source"])
+		  @filter = params["source"]
 	  else
-		  @entries = entries
+		  @entries = Entry.all
 	  end
 
-	  @entries = @entries.limit(1) #tmp
+	  @entries = @entries.order("date DESC")
+
+	  @entries = @entries.where("date < ?", params["date"]) if params["date"].present?
+
+	  @entries = @entries.limit(4)
 
 	  respond_to do |format|
 		  format.html
