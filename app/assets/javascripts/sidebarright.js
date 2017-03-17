@@ -10,7 +10,9 @@ function handle_tag_filtering() {
 	});
 
 	$("#page-modal").modal("hide");
-	$("#page-content").load(encodeURI($(this).attr("url")+val)+" #page-content");
+	$("#page-content").load(encodeURI($(this).attr("url")+val)+" #page-content", function() {
+		entries_js();
+	});
 	$(".sidebar-nav").find(".active").removeClass("active");
 }
 

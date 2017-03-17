@@ -6,9 +6,11 @@ class EntriesController < ApplicationController
   def index
 	  if params["tags"].present?
 		  @entries = Entry.joins("inner join sources_tags on entries.source_id = sources_tags.source_id inner join tags on sources_tags.tag_id = tags.id").where("tags.name in (?)", params["tags"].split(','))
+		  @filter_type = "tags"
 		  @filter = params["tags"]
 	  elsif params["source"].present?
 		  @entries = Entry.joins(:source).where("sources.name=?", params["source"])
+		  @filter_type = "source"
 		  @filter = params["source"]
 	  else
 		  @entries = Entry.all
