@@ -45,9 +45,16 @@ function go_to_top() {
 	return false;
 }
 
+// Handles "clear" button for entries filtering
+function handle_clear_btn() {
+	sidebar_unselect();
+	right_sidebar_uncheck();
+}
+
 //...
 function entries_js() {
     handle_entries();
-    $("#load-more-btn").click(load_more);
-    $("#totop").click(go_to_top);
+    $("#load-more-btn").off("click.load-more-btn").on("click.load-more-btn", load_more);
+	$("#totop").off("click.totop").on("click.totop", go_to_top);
+	$("#clear-filters-btn").off("click.clear-filters-btn").on("click.clear-filters-btn", handle_clear_btn);
 }

@@ -11,16 +11,16 @@ function handle_tag_filtering() {
 
 	$("#page-modal").modal("hide");
 	$("#page-content").load(encodeURI($(this).attr("url")+val)+" #page-content", function() {
+		set_application_listeners();
 		entries_js();
 	});
-	$(".sidebar-nav").find(".active").removeClass("active");
+
+	sidebar_unselect();
 }
 
 // Unchecks all checkboxes of sidebar
 function right_sidebar_uncheck() {
-	$(".tag_cb").filter(":checked").each(function () {
-		$(this).removeAttr("checked");
-	});
+	$(".tag_cb").filter(":checked").removeAttr("checked");
 }
 
 // Sets right sidebar listeners
