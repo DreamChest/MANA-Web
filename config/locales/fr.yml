@@ -57,17 +57,21 @@ fr:
     label: "%{label} : "
 
     notices:
-        entry_created: "Entrée créée avec succès."
-        entry_updated: "Entrée mise à jour avec succès."
-        entry_destroyed: "Entrée supprimée avec succès."
-        source_created: "Source créée avec succès."
+        entry_created: "Entrée créée avec succès"
+        entry_updated: "Entrée mise à jour avec succès"
+        entry_destroyed: "Entrée supprimée avec succès"
+        source_created: "Source créée avec succès"
         source_updated:
-            one: "Source mise à jour avec succès."
-            other: "Sources mises à jour avec succès."
-        source_destroyed: "Source supprimée avec succès."
-        tag_created: "Tag créé avec succès."
-        tag_updated: "Tag mis à jour avec succès."
-        tag_destroyed: "Tag supprimé avec succès."
+            one: "Source mise à jour avec succès"
+            other: "Sources mises à jour avec succès"
+        source_destroyed: "Source supprimée avec succès"
+        tag_created: "Tag créé avec succès"
+        tag_updated: "Tag mis à jour avec succès"
+        tag_destroyed: "Tag supprimé avec succès"
+        new_entries:
+          zero: "nouvelles entrées"
+          one: "nouvelle entrée"
+          other: "nouvelles entrées"
 
     messages:
         no_entries: "Oups, on dirait qu'il n'y a aucune entrée à afficher ¯\\_(ツ)_/¯"

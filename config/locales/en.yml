@@ -57,17 +57,21 @@ en:
     label: "%{label}: "
 
     notices:
-        entry_created: "Entry successfully created."
-        entry_updated: "Entry successfully updated."
-        entry_destroyed: "Entry sucessfully destroyed."
-        source_created: "Source successfully created."
+        entry_created: "Entry successfully created"
+        entry_updated: "Entry successfully updated"
+        entry_destroyed: "Entry sucessfully destroyed"
+        source_created: "Source successfully created"
         source_updated:
-            one: "Source successfully updated."
-            other: "Sources successfully updated."
-        source_destroyed: "Source sucessfully destroyed."
-        tag_created: "Tag successfully created."
-        tag_updated: "Tag successfully updated."
-        tag_destroyed: "Tag sucessfully destroyed."
+            one: "Source successfully updated"
+            other: "Sources successfully updated"
+        source_destroyed: "Source sucessfully destroyed"
+        tag_created: "Tag successfully created"
+        tag_updated: "Tag successfully updated"
+        tag_destroyed: "Tag sucessfully destroyed"
+        new_entries:
+          zero: "new entries"
+          one: "new entry"
+          other: "new entries"
 
     messages:
         no_entries: "Woops, it looks like there are no entries to show ¯\\_(ツ)_/¯"

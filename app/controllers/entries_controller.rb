@@ -4,23 +4,23 @@ class EntriesController < ApplicationController
   # GET /entries
   # GET /entries.json
   def index
-	  if params["tags"].present?
+	  if params["tags"].present? # Filter entries by tag
 		  @entries = Entry.joins("inner join sources_tags on entries.source_id = sources_tags.source_id inner join tags on sources_tags.tag_id = tags.id").where("tags.name in (?)", params["tags"].split(','))
 		  @filter_type = "tags"
 		  @filter = params["tags"]
-	  elsif params["source"].present?
+	  elsif params["source"].present? # Filter entries by source
 		  @entries = Entry.joins(:source).where("sources.name=?", params["source"])
 		  @filter_type = "source"
 		  @filter = params["source"]
-	  else
+	  else # No filter at all
 		  @entries = Entry.all
 	  end
 
-	  @entries = @entries.order("date DESC")
+	  @entries = @entries.order("date DESC") # Sort entries by date
 
-	  @entries = @entries.where("date < ?", params["date"]) if params["date"].present?
+	  @entries = @entries.where("date < ?", params["date"]) if params["date"].present? # Get entries older than a certain date only
 
-	  @entries = @entries.limit(4)
+	  @entries = @entries.limit(ENTRIES_LIMIT) # Limit the result
 
 	  respond_to do |format|
 		  format.html

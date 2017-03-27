@@ -26,10 +26,21 @@ function load_more() {
 			date: last_date
 		},
 		success: function(result) {
-			$("#entries").append($(result).find(".entry"));
-			source.show();
-			$("#totop").show();
-			$(".loading-icon").css("display", "none");
+			var entries = $(result).find(".entry");
+
+			if(entries.length > 0) {
+				$("#entries").append(entries);
+				source.show();
+				$("#totop").show();
+				$(".loading-icon").css("display", "none");
+			}
+			else {
+				source.show();
+				$("#totop").show();
+				$(".loading-icon").css("display", "none");
+				source.attr("disabled", "");
+				source.off("click").on("click", function() { return false });
+			}
 		},
 	});
 

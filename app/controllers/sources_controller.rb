@@ -119,13 +119,26 @@ class SourcesController < ApplicationController
 
 	# Updates all sources (fetches entries for each source)
 	def update_all
+		last_entry = Entry.order("date DESC").first # Get most recent entry date
+
 		Source.all.each do |s|
 			@source = s
 			fetch
 		end
 
-		@entries = Entry.all.order("date ASC")
-		flash.now[:notice] = I18n.t("notices.source_updated", count: 2)
+		if last_entry.nil? # If no entries where present before (first update)...
+			new_entries = Entry.order("date DESC") # ... then all entries are kept and considered new
+		else
+			new_entries = Entry.where("date > ?", last_entry.date).order("date DESC") # ... else, only more recent entries are kept and considered new
+		end
+
+		if new_entries.empty? # If there are no new entries...
+			@entries = Entry.order("date DESC").limit(ENTRIES_LIMIT) # ... then display entries normally
+		else
+			@entries = new_entries # ... else, display new entries
+		end
+
+		flash.now[:notice] = I18n.t("notices.source_updated", count: 2)+" (#{new_entries.size} #{I18n.t("notices.new_entries", count: new_entries.size)})"
 		render template: "entries/index"
 	end
 
