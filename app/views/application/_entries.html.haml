@@ -15,17 +15,5 @@
       %div{ class: "panel-collapse collapse", id: collapse_id }
         .panel-body
 
-#load-more-div
-  - if filter_type.nil?
-    = link_to t("words.show_more"), entries_path, class: "btn btn-default", id: "load-more-btn"
-  - elsif filter_type.eql?("tags")
-    = link_to t("words.show_more"), entries_path(tags: filter), class: "btn btn-default", id: "load-more-btn"
-  - else
-    = link_to t("words.show_more"), entries_path(source: filter), class: "btn btn-default", id: "load-more-btn"
-  %a#totop.btn.btn-default
-    %i.fa.fa-arrow-up
-  = image_tag "loading.gif", class: "loading-icon"
-
-
 :javascript
   $(document).ready(entries_js);

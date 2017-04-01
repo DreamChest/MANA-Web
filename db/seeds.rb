@@ -12,5 +12,4 @@ source1 = Source.create(name: "Korben", url: "http://korben.info/feed", last_upd
 source2 = Source.create(name: "Slashdot", url: "http://rss.slashdot.org/Slashdot/slashdotMain", last_update: Time.at(0))
 
 source1.tags<<(tag1)
-source2.tags<<(tag1)
 source2.tags<<(tag2)

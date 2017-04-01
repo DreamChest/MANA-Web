@@ -7,6 +7,7 @@
 %hr
 
 - unless @entries.empty?
-  = render "entries", entries: @entries, filter: @filter, filter_type: @filter_type
+  = render "entries", entries: @entries
+  = render "load_more_div", filter: @filter, filter_type: @filter_type
 - else
   = I18n.translate("messages.no_entries")
