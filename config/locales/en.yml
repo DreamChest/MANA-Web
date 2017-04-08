@@ -85,3 +85,8 @@ en:
             create: "Create"
             update: "Save"
             submit: "Save"
+
+    activerecord:
+      errors:
+        messages:
+          blank: "Can't be blank"

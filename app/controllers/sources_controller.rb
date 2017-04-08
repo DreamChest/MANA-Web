@@ -42,11 +42,11 @@ class SourcesController < ApplicationController
 
 				@source.update(last_update: feed.entries.first.published)
 
-				format.html {
+				format.html { render :index }
+				format.json {
 					flash[:notice] = I18n.t("notices.source_created")
-					render :index
+					render :show, status: :created, location: @source
 				}
-				format.json { render :show, status: :created, location: @source }
 			else
 				format.html { render :new }
 				format.json { render json: @source.errors, status: :unprocessable_entity }
@@ -75,11 +75,11 @@ class SourcesController < ApplicationController
 					@source.update(last_update: feed.entries.first.published)
 				end
 
-				format.html {
+				format.html { render :index }
+				format.json {
 					flash[:notice] = I18n.t("notices.source_updated", count: 1)
-					render :index
+					render :show, status: :ok, location: @source
 				}
-				format.json { render :show, status: :ok, location: @source }
 			else
 				format.html { render :edit }
 				format.json { render json: @source.errors, status: :unprocessable_entity }

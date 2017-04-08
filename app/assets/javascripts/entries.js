@@ -22,6 +22,7 @@ function load_more() {
 	$.ajax({
 		url: source.attr("href"),
 		type: "GET",
+		dataType: "html",
 		data: {
 			date: last_date
 		},

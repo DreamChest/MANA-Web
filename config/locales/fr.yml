@@ -86,6 +86,11 @@ fr:
             update: "Sauvegarder"
             submit: "Sauvegarder"
 
+    activerecord:
+      errors:
+        messages:
+          blank: "Ne peut pas être vide"
+
     date:
         month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
         abbr_month_names: [~, Jan, Fev, Mar, Avr, Mai, Jui, Juil, Auo, Sep, Oct, Nov, Dec]
