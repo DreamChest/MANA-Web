@@ -91,6 +91,24 @@ fr:
         messages:
           blank: "Ne peut pas être vide"
 
+    simple_form:
+      labels:
+        defaults:
+          name: "Nom"
+        source:
+          url: "URL"
+          tagslist_attr: "Tag(s)"
+        tag:
+          color: "Couleur"
+      placeholders:
+        source:
+          name: "Nom pour la source"
+          url: "URL du flux RSS"
+          tagslist_attr: "Tag(s) de la source (séparés par des virgules)"
+        tag:
+          name: "Nom pour le tag"
+          color: "Couleur pour le tag"
+
     date:
         month_names: [~, Janvier, Février, Mars, Avril, Mai, Juin, Juillet, Août, Septembre, Octobre, Novembre, Décembre]
         abbr_month_names: [~, Jan, Fev, Mar, Avr, Mai, Jui, Juil, Auo, Sep, Oct, Nov, Dec]

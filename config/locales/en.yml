@@ -90,3 +90,24 @@ en:
       errors:
         messages:
           blank: "Can't be blank"
+
+    simple_form:
+      labels:
+        defaults:
+          name: "Name"
+        source:
+          url: "URL"
+          tagslist_attr: "Tag(s)"
+        tag:
+          color: "Color"
+      placeholders:
+        source:
+          name: "Source name"
+          url: "RSS feed URL"
+          tagslist_attr: "Source tags (comma separated list)"
+        tag:
+          name: "Tag name"
+          color: "Tag color"
+      prompts:
+        source:
+          name: "hint"

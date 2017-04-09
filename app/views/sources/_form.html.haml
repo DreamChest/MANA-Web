@@ -2,9 +2,9 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name, label: l("words.name")
-    = f.input :url, label: l("words.url")
-    = f.input :tagslist_attr, label: l("words.tag", count: 2), input_html: { value: Tag.list, default_values: @source.tagslist }
+    = f.input :name
+    = f.input :url
+    = f.input :tagslist_attr, input_html: { value: Tag.list, default_values: @source.tagslist }
 
   .form-actions
     = f.button :submit, class: "btn btn-primary load"
