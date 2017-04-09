@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   #before_action :hang, only: [:index]
 
   # Constants
-  ENTRIES_LIMIT = 4.freeze
+  ENTRIES_LIMIT = 25.freeze
 
   private
   def default_url_options(options = {})
