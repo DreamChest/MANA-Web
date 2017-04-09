@@ -80,6 +80,9 @@ fr:
         source_filtering: "Filtrage par source"
         tag_filtering: "Filtrage par tag"
 
+    errors:
+      invalid_feed: "URL du flux incorrecte or non disponible"
+
     helpers:
         submit:
             create: "Créer"
@@ -90,6 +93,11 @@ fr:
       errors:
         messages:
           blank: "Ne peut pas être vide"
+        models:
+          source:
+            attributes:
+              url:
+                url: "Doit être une URL"
 
     simple_form:
       labels:

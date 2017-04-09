@@ -30,26 +30,33 @@ class SourcesController < ApplicationController
 	def create
 		@source = Source.new(source_params)
 
-		feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid?
+		begin
+			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid?
 
-		respond_to do |format|
-			if @source.save
-				tag
+			respond_to do |format|
+				if @source.save
+					tag
 
-				feed.entries.reverse.each do |e|
-					@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
+					feed.entries.reverse.each do |e|
+						@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
+					end
+
+					@source.update(last_update: feed.entries.first.published)
+
+					format.html { render :index }
+					format.json {
+						flash[:notice] = I18n.t("notices.source_created")
+						render :show, status: :created, location: @source
+					}
+				else
+					format.html { render :new }
+					format.json { render json: @source.errors, status: :unprocessable_entity }
 				end
-
-				@source.update(last_update: feed.entries.first.published)
-
-				format.html { render :index }
-				format.json {
-					flash[:notice] = I18n.t("notices.source_created")
-					render :show, status: :created, location: @source
-				}
-			else
+			end
+		rescue
+			respond_to do |format|
 				format.html { render :new }
-				format.json { render json: @source.errors, status: :unprocessable_entity }
+				format.json { render json: { url: [I18n.t("errors.invalid_feed")] }, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -59,30 +66,37 @@ class SourcesController < ApplicationController
 	def update
 		@source.assign_attributes(source_params)
 
-		feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid? and @source.url_changed?
+		begin
+			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid? and @source.url_changed?
 
-		respond_to do |format|
-			if @source.update(source_params)
-				@source.tags.clear
-				tag
+			respond_to do |format|
+				if @source.update(source_params)
+					@source.tags.clear
+					tag
 
-				unless feed.nil?
-					@source.entries.clear
-					feed.entries.reverse.each do |e|
-						@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
+					unless feed.nil?
+						@source.entries.clear
+						feed.entries.reverse.each do |e|
+							@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
+						end
+
+						@source.update(last_update: feed.entries.first.published)
 					end
 
-					@source.update(last_update: feed.entries.first.published)
+					format.html { render :index }
+					format.json {
+						flash[:notice] = I18n.t("notices.source_updated", count: 1)
+						render :show, status: :ok, location: @source
+					}
+				else
+					format.html { render :edit }
+					format.json { render json: @source.errors, status: :unprocessable_entity }
 				end
-
-				format.html { render :index }
-				format.json {
-					flash[:notice] = I18n.t("notices.source_updated", count: 1)
-					render :show, status: :ok, location: @source
-				}
-			else
-				format.html { render :edit }
-				format.json { render json: @source.errors, status: :unprocessable_entity }
+			end
+		rescue
+			respond_to do |format|
+				format.html { render :new }
+				format.json { render json: { url: [I18n.t("errors.invalid_feed")] }, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -111,19 +125,29 @@ class SourcesController < ApplicationController
 
 	# Updates entries for the source
 	def update_entries
-		fetch
+		begin
+			fetch
 
-		flash.now[:notice] = I18n.t("notices.source_updated", count: 1)
-		render :index
+			flash.now[:notice] = I18n.t("notices.source_updated", count: 1)
+			render :index
+		rescue
+			flash.now[:error] = I18n.t("errors.invalid_feed")
+			render :index
+		end
 	end
 
 	# Updates all sources (fetches entries for each source)
 	def update_all
 		last_entry = Entry.order("date DESC").first # Get most recent entry date
+		failed_sources = []
 
 		Source.all.each do |s|
 			@source = s
-			fetch
+			begin
+				fetch
+			rescue
+				failed_sources.push(@source.name)
+			end
 		end
 
 		if last_entry.nil? # If no entries where present before (first update)...
@@ -139,6 +163,11 @@ class SourcesController < ApplicationController
 		end
 
 		flash.now[:notice] = I18n.t("notices.source_updated", count: 2)+" (#{new_entries.size} #{I18n.t("notices.new_entries", count: new_entries.size)})"
+
+		unless failed_sources.empty?
+			flash.now[:error] = I18n.t("errors.invalid_feed")+" (#{failed_sources.join(", ")})"
+		end
+
 		render template: "entries/index"
 	end
 

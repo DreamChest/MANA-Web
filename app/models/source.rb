@@ -8,6 +8,7 @@ class Source < ActiveRecord::Base
 	attr_accessor :tagslist_attr
 
 	validates :name, :url, presence: true
+	validates :url, url: true
 
 	def tagslist
 		str = ""

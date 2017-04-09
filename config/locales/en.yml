@@ -80,6 +80,9 @@ en:
         source_filtering: "Source filtering"
         tag_filtering: "Tag filtering"
 
+    errors:
+      invalid_feed: "Feed URL invalid or unavailable"
+
     helpers:
         submit:
             create: "Create"
@@ -90,6 +93,11 @@ en:
       errors:
         messages:
           blank: "Can't be blank"
+        models:
+          source:
+            attributes:
+              url:
+                url: "Must be an URL"
 
     simple_form:
       labels:
