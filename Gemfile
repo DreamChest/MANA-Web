@@ -45,12 +45,12 @@ group :development do
   gem 'spring'
 end
 
-gem "haml-rails"
-gem "simple_form"
-gem "bootstrap-sass"
-gem "font-awesome-sass"
-gem "feedjira"
-gem "selectize-rails"
-gem "animate-rails"
-gem "bootstrap-growl-rails"
-gem "validate_url"
+gem "haml-rails" 			# Replace HTML with HAML
+gem "simple_form" 			# Easier form creation
+gem "bootstrap-sass" 		# Bootstrap for Rails
+gem "font-awesome-sass" 	# Font Awesome
+gem "feedjira" 				# Feedjira, used to parse RSS feeds
+gem "selectize-rails" 		# Selectize.js for tags management
+gem "animate-rails" 		# Animate.css for Rails (dependency for Bootstrap Growl)
+gem "bootstrap-growl-rails" # Bootstrap growl notifications/Bootstrap Notify
+gem "validate_url"			# URL validation for models
