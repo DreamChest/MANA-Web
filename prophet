@@ -6,17 +6,17 @@ print_usage() {
 
 case $1 in
 	start)
-		echo "Starting MANA..."
+		echo "Starting Prophet..."
 		export RAILS_ENV=production
 		export SECRET_KEY_BASE=$(rake secret)
 		export RAILS_SERVE_STATIC_FILES=true
 		rake assets:precompile
 		rake db:migrate
 		rails s --binding 0.0.0.0 -p 3000 -e production -d
-		echo "MANA started.";;
+		echo "Prophet started.";;
 	stop)
 		kill -9 $(cat tmp/pids/server.pid 2> /dev/null) 2> /dev/null
-		echo "MANA stopped.";;
+		echo "Prophet stopped.";;
 	*)
 		print_usage
 		exit 1;;

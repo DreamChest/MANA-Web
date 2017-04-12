@@ -1,10 +1,10 @@
-# MANA
+# Prophet
 
 Modern, lightweight, responsive, self-hosted RSS reader webapp made with ❤ in France.
 
 #### Disclaimer
 
-MANA is currently in early phases of development and is highly incomplete and may be buggy. Releases are tested and should be stable enough to be used safely. Please feel free to open an issue to report bugs, crashes or to request features :).
+Prophet is currently in early phases of development and is highly incomplete and may be buggy. Releases are tested and should be stable enough to be used safely. Please feel free to open an issue to report bugs, crashes or to request features :).
 
 ## Features
 
@@ -28,12 +28,12 @@ MANA is currently in early phases of development and is highly incomplete and ma
 
 ### Quickstart
 
-1. `git clone https://github.com/DreamChest/MANA-Web`
+1. `git clone https://github.com/DreamChest/Prophet`
 2. `bundle install`
-3. `./mana start`
+3. `./prophet start`
 
-MANA will run in background, to stop it: `./mana stop`
+Prophet will run in background, to stop it: `./prophet stop`
 
 ## Licence
 
-[See LICENSE](https://github.com/DreamChest/MANA-Web/blob/master/LICENSE)
+[See LICENSE](https://github.com/DreamChest/Prophet/blob/master/LICENSE)
