@@ -53,6 +53,7 @@ en:
         open: "Open"
         show_more: "Show more"
         back_top: "Back to top"
+        clear: "clear"
 
     label: "%{label}: "
 

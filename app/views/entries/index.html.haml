@@ -2,7 +2,7 @@
   = t("words.entry", count: 2)
   - unless @filter.nil?
     %small= "(#{@filter})"
-    = link_to "clear", entries_path, class: "btn btn-xs btn-danger dyn-content", id: "clear-filters-btn"
+    = link_to t("words.clear"), entries_path, class: "btn btn-xs btn-danger dyn-content", id: "clear-filters-btn"
 
 %hr
 
