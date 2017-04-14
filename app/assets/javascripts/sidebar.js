@@ -3,6 +3,7 @@ function handle_sidebar_active() {
 	$(".sidebar-nav").find(".active").removeClass("active");
 	$(this).parent().addClass("active");
 	right_sidebar_uncheck();
+	set_navbar_active();
 }
 
 // Unselects all elements of sidebar

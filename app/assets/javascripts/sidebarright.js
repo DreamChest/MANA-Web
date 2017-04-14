@@ -16,6 +16,7 @@ function handle_tag_filtering() {
 	});
 
 	sidebar_unselect();
+	set_navbar_active();
 }
 
 // Unchecks all checkboxes of sidebar

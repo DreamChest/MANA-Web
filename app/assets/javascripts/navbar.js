@@ -13,7 +13,8 @@ function handle_navbar_active() {
 	$(".nav").find(".active").removeClass("active");
 	$(this).parent().addClass("active");
 
-	$(".sidebar-nav").find(".active").removeClass("active");
+	sidebar_unselect();
+	right_sidebar_uncheck();
 }
 
 // Toggles (left) sidebar
