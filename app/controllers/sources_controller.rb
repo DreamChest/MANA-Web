@@ -12,6 +12,10 @@ class SourcesController < ApplicationController
 	# GET /sources/1
 	# GET /sources/1.json
 	def show
+		respond_to do |format|
+			format.html { redirect_to root_path }
+			format.json
+		end
 	end
 
 	# GET /sources/new
@@ -118,7 +122,7 @@ class SourcesController < ApplicationController
 	# Shows entries for the source
 	def show_entries
 		respond_to do |format|
-			format.html { render :partial => "entries", locals: { entries: @source.entries } }
+			format.html { redirect_to controller: "entries", action: "index", source: @source.name }
 			format.json { render json: @source.entries }
 		end
 	end
@@ -169,7 +173,7 @@ class SourcesController < ApplicationController
 			flash.now[:error] = I18n.t("errors.invalid_feed")+" (#{failed_sources.join(", ")})"
 		end
 
-		render template: "entries/index"
+		render "entries/index"
 	end
 
 	private

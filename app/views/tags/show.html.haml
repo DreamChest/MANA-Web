@@ -1,8 +1,0 @@
-%h1#page-title= @tag.name
-
-%p
-  %b= l("words.color")
-  = @tag.color
-
-= link_to t("words.edit"), edit_tag_path(@tag), class: "btn btn-warning"
-= link_to t("words.back"), tags_path, class: "btn btn-default"

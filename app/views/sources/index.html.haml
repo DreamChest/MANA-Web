@@ -18,8 +18,15 @@
         %td= source.url
         %td= source.tagslist
         %td= source.last_update
-        %td= link_to '', source, class: "btn btn-info fa fa-eye dyn-modal"
-        %td= link_to '', edit_source_path(source), class: "btn btn-warning fa fa-edit dyn-modal selectize"
-        %td= link_to '', source, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger fa fa-trash dyn-delete"
+        %td
+          = link_to update_source_path(source), class: "btn btn-info dyn-content" do
+            %i.fa.fa-refresh#update_btn
+        %td
+          = link_to edit_source_path(source), class: "btn btn-warning dyn-modal selectize" do
+            %i.fa.fa-edit
+        %td
+          = link_to source, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger dyn-delete" do
+            %i.fa.fa-trash
 
-= link_to '', new_source_path, class: "btn btn-primary fa fa-plus dyn-modal selectize"
+= link_to new_source_path, class: "btn btn-primary dyn-modal selectize" do
+  %i.fa.fa-plus
