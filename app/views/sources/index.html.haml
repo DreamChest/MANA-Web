@@ -17,7 +17,7 @@
         %td= source.name
         %td= source.url
         %td= source.tagslist
-        %td= source.last_update
+        %td= I18n.localize(source.last_update, format: :long)
         %td
           = link_to update_source_path(source), class: "btn btn-info dyn-content update_btn" do
             %i.fa.fa-refresh

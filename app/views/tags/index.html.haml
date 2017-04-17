@@ -11,7 +11,7 @@
 
   %tbody
     - @tags.each do |tag|
-      %tr
+      %tr{tag.no_sources_html_attr}
         %td= tag.name
         %td= tag.color
         %td= link_to '', edit_tag_path(tag), class: "btn btn-info btn-warning fa fa-edit dyn-modal"

@@ -10,13 +10,8 @@ class Source < ActiveRecord::Base
 	validates :name, :url, presence: true
 	validates :url, url: true
 
+	# Returns source tags list as a string
 	def tagslist
-		str = ""
-
-		self.tags.each do |t|
-			str += "#{t.name},"
-		end
-
-		return str[0..-2]
+		self.tags.map{|e| e.name}.join(',')
 	end
 end

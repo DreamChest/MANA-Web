@@ -84,6 +84,9 @@ fr:
     errors:
       invalid_feed: "URL du flux incorrecte or non disponible"
 
+    tooltips:
+      unused_tag: "Tag inutilisé"
+
     helpers:
         submit:
             create: "Créer"

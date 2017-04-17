@@ -84,6 +84,9 @@ en:
     errors:
       invalid_feed: "Feed URL invalid or unavailable"
 
+    tooltips:
+      unused_tag: "Unused tag"
+
     helpers:
         submit:
             create: "Create"
