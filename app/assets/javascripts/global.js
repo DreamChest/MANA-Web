@@ -82,14 +82,12 @@ function dynamic_form_load() {
 
 // Disable button and show loading icon when needed
 function show_loading_icon() {
-	//$(this).attr("disabled", "");
 	$(this).prop("disabled", true);
 	$(".loading-icon").css("display", "inline");
 }
 
 // Enable button and hide loading icon when needed
 function hide_loading_icon() {
-	//$(this).removeAttr("disabled");
 	$(".load").prop("disabled", false);
 	$(".loading-icon").css("display", "none");
 }
@@ -117,22 +115,24 @@ $.fn.render_form_errors = function(model, errors) {
 
 // Sets listeners for application-wide functions
 function set_application_listeners() {
-    $(".dyn-content").off("click.dyn-content").on("click.dyn-content", dynamic_content_load);
-	$(".dyn-modal").off("click.dyn-modal").on("click.dyn-modal", dynamic_modal_load);
-    $(".dyn-delete").off("click.dyn-delete").on("click.dyn-delete", dynamic_delete_load);
+	// For dynamic content loading
+	$(".dyn-content").off("click.dyn-content").on("click.dyn-content", dynamic_content_load); // Dynamic page load
+	$(".dyn-modal").off("click.dyn-modal").on("click.dyn-modal", dynamic_modal_load); // Dynamic modal load
+	$(".dyn-delete").off("click.dyn-delete").on("click.dyn-delete", dynamic_delete_load); // Dynamic delete query
+
+	// For buttons that should be disabled on click and should display a loading icon
 	$(".load").off("click.load").on("click.load", show_loading_icon);
 
+	// Ajax setup for dynamic forms
 	$.ajaxSetup({
 		dataType: 'json'
 	});
 
+	// For dynamic forms
 	$(".dyn-form")
 		.on("ajax:success", dynamic_form_load)
 		.on("ajax:error", function(e, data, status, xhr) {
 			$(".dyn-form").render_form_errors($(".dyn-form").attr("for"), data.responseJSON);
 			hide_loading_icon();
 		});
-
-	$(".entries").off("click.entries").on("click.entries", entries_js);
-	$(".selectize").off("click.selectize").on("click.selectize", handle_selectize);
 }
