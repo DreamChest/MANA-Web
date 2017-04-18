@@ -54,3 +54,6 @@ gem "selectize-rails" 		# Selectize.js for tags management
 gem "animate-rails" 		# Animate.css for Rails (dependency for Bootstrap Growl)
 gem "bootstrap-growl-rails" # Bootstrap growl notifications/Bootstrap Notify
 gem "validate_url"			# URL validation for models
+gem "domainatrix"			# URL parsing
+gem "open_uri_redirections" # Allow redirections for open-uri
+gem "rmagick"				# ImageMagick wrapper gem

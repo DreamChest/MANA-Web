@@ -60,6 +60,8 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
+    domainatrix (0.0.11)
+      addressable
     erubis (2.7.0)
     execjs (2.6.0)
     faraday (0.9.2)
@@ -110,6 +112,7 @@ GEM
     multipart-post (2.0.0)
     nokogiri (1.6.7.2)
       mini_portile2 (~> 2.0.0.rc2)
+    open_uri_redirections (0.2.1)
     public_suffix (2.0.5)
     rack (1.6.4)
     rack-test (0.6.3)
@@ -141,6 +144,7 @@ GEM
     rake (11.1.2)
     rdoc (4.2.2)
       json (~> 1.4)
+    rmagick (2.16.0)
     ruby_parser (3.8.2)
       sexp_processor (~> 4.1)
     sass (3.4.22)
@@ -195,12 +199,15 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
+  domainatrix
   feedjira
   font-awesome-sass
   haml-rails
   jbuilder (~> 2.0)
   jquery-rails
+  open_uri_redirections
   rails (= 4.2.6)
+  rmagick
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   selectize-rails

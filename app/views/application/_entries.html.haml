@@ -4,7 +4,7 @@
     %div{ class: "panel panel-default entry #{e.source.tagslist.gsub(',', ' ')}", date: e.date.strftime("%Y-%m-%d %H:%M:%S") }
       .panel-heading
         %a{href: "##{collapse_id}", class: "feedtitle", data: { toggle: "collapse", parent: "#accord" }}
-          = e.source.name
+          = image_tag e.source.favicon, class: "favicon", atl: e.source.name, title: e.source.name
           \|
           = e.title
         %div.tags

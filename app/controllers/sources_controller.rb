@@ -1,5 +1,9 @@
 class SourcesController < ApplicationController
 	require "feedjira"
+	require "domainatrix"
+	require "open-uri"
+	require "open_uri_redirections"
+	require "rmagick"
 
 	before_action :set_source, only: [:show, :edit, :update, :destroy, :show_entries, :update_entries]
 	before_action :set_sources, only: [:index, :create, :update, :update_entries]
@@ -40,6 +44,7 @@ class SourcesController < ApplicationController
 			respond_to do |format|
 				if @source.save
 					tag
+					get_favicon
 
 					feed.entries.reverse.each do |e|
 						@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
@@ -187,6 +192,25 @@ class SourcesController < ApplicationController
 				@source.tags<<(tag)
 			end
 		end
+	end
+
+	# Gets the favicon for the source
+	def get_favicon
+		url = Domainatrix.parse(@source.url)
+		uri = "#{url.scheme}://#{url.domain}.#{url.public_suffix}/favicon.ico"
+
+		ico_path = "/tmp/prophet-tmp-favicon.ico"
+		url_path = "/assets/favicons/#{@source.name}.png"
+		png_path = Rails.root.join("public/#{url_path}")
+
+		open(ico_path, "wb") do |file|
+			file << open(uri, allow_redirections: :all).read
+		end
+
+		ico = Magick::Image::read(ico_path).first
+		ico.write(png_path)
+
+		@source.update(favicon: url_path)
 	end
 
 	# Fetches and saves the new entries
