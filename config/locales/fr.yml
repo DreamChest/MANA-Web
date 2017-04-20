@@ -83,6 +83,7 @@ fr:
 
     errors:
       invalid_feed: "URL du flux incorrecte or non disponible"
+      favicon_error: "La favicon de la source n'a pas pu être récupérée"
 
     tooltips:
       unused_tag: "Tag inutilisé"

@@ -83,6 +83,7 @@ en:
 
     errors:
       invalid_feed: "Feed URL invalid or unavailable"
+      favicon_error: "The favicon for the source could not be fetched"
 
     tooltips:
       unused_tag: "Unused tag"

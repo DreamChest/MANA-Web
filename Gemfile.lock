@@ -60,8 +60,6 @@ GEM
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
     debug_inspector (0.0.2)
-    domainatrix (0.0.11)
-      addressable
     erubis (2.7.0)
     execjs (2.6.0)
     faraday (0.9.2)
@@ -199,7 +197,6 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   coffee-rails (~> 4.1.0)
-  domainatrix
   feedjira
   font-awesome-sass
   haml-rails

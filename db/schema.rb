@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170418102510) do
+ActiveRecord::Schema.define(version: 20170420205842) do
 
   create_table "contents", force: :cascade do |t|
     t.integer  "entry_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20170418102510) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
     t.string   "favicon"
+    t.string   "html_url"
   end
 
   create_table "sources_tags", id: false, force: :cascade do |t|

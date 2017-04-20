@@ -1,6 +1,5 @@
 class SourcesController < ApplicationController
 	require "feedjira"
-	require "domainatrix"
 	require "open-uri"
 	require "open_uri_redirections"
 	require "rmagick"
@@ -44,13 +43,18 @@ class SourcesController < ApplicationController
 			respond_to do |format|
 				if @source.save
 					tag
-					get_favicon
 
 					feed.entries.reverse.each do |e|
 						@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
 					end
 
-					@source.update(last_update: feed.entries.first.published)
+					@source.update(html_url: feed.url, last_update: feed.entries.first.published)
+
+					begin
+						get_favicon
+					rescue
+						flash[:error] = I18n.t("errors.favicon_error")
+					end
 
 					format.html { render :index }
 					format.json {
@@ -196,8 +200,7 @@ class SourcesController < ApplicationController
 
 	# Gets the favicon for the source
 	def get_favicon
-		url = Domainatrix.parse(@source.url)
-		uri = "#{url.scheme}://#{url.domain}.#{url.public_suffix}/favicon.ico"
+		uri = "#{@source.html_url}/favicon.ico"
 
 		ico_path = "/tmp/prophet-tmp-favicon.ico"
 		url_path = "/assets/favicons/#{@source.name}.png"
