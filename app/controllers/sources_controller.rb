@@ -80,7 +80,7 @@ class SourcesController < ApplicationController
 		@source.assign_attributes(source_params)
 
 		begin
-			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid? and @source.url_changed?
+			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid? and @source.url_changed? or @source.favicon.nil?
 
 			respond_to do |format|
 				if @source.update(source_params)
@@ -93,7 +93,15 @@ class SourcesController < ApplicationController
 							@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
 						end
 
-						@source.update(last_update: feed.entries.first.published)
+						@source.update(html_url: feed.url, last_update: feed.entries.first.published)
+					end
+
+					if @source.favicon.nil?
+						begin
+							get_favicon
+						rescue
+							flash[:error] = I18n.t("errors.favicon_error")
+						end
 					end
 
 					format.html { render :index }
@@ -140,6 +148,14 @@ class SourcesController < ApplicationController
 	def update_entries
 		begin
 			fetch
+
+			if @source.favicon.nil?
+				begin
+					get_favicon
+				rescue
+					flash.now[:error] = I18n.t("errors.favicon_error")
+				end
+			end
 
 			flash.now[:notice] = I18n.t("notices.source_updated", count: 1)
 			render :index
