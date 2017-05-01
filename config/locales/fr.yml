@@ -26,8 +26,14 @@ fr:
         update: "Mettre à jour"
         edit: "Modifier"
         show: "Voir"
-        new_m: "Nouveau"
-        new_f: "Nouvelle"
+        new_m:
+          zero: "Nouveaux"
+          one: "Nouveau"
+          other: "Nouveaux"
+        new_f:
+          zero: "Nouvelles"
+          one: "Nouvelle"
+          other: "Nouvelles"
         editing: "Éditer"
 
         entry:

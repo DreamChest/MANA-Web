@@ -26,8 +26,14 @@ en:
         update: "Update"
         edit: "Edit"
         show: "Show"
-        new_m: "New"
-        new_f: "New"
+        new_m:
+          zero: "New"
+          one: "New"
+          other: "New"
+        new_f:
+          zero: "New"
+          one: "New"
+          other: "New"
         editing: "Editing"
 
         entry:

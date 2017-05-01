@@ -136,7 +136,7 @@ class SourcesController < ApplicationController
 		end
 	end
 
-	# Shows entries for the source
+	# Shows entries for the source (JSON only)
 	def show_entries
 		respond_to do |format|
 			format.html { redirect_to controller: "entries", action: "index", source: @source.name }
@@ -148,14 +148,6 @@ class SourcesController < ApplicationController
 	def update_entries
 		begin
 			fetch
-
-			if @source.favicon.nil?
-				begin
-					get_favicon
-				rescue
-					flash.now[:error] = I18n.t("errors.favicon_error")
-				end
-			end
 
 			flash.now[:notice] = I18n.t("notices.source_updated", count: 1)
 			render :index
@@ -188,11 +180,11 @@ class SourcesController < ApplicationController
 		if new_entries.empty? # If there are no new entries...
 			@entries = Entry.order("date DESC").limit(ENTRIES_LIMIT) # ... then display entries normally
 		else
-			@filter = "New"
+			@filter = "#{new_entries.size} #{I18n.t("notices.new_entries", count: new_entries.size)}"
 			@entries = new_entries # ... else, display new entries
 		end
 
-		flash.now[:notice] = I18n.t("notices.source_updated", count: 2)+" (#{new_entries.size} #{I18n.t("notices.new_entries", count: new_entries.size)})"
+		flash.now[:notice] = "#{I18n.t("notices.source_updated", count: 2)} (#{@filter})"
 
 		unless failed_sources.empty?
 			flash.now[:error] = I18n.t("errors.invalid_feed")+" (#{failed_sources.join(", ")})"
@@ -243,6 +235,14 @@ class SourcesController < ApplicationController
 		end
 
 		@source.update(last_update: feed.entries.first.published)
+
+		if @source.favicon.nil?
+			begin
+				get_favicon
+			rescue
+				flash.now[:error] = I18n.t("errors.favicon_error")
+			end
+		end
 	end
 
 	# Use callbacks to share common setup or constraints between actions.
