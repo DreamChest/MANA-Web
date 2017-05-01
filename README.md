@@ -25,10 +25,11 @@ Prophet is currently in early phases of development and is highly incomplete and
 - Ruby 2.3.0
 - Ruby on Rails 4.2.6
 - Any [ExecJS](https://github.com/rails/execjs) supported Javascript runtime
+- ImageMagick 6.4.9 (or at least MagickCore and MagickWand libs)
 
 ### Quickstart
 
-1. `git clone https://github.com/DreamChest/Prophet`
+1. `git clone https://github.com/DreamChest/Prophet && cd Prophet`
 2. `bundle install`
 3. `./prophet start`
 
