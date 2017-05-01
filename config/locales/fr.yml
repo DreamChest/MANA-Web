@@ -68,13 +68,14 @@ fr:
         entry_updated: "Entrée mise à jour avec succès"
         entry_destroyed: "Entrée supprimée avec succès"
         source_created: "Source créée avec succès"
+        source_saved: "Source sauvegardée avec succès"
         source_updated:
-            one: "Source mise à jour avec succès"
-            other: "Sources mises à jour avec succès"
-        source_destroyed: "Source supprimée avec succès"
+            one: "Source mise à jour avec succès (%{name})"
+            other: "Sources mises à jour avec succès (%{details})"
+        source_destroyed: "Source supprimée avec succès (%{name})"
         tag_created: "Tag créé avec succès"
         tag_updated: "Tag mis à jour avec succès"
-        tag_destroyed: "Tag supprimé avec succès"
+        tag_destroyed: "Tag supprimé avec succès (%{name})"
         new_entries:
           zero: "nouvelles entrées"
           one: "nouvelle entrée"
@@ -88,11 +89,18 @@ fr:
         tag_filtering: "Filtrage par tag"
 
     errors:
-      invalid_feed: "URL du flux incorrecte or non disponible"
+      invalid_feed:
+        one: "URL du flux incorrecte or non disponible (%{name})"
+        other: "URL des flux incorrectes or non disponibles (%{name})"
       favicon_error: "La favicon de la source n'a pas pu être récupérée"
 
     tooltips:
       unused_tag: "Tag inutilisé"
+
+    forms:
+      validations:
+        errors:
+          invalid_feed: "URL du flux incorrecte ou non disponible"
 
     helpers:
         submit:

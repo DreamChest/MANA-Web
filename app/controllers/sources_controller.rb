@@ -69,7 +69,7 @@ class SourcesController < ApplicationController
 		rescue
 			respond_to do |format|
 				format.html { render :new }
-				format.json { render json: { url: [I18n.t("errors.invalid_feed")] }, status: :unprocessable_entity }
+				format.json { render json: { url: [I18n.t("forms.validations.errors.invalid_feed")] }, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -80,7 +80,7 @@ class SourcesController < ApplicationController
 		@source.assign_attributes(source_params)
 
 		begin
-			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid? and @source.url_changed? or @source.favicon.nil?
+			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid?
 
 			respond_to do |format|
 				if @source.update(source_params)
@@ -106,7 +106,7 @@ class SourcesController < ApplicationController
 
 					format.html { render :index }
 					format.json {
-						flash[:notice] = I18n.t("notices.source_updated", count: 1)
+						flash[:notice] = I18n.t("notices.source_saved", count: 1)
 						render :show, status: :ok, location: @source
 					}
 				else
@@ -117,7 +117,7 @@ class SourcesController < ApplicationController
 		rescue
 			respond_to do |format|
 				format.html { render :new }
-				format.json { render json: { url: [I18n.t("errors.invalid_feed")] }, status: :unprocessable_entity }
+				format.json { render json: { url: [I18n.t("forms.validations.errors.invalid_feed")] }, status: :unprocessable_entity }
 			end
 		end
 	end
@@ -129,7 +129,7 @@ class SourcesController < ApplicationController
 		respond_to do |format|
 			format.html {
 				@sources = Source.all
-				flash.now[:notice] = I18n.t("notices.source_destroyed")
+				flash.now[:notice] = I18n.t("notices.source_destroyed", name: @source.name)
 				render :index
 			}
 			format.json { head :no_content }
@@ -149,10 +149,10 @@ class SourcesController < ApplicationController
 		begin
 			fetch
 
-			flash.now[:notice] = I18n.t("notices.source_updated", count: 1)
+			flash.now[:notice] = I18n.t("notices.source_updated", count: 1, name: @source.name)
 			render :index
 		rescue
-			flash.now[:error] = I18n.t("errors.invalid_feed")
+			flash.now[:error] = I18n.t("errors.invalid_feed", count: 1, name: @source.name)
 			render :index
 		end
 	end
@@ -177,17 +177,19 @@ class SourcesController < ApplicationController
 			new_entries = Entry.where("date > ?", last_entry.date).order("date DESC") # ... else, only more recent entries are kept and considered new
 		end
 
+		details = "#{new_entries.size} #{I18n.t("notices.new_entries", count: new_entries.size)}"
+
 		if new_entries.empty? # If there are no new entries...
 			@entries = Entry.order("date DESC").limit(ENTRIES_LIMIT) # ... then display entries normally
 		else
-			@filter = "#{new_entries.size} #{I18n.t("notices.new_entries", count: new_entries.size)}"
+			@fitler = details
 			@entries = new_entries # ... else, display new entries
 		end
 
-		flash.now[:notice] = "#{I18n.t("notices.source_updated", count: 2)} (#{@filter})"
+		flash.now[:notice] = I18n.t("notices.source_updated", count: 2, details: details)
 
 		unless failed_sources.empty?
-			flash.now[:error] = I18n.t("errors.invalid_feed")+" (#{failed_sources.join(", ")})"
+			flash.now[:error] = I18n.t("errors.invalid_feed", count: failed_sources.size, name: failed_sources.join(", "))
 		end
 
 		render "entries/index"
