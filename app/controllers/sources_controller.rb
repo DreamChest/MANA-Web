@@ -182,7 +182,7 @@ class SourcesController < ApplicationController
 		if new_entries.empty? # If there are no new entries...
 			@entries = Entry.order("date DESC").limit(ENTRIES_LIMIT) # ... then display entries normally
 		else
-			@fitler = details
+			@filter = details
 			@entries = new_entries # ... else, display new entries
 		end
 

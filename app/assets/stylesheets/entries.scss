@@ -28,17 +28,22 @@
 	padding: 0px 15px 10px 15px;
 }
 
-#load-more-div {
-	text-align: center;
+#load-more-wrapper {
+	position: relative;
+	height: 45px;
 	margin-bottom: 10px;
 }
 
 #load-more-btn {
-	width: 96%;
+	position: absolute;
+	left: 0px;
+	right: 45px;
 }
 
 #totop {
-	width: 3%;
+	width: 40px;
+	position: absolute;
+	right: 0px;
 }
 
 .favicon {
