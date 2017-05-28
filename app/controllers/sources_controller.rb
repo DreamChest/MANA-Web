@@ -10,6 +10,11 @@ class SourcesController < ApplicationController
 	# GET /sources
 	# GET /sources.json
 	def index
+		respond_to do |format|
+			format.html
+			format.json
+			format.opml
+		end
 	end
 
 	# GET /sources/1
