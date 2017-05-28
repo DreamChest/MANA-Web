@@ -60,6 +60,8 @@ en:
         show_more: "Show more"
         back_top: "Back to top"
         clear: "clear"
+        export: "Export"
+        import: "Import"
 
     label: "%{label}: "
 

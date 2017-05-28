@@ -10,6 +10,8 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  */
+
+// Libs
 @import "bootstrap-sprockets";
 @import "bootstrap";
 @import "font-awesome-sprockets";
@@ -17,7 +19,10 @@
 @import "selectize";
 @import "selectize.bootstrap3";
 @import "animate";
+
+// App view
 @import "entries";
+@import "sources";
 @import "navbar";
 @import "sidebar";
 @import "sidebar-right";
