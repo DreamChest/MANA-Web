@@ -1,0 +1,19 @@
+%h1 Listing opml_uploaders
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @opml_uploaders.each do |opml_uploader|
+      %tr
+        %td= link_to 'Show', opml_uploader
+        %td= link_to 'Edit', edit_opml_uploader_path(opml_uploader)
+        %td= link_to 'Destroy', opml_uploader, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Opml uploader', new_opml_uploader_path

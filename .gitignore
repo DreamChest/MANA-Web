@@ -19,8 +19,10 @@
 # Ignore static assets
 /public/assets/
 
-# Own
+# Ignore files from Paperclip
+/public/system/
 
+# Own
 *.swp
 resetdb.sh
 tags

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170420205842) do
+ActiveRecord::Schema.define(version: 20170530161046) do
 
   create_table "contents", force: :cascade do |t|
     t.integer  "entry_id"
@@ -29,6 +29,15 @@ ActiveRecord::Schema.define(version: 20170420205842) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "opml_uploaders", force: :cascade do |t|
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
   end
 
   create_table "sources", force: :cascade do |t|

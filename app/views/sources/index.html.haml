@@ -35,9 +35,9 @@
   = link_to sources_url(format: :opml), download: "feeds.opml", class: "btn btn-primary", id: "export-btn" do
     %i.fa.fa-download
     = t("words.export")
-  -#= link_to "TODO", class: "btn btn-primary", id: "import-btn" do
-    -#%i.fa.fa-upload
-    -#= t("words.import")
+  = link_to opml_uploaders_url, class: "btn btn-primary", id: "import-btn" do
+    %i.fa.fa-upload
+    = t("words.import")
 
   :javascript
     $(document).ready(sources_js);
