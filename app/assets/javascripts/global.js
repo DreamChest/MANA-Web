@@ -96,9 +96,11 @@ function hide_loading_icon() {
 $.fn.render_form_errors = function(model, errors) {
 	var form = this;
 
+	// Remove previous errors (if needed)
 	form.find('.form-group').removeClass('has-error')
 	form.find('span.help-block').remove()
 
+	// Add errors to input fields (if needed)
 	return $.each(errors, function(field, messages) {
 		var input = form.find('input, select, textarea').filter(function() {
 			var name = $(this).attr('name');

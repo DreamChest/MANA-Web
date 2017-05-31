@@ -49,8 +49,14 @@ class OpmlUploadersController < ApplicationController
 					end
 				end
 
-				format.html { redirect_to @opml_uploader, notice: 'Opml uploader was successfully created.' }
-				format.json { render :show, status: :created, location: @opml_uploader }
+				format.html {
+					@sources = Source.all
+					render "sources/index"
+				}
+				format.json {
+					flash[:notice] = I18n.t("notices.opml_imported")
+					render :show, status: :created, location: @opml_uploader
+				}
 			else
 				format.html { render :new }
 				format.json { render json: @opml_uploader.errors, status: :unprocessable_entity }
