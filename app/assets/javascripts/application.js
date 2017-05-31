@@ -17,4 +17,5 @@
 //= require selectize
 //= require jscolor
 //= require bootstrap-notify
+//= require jquery.remotipart
 //= require_tree .

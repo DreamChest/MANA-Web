@@ -57,3 +57,4 @@ gem "validate_url"			# URL validation for models
 gem "open_uri_redirections" # Allow redirections for open-uri
 gem "rmagick"				# ImageMagick wrapper gem
 gem "paperclip"				# File upload (for OPML import)
+gem "remotipart"			# To add AJAX compatibility to Paperclip file upload
