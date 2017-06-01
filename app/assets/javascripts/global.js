@@ -7,7 +7,7 @@ function dynamic_content_load() {
 		type: "GET",
 		dataType: "html",
 		success: function(result) {
-			$("#page-content").html($(result).find("#page-content").html());
+			$("#page-content").html(result);
 
 			if(source.hasClass("neveractive")) {
 				set_navbar_active();
@@ -32,7 +32,7 @@ function dynamic_modal_load() {
 		type: "GET",
 		dataType: "html",
 		success: function(result) {
-			$("#page-modal-content").html($(result).find("#page-content").html());
+			$("#page-modal-content").html(result);
 
 			var title = $("#page-modal-content").find("#page-title");
 			$("#page-modal-title").text(title.text());
@@ -49,9 +49,17 @@ function dynamic_modal_load() {
 
 // Loads page-content and sidebars contents from ajax result
 function dynamic_full_load(result) {
-	$("#page-content").html($(result).find("#page-content").html());
-	$("#sidebar-wrapper").html($(result).find("#sidebar-wrapper").html());
-	$("#sidebar-wrapper-right").html($(result).find("#sidebar-wrapper-right").html());
+	$("#page-content").html(result);
+
+	$.ajax({
+		url: "/sidebars",
+		type: "GET",
+		dataType: "html",
+		success: function(res) {
+			$("#sidebar-wrapper").html($(res).filter("#sidebar-wrapper").html());
+			$("#sidebar-wrapper-right").html($(res).filter("#sidebar-wrapper-right").html());
+		}
+	});
 
 	set_application_listeners();
 }

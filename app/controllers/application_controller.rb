@@ -5,6 +5,16 @@ class ApplicationController < ActionController::Base
 
   before_action :set_locale
   #before_action :hang, only: [:index]
+  
+  # Check for AJAX request, if so, render without layout
+  layout proc { request.xhr? ? "mini" : nil }
+
+  # Renders a view with sidebars only
+  def sidebars
+	  respond_to do |format|
+		  format.html { render "application/sidebars", layout: false }
+	  end
+  end
 
   # Constants
   ENTRIES_LIMIT = 25.freeze

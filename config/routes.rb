@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 	get "/sources/:id/entries", to: "sources#show_entries", as: "source_entries"
 	get "/sources/:id/update_entries", to: "sources#update_entries", as: "update_source"
 
+	# Application
+	get "/sidebars", to: "application#sidebars", as: "sidebars"
+
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".
 

@@ -10,7 +10,7 @@ function handle_tag_filtering() {
 	});
 
 	$("#page-modal").modal("hide");
-	$("#page-content").load(encodeURI($(this).attr("url")+val)+" #page-content", function() {
+	$("#page-content").load(encodeURI($(this).attr("url")+val), function() {
 		set_application_listeners();
 		entries_js();
 	});
