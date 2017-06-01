@@ -108,7 +108,7 @@ en:
 
     tooltips:
       unused_tag: "Unused tag"
-      clean_tag_btn: "Remove all unused tags"
+      clean_tags_btn: "Remove all unused tags"
 
     forms:
       validations:

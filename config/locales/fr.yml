@@ -121,7 +121,7 @@ fr:
 
     tooltips:
       unused_tag: "Tag inutilisé"
-      clean_tag_btn: "Supprimer tous les tags inutilisés"
+      clean_tags_btn: "Supprimer tous les tags inutilisés"
 
     forms:
       validations:

@@ -20,6 +20,6 @@
 = link_to '', new_tag_path, class: "btn btn-primary fa fa-plus dyn-modal"
 
 #clean-btn
-  = link_to clean_tags_url, class: "btn btn-primary dyn-content-full", data: { toggle: "tooltip" }, title: I18n.t("tooltips.unused_tag") do
+  = link_to clean_tags_url, class: "btn btn-primary dyn-content-full", data: { toggle: "tooltip" }, title: I18n.t("tooltips.clean_tags_btn") do
     %i.fa.fa-magic
     = t("words.clean")
