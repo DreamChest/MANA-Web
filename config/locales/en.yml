@@ -37,15 +37,15 @@ en:
         editing: "Editing"
 
         entry:
-            zero: "No entries"
+            zero: "Entries"
             one: "Entry"
             other: "Entries"
         source:
-            zero: "No sources"
+            zero: "Sources"
             one: "Source"
             other: "Sources"
         tag:
-            zero: "No tags"
+            zero: "Tags"
             one: "Tag"
             other: "Tags"
 
@@ -64,6 +64,8 @@ en:
         import: "Import"
         import_sources: "Import sources"
         opml_file: "OPML file"
+        ignored_source: "ignored"
+        never: "Never"
 
     label: "%{label}: "
 
@@ -84,7 +86,7 @@ en:
           zero: "new entries"
           one: "new entry"
           other: "new entries"
-        opml_imported: "OPML file successfully imported"
+        opml_imported: "OPML file successfully imported (%{new_count} %{new_string} %{source_string}, %{ignored_count} %{ignored_string})"
 
     messages:
         no_entries: "Woops, it looks like there are no entries to show ¯\\_(ツ)_/¯"
@@ -122,6 +124,10 @@ en:
             attributes:
               url:
                 url: "Must be an URL"
+          opml_uploader:
+            attributes:
+              file_content_type:
+                invalid: "Invalid file type"
 
     simple_form:
       labels:

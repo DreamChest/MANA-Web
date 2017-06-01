@@ -37,15 +37,15 @@ fr:
         editing: "Éditer"
 
         entry:
-            zero: "Pas d'entrées"
+            zero: "Entrées"
             one: "Entrée"
             other: "Entrées"
         source:
-            zero: "Pas de sources"
+            zero: "Sources"
             one: "Source"
             other: "Sources"
         tag:
-            zero: "Pas de tags"
+            zero: "Tags"
             one: "Tag"
             other: "Tags"
 
@@ -64,6 +64,12 @@ fr:
         import: "Importer"
         import_sources: "Importer des sources"
         opml_file: "Fichier OPML"
+        ignored_source:
+          zero: "ignorées"
+          one: "ignorée"
+          other: "ignorées"
+        never: "Jamais"
+
 
     label: "%{label} : "
 
@@ -84,7 +90,7 @@ fr:
           zero: "nouvelles entrées"
           one: "nouvelle entrée"
           other: "nouvelles entrées"
-        opml_imported: "Fichier OPML importé avec succès"
+        opml_imported: "Fichier OPML importé avec succès (%{new_count} %{new_string} %{source_string}, %{ignored_count} %{ignored_string})"
 
     messages:
         no_entries: "Oups, on dirait qu'il n'y a aucune entrée à afficher ¯\\_(ツ)_/¯"
@@ -122,6 +128,12 @@ fr:
             attributes:
               url:
                 url: "Doit être une URL"
+          opml_uploader:
+            attributes:
+              file:
+                spoofed_media_type: "Le contenu du fichier de correspond pas à son type"
+              file_content_type:
+                invalid: "Type de fichier invalide"
 
     simple_form:
       labels:
