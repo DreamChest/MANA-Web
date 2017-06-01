@@ -32,10 +32,10 @@
   %i.fa.fa-plus
 
 #opml-btn
-  = link_to sources_url(format: :opml), download: "feeds.opml", class: "btn btn-primary", id: "export-btn" do
+  = link_to sources_url(format: :opml), download: "feeds.opml", class: "btn btn-primary" do
     %i.fa.fa-download
     = t("words.export")
-  = link_to new_opml_uploader_url, class: "btn btn-primary dyn-modal", id: "import-btn" do
+  = link_to new_opml_uploader_url, class: "btn btn-primary dyn-modal" do
     %i.fa.fa-upload
     = t("words.import")
 

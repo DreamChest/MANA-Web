@@ -1,4 +1,4 @@
-# Files in the config/locales directory are used for internationalization
+#content_load Files in the config/locales directory are used for internationalization
 # and are automatically loaded by Rails. If you want to use locales other
 # than English, add the necessary files in this directory.
 #
@@ -64,8 +64,12 @@ en:
         import: "Import"
         import_sources: "Import sources"
         opml_file: "OPML file"
-        ignored_source: "ignored"
+        ignored_m: "Ignored"
+        ignored_f: "Ignored"
         never: "Never"
+        deleted_m: "Deleted"
+        deleted_f: "Deleted"
+        clean: "Clean"
 
     label: "%{label}: "
 
@@ -87,6 +91,7 @@ en:
           one: "new entry"
           other: "new entries"
         opml_imported: "OPML file successfully imported (%{new_count} %{new_string} %{source_string}, %{ignored_count} %{ignored_string})"
+        tags_cleaned: "Tags nettoyés avec succès (%{del_count} %{del_string})"
 
     messages:
         no_entries: "Woops, it looks like there are no entries to show ¯\\_(ツ)_/¯"
@@ -103,6 +108,7 @@ en:
 
     tooltips:
       unused_tag: "Unused tag"
+      clean_tag_btn: "Remove all unused tags"
 
     forms:
       validations:

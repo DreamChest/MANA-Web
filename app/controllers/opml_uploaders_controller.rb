@@ -55,7 +55,7 @@ class OpmlUploadersController < ApplicationController
 											new_string: t("words.new_f", count: new_sources).downcase,
 											source_string: t("words.source", count: new_sources).downcase,
 											ignored_count: ignored_sources,
-											ignored_string: t("words.ignored_source", count: ignored_sources))
+											ignored_string: t("words.ignored_f", count: ignored_sources).downcase)
 
 					render :show, status: :created, location: @opml_uploader
 				}

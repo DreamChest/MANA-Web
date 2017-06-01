@@ -64,11 +64,24 @@ fr:
         import: "Importer"
         import_sources: "Importer des sources"
         opml_file: "Fichier OPML"
-        ignored_source:
-          zero: "ignorées"
-          one: "ignorée"
-          other: "ignorées"
+        ignored_m:
+          zero: "Ignorés"
+          one: "Ignoré"
+          other: "Ignorés"
+        ignored_f:
+          zero: "Ignorées"
+          one: "Ignorée"
+          other: "Ignorées"
         never: "Jamais"
+        deleted_m:
+          zero: "Supprimés"
+          one: "Supprimé"
+          other: "Supprimés"
+        deleted_f:
+          zero: "Supprimées"
+          one: "Supprimée"
+          other: "Supprimées"
+        clean: "Nettoyer"
 
 
     label: "%{label} : "
@@ -91,6 +104,7 @@ fr:
           one: "nouvelle entrée"
           other: "nouvelles entrées"
         opml_imported: "Fichier OPML importé avec succès (%{new_count} %{new_string} %{source_string}, %{ignored_count} %{ignored_string})"
+        tags_cleaned: "Tags nettoyés avec succès (%{del_count} %{del_string})"
 
     messages:
         no_entries: "Oups, on dirait qu'il n'y a aucune entrée à afficher ¯\\_(ツ)_/¯"
@@ -107,6 +121,7 @@ fr:
 
     tooltips:
       unused_tag: "Tag inutilisé"
+      clean_tag_btn: "Supprimer tous les tags inutilisés"
 
     forms:
       validations:
