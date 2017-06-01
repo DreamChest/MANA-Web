@@ -1,6 +1,6 @@
 class TagsController < ApplicationController
 	before_action :set_tag, only: [:show, :edit, :update, :destroy]
-	before_action :set_tags, only: [:index, :create, :update, :destroy]
+	before_action :set_tags, only: [:index, :create, :update, :destroy, :clean]
 
 	# GET /tags
 	# GET /tags.json
@@ -67,6 +67,27 @@ class TagsController < ApplicationController
 				render :index
 			}
 			format.json { head :no_content }
+		end
+	end
+
+	# Clean tags (removes all unused tags)
+	def clean
+		del_count = 0
+
+		@tags.each do |t|
+			if not t.has_sources
+				t.destroy
+				del_count += 1
+			end
+		end
+
+		set_tags # Update tags collecton after deletion
+
+		respond_to do |format|
+			format.html {
+				flash.now[:notice] = I18n.t("notices.tags_cleaned", del_count: del_count, del_string: t("words.deleted_m", count: del_count).downcase)
+				render :index
+			}
 		end
 	end
 

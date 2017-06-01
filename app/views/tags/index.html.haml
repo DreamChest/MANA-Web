@@ -18,3 +18,8 @@
         %td= link_to '', tag, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger fa fa-trash dyn-delete"
 
 = link_to '', new_tag_path, class: "btn btn-primary fa fa-plus dyn-modal"
+
+#clean-btn
+  = link_to clean_tags_url, class: "btn btn-primary dyn-content-full", data: { toggle: "tooltip" }, title: I18n.t("tooltips.unused_tag") do
+    %i.fa.fa-magic
+    = t("words.clean")

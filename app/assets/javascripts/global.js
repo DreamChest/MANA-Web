@@ -47,10 +47,8 @@ function dynamic_modal_load() {
 	return false;
 }
 
-// Loads page-content and sidebars contents from ajax result
-function dynamic_full_load(result) {
-	$("#page-content").html(result);
-
+// Loads sidebars content
+function dynamic_sidebar_load() {
 	$.ajax({
 		url: "/sidebars",
 		type: "GET",
@@ -60,6 +58,35 @@ function dynamic_full_load(result) {
 			$("#sidebar-wrapper-right").html($(res).filter("#sidebar-wrapper-right").html());
 		}
 	});
+}
+
+// Loads page-content and sidebars contents
+function dynamic_full_load() {
+	var source = $(this);
+
+	$.ajax({
+		url: source.attr("href"),
+		type: "GET",
+		dataType: "html",
+		success: function(result) {
+			$("#page-content").html(result);
+
+			$("#page-modal").modal("hide");
+
+			dynamic_sidebar_load();
+
+			set_application_listeners();
+		}
+	});
+
+	return false;
+}
+
+// Loads page-content and sidebars contents from ajax result
+function dynamic_full_load_callback(result) {
+	$("#page-content").html(result);
+
+	dynamic_sidebar_load();
 
 	set_application_listeners();
 }
@@ -70,7 +97,7 @@ function dynamic_delete_load() {
 		url: $(this).attr("href"),
 		type: "DELETE",
 		dataType: "html",
-		success: dynamic_full_load
+		success: dynamic_full_load_callback
 	});
 
 	return false;
@@ -82,7 +109,7 @@ function dynamic_form_load() {
 		url: $("#back").attr("href"),
 		type: "GET",
 		dataType: "html",
-		success: dynamic_full_load
+		success: dynamic_full_load_callback
 	});
 
 	$("#page-modal").modal("hide");
@@ -127,6 +154,7 @@ $.fn.render_form_errors = function(model, errors) {
 function set_application_listeners() {
 	// For dynamic content loading
 	$(".dyn-content").off("click.dyn-content").on("click.dyn-content", dynamic_content_load); // Dynamic page load
+	$(".dyn-content-full").off("click.dyn-content-full").on("click.dyn-content-full", dynamic_full_load); // Dynamic full (page content + sidebars) page load
 	$(".dyn-modal").off("click.dyn-modal").on("click.dyn-modal", dynamic_modal_load); // Dynamic modal load
 	$(".dyn-delete").off("click.dyn-delete").on("click.dyn-delete", dynamic_delete_load); // Dynamic delete query
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :opml_uploaders
 	# Tags
+	get "/tags/clean", to: "tags#clean", as: "clean_tags"
 	resources :tags
 
 	# Entries
