@@ -241,7 +241,7 @@ class SourcesController < ApplicationController
 			end
 		end
 
-		@source.update(last_update: feed.entries.first.published)
+		@source.update(html_url: feed.url, last_update: feed.entries.first.published)
 
 		if @source.favicon.nil?
 			begin

@@ -3,6 +3,7 @@ class ApiController < ApplicationController
 
 	def show
 		respond_to do |format|
+			format.html { redirect_to root_url }
 			format.json
 		end
 	end
