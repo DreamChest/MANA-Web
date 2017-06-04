@@ -1,5 +1,5 @@
 class EntriesController < ApplicationController
-	before_action :set_entry, only: [:show, :update, :destroy]
+	before_action :set_entry, only: [:show, :update, :destroy, :content]
 
 	# GET /entries
 	# GET /entries.json
@@ -37,14 +37,6 @@ class EntriesController < ApplicationController
 		end
 	end
 
-	# GET /entries/new
-	#def new
-	#end
-
-	# GET /entries/1/edit
-	#def edit
-	#end
-
 	# POST /entries
 	# POST /entries.json
 	def create
@@ -74,6 +66,16 @@ class EntriesController < ApplicationController
 			end
 		end
 	end
+
+	# GET /entries/1.json
+	# Gets content (HTML article from the feed) from the entry
+	def content
+		respond_to do |format|
+			format.html { redirect_to root_url }
+			format.json
+		end
+	end
+
 
 	# DELETE /entries/1
 	# DELETE /entries/1.json

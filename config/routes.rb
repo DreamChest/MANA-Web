@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
 	# Entries
 	resources :entries
+	get "/entries/:id/content", to: "entries#content", as: "entry_content"
 
 	# Sources
 	get "/sources/update_all", to: "sources#update_all", as: "update_sources"
