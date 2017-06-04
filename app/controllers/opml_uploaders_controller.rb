@@ -19,8 +19,8 @@ class OpmlUploadersController < ApplicationController
 
 				doc = Nokogiri::XML(File.open(@opml_uploader.file.path))
 
-				new_sources = 0 # Count for new sources
-				ignored_sources = 0 # Count for ignore sources (already existent)
+				new_sources = [] # New (imported) sources
+				ignored_sources = [] # Ignored sources (already present source before import)
 
 				doc.xpath("//outline[@type='tag']").each do |xtag| # For each tag in OPML file
 					tagName = xtag.xpath("@text").text # Tag name from OPML
@@ -36,9 +36,13 @@ class OpmlUploadersController < ApplicationController
 						source = Source.where("url = ?", sourceXmlUrl).take # Pull source from DB (if it exists)
 						if source.nil? # If source does not exist...
 							source = Source.create(name: sourceName, url: sourceXmlUrl, html_url: sourceHtmlUrl, last_update: Time.at(0)) # ... we create it.
-							new_sources += 1
+							new_sources.push(source)
 						else
-							ignored_sources += 1
+							if not new_sources.include?(source)
+								if not ignored_sources.include?(source)
+									ignored_sources.push(source)
+								end
+							end
 						end
 
 						source.tags<<(tag) unless source.tags.exists?(tag.id) # Tag source with tag (unless it is already tagged)
@@ -51,11 +55,11 @@ class OpmlUploadersController < ApplicationController
 				}
 				format.json {
 					flash[:notice] = I18n.t("notices.opml_imported",
-											new_count: new_sources,
-											new_string: t("words.new_f", count: new_sources).downcase,
-											source_string: t("words.source", count: new_sources).downcase,
-											ignored_count: ignored_sources,
-											ignored_string: t("words.ignored_f", count: ignored_sources).downcase)
+											new_count: new_sources.size,
+											new_string: t("words.new_f", count: new_sources.size).downcase,
+											source_string: t("words.source", count: new_sources.size).downcase,
+											ignored_count: ignored_sources.size,
+											ignored_string: t("words.ignored_f", count: ignored_sources.size).downcase)
 
 					render :show, status: :created, location: @opml_uploader
 				}
