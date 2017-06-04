@@ -91,7 +91,7 @@ en:
           one: "new entry"
           other: "new entries"
         opml_imported: "OPML file successfully imported (%{new_count} %{new_string} %{source_string}, %{ignored_count} %{ignored_string})"
-        tags_cleaned: "Tags nettoyés avec succès (%{del_count} %{del_string})"
+        tags_cleaned: "Tags successfully cleaned (%{del_count} %{del_string})"
 
     messages:
         no_entries: "Woops, it looks like there are no entries to show ¯\\_(ツ)_/¯"
