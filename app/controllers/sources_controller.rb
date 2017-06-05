@@ -193,7 +193,7 @@ class SourcesController < ApplicationController
 		details = "#{new_entries.size} #{I18n.t("notices.new_entries", count: new_entries.size)}"
 
 		if new_entries.empty? # If there are no new entries...
-			@entries = Entry.order("date DESC").limit(ENTRIES_LIMIT) # ... then display entries normally
+			@entries = Entry.order("date DESC").limit(Prophet::ENTRIES_LIMIT) # ... then display entries normally
 		else
 			@filter = details
 			@entries = new_entries # ... else, display new entries
