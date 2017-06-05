@@ -1,7 +1,7 @@
 .panel-group#accord#entries
   - entries.each do |e|
     - collapse_id = "#{e.id}"
-    %div{ class: "panel panel-default entry #{e.source.tagslist.gsub(',', ' ')}", date: e.date.strftime("%Y-%m-%d %H:%M:%S") }
+    %div{ class: "panel panel-default entry", date: e.date.strftime("%Y-%m-%d %H:%M:%S") }
       .panel-heading
         %a{href: "##{collapse_id}", class: "feedtitle", data: { toggle: "collapse", parent: "#accord" }}
           = image_tag e.source.favicon, class: "favicon", atl: e.source.name, title: e.source.name

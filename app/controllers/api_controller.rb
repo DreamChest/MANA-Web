@@ -1,7 +1,7 @@
 class ApiController < ApplicationController
-	before_action :set_all, only: [:show]
+	before_action :set_all, only: [:all]
 
-	def show
+	def all
 		respond_to do |format|
 			format.html { redirect_to root_url }
 			format.json

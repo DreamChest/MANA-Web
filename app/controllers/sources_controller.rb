@@ -1,11 +1,13 @@
 class SourcesController < ApplicationController
-	require "feedjira"
-	require "open-uri"
-	require "open_uri_redirections"
-	require "rmagick"
+	require "feedjira" # RSS feed fetching and parsing
+	require "open-uri" # To get favicon file
+	require "open_uri_redirections" # Allow open-uri for unsecured redirections
+	require "rmagick" # For convertir favicon ico files into png files
+	require "fileutils" # To delete favicon file on source deletion
 
 	before_action :set_source, only: [:show, :edit, :update, :destroy, :show_entries, :update_entries]
-	before_action :set_sources, only: [:index, :create, :update, :update_entries]
+	before_action :set_sources, only: [:index, :create, :destroy, :update, :update_entries]
+	before_action :set_favicon_file_path, only: [:destroy]
 
 	# GET /sources
 	# GET /sources.json
@@ -47,13 +49,13 @@ class SourcesController < ApplicationController
 
 			respond_to do |format|
 				if @source.save
-					tag
-
 					feed.entries.reverse.each do |e|
 						@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
 					end
 
 					@source.update(html_url: feed.url, last_update: feed.entries.first.published)
+
+					tag
 
 					begin
 						get_favicon
@@ -85,15 +87,17 @@ class SourcesController < ApplicationController
 		@source.assign_attributes(source_params)
 
 		begin
-			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid?
+			url_changed = @source.url_changed?
+			feed = Feedjira::Feed.fetch_and_parse(@source.url) if @source.valid? and url_changed
 
 			respond_to do |format|
 				if @source.update(source_params)
-					@source.tags.clear
-					tag
-
-					unless feed.nil?
+					unless feed.nil? # If feed is undefined (if URL has not changed)
+						@source.entries.each do |e|
+							e.content.destroy
+						end
 						@source.entries.clear
+
 						feed.entries.reverse.each do |e|
 							@source.entries.create!(title: e.title, url: e.url, read: false, fav: false, date: e.published, content: Content.create({ html: e.content || e.summary }))
 						end
@@ -101,7 +105,10 @@ class SourcesController < ApplicationController
 						@source.update(html_url: feed.url, last_update: feed.entries.first.published)
 					end
 
-					if @source.favicon.nil?
+					tag
+
+					# Fetch favicon only if absent or if URL changed
+					if @source.favicon.nil? or url_changed
 						begin
 							get_favicon
 						rescue
@@ -131,9 +138,10 @@ class SourcesController < ApplicationController
 	# DELETE /sources/1.json
 	def destroy
 		@source.destroy
+		FileUtils.rm(@favicon_file_path) if Dir.exists?(@favicon_file_path)
+
 		respond_to do |format|
 			format.html {
-				@sources = Source.all
 				flash.now[:notice] = I18n.t("notices.source_destroyed", name: @source.name)
 				render :index
 			}
@@ -164,7 +172,7 @@ class SourcesController < ApplicationController
 
 	# Updates all sources (fetches entries for each source)
 	def update_all
-		last_entry = Entry.order("date DESC").first # Get most recent entry date
+		last_entry = Entry.order("date DESC").first # Get most recent entry
 		failed_sources = []
 
 		Source.all.each do |s|
@@ -203,32 +211,34 @@ class SourcesController < ApplicationController
 	private
 	# Tags the source
 	def tag
-		params[:source]["tagslist_attr"].split(',').each do |t|
-			tag = Tag.where("name = '#{t}'").take
-			if tag.nil?
-				@source.tags.create!(name: t, color: "#ffffff")
-			else
-				@source.tags<<(tag)
+		unless params[:source]["tagslist_attr"].empty?
+			params[:source]["tagslist_attr"].split(',').each do |t|
+				tag = Tag.where("name = ?", t).take # Pull take from DB if it exists...
+				if tag.nil?
+					@source.tags.create!(name: t, color: "#ffffff") # ... else create it and tag the source with it
+				else
+					@source.tags<<(tag) unless @source.tags.exists?(tag.id) # Tag source unless its already tagged with this tag
+				end
 			end
+		else
+			@source.tags.clear
 		end
 	end
 
 	# Gets the favicon for the source
 	def get_favicon
+		set_favicon_file_path
+
 		uri = "#{@source.html_url}/favicon.ico"
 
-		ico_path = "/tmp/prophet-tmp-favicon.ico"
-		url_path = "/assets/favicons/#{@source.name}.png"
-		png_path = Rails.root.join("public/#{url_path}")
-
-		open(ico_path, "wb") do |file|
+		open(Prophet::FAVICON_TEMP_PATH, "wb") do |file|
 			file << open(uri, allow_redirections: :all).read
 		end
 
-		ico = Magick::Image::read(ico_path).first
-		ico.write(png_path)
+		ico = Magick::Image::read(Prophet::FAVICON_TEMP_PATH).first
+		ico.write(@favicon_file_path)
 
-		@source.update(favicon: url_path)
+		@source.update(favicon: "#{Prophet::FAVICON_BASE_URL}#{@favicon_file_name}")
 	end
 
 	# Fetches and saves the new entries
@@ -259,6 +269,11 @@ class SourcesController < ApplicationController
 
 	def set_sources
 		@sources = Source.all
+	end
+
+	def set_favicon_file_path
+		@favicon_file_name = "#{@source.id}.png"
+		@favicon_file_path = "#{Prophet::FAVICONS_DIR_PATH}/#{@favicon_file_name}"
 	end
 
 	# Never trust parameters from the scary internet, only allow the white list through.

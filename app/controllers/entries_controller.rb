@@ -20,7 +20,7 @@ class EntriesController < ApplicationController
 
 		@entries = @entries.where("date < ?", params["date"]) if params["date"].present? # Get entries older than a certain date only
 
-		@entries = @entries.limit(ENTRIES_LIMIT) # Limit the result
+		@entries = @entries.limit(Prophet::ENTRIES_LIMIT) # Limit the result
 
 		respond_to do |format|
 			format.html
@@ -75,7 +75,6 @@ class EntriesController < ApplicationController
 			format.json
 		end
 	end
-
 
 	# DELETE /entries/1
 	# DELETE /entries/1.json

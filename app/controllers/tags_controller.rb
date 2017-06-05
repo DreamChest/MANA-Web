@@ -10,6 +10,10 @@ class TagsController < ApplicationController
 	# GET /tags/1
 	# GET /tags/1.json
 	def show
+		respond_to do |format|
+			format.html { redirect_to root_url }
+			format.json
+		end
 	end
 
 	# GET /tags/new
@@ -72,16 +76,14 @@ class TagsController < ApplicationController
 
 	# Clean tags (removes all unused tags)
 	def clean
-		del_count = 0
+		init_tags_nb = @tags.size
 
 		@tags.each do |t|
-			if not t.has_sources
-				t.destroy
-				del_count += 1
-			end
+			t.destroy unless t.has_sources
 		end
 
 		set_tags # Update tags collecton after deletion
+		del_count = init_tags_nb-@tags.size
 
 		respond_to do |format|
 			format.html {

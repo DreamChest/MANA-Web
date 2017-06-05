@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 	get "/sources/:id/update_entries", to: "sources#update_entries", as: "update_source"
 
 	# API
-	get "/api/all", to: "api#show", as: "api_all"
+	get "/api/all", to: "api#all", as: "api_all"
 
 	# Application
 	get "/sidebars", to: "application#sidebars", as: "sidebars"

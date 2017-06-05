@@ -16,9 +16,6 @@ class ApplicationController < ActionController::Base
 	  end
   end
 
-  # Constants
-  ENTRIES_LIMIT = 25.freeze
-
   private
   def default_url_options(options = {})
 	  { locale: I18n.locale }.merge options

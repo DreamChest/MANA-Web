@@ -1,4 +1,6 @@
 class OpmlUploadersController < ApplicationController
+	require "nokogiri"
+
 	before_action :set_opml_uploader, only: [:show, :edit, :update, :destroy]
 	after_action :destroy_opml_uploader, only: [:create]
 
@@ -14,9 +16,6 @@ class OpmlUploadersController < ApplicationController
 
 		respond_to do |format|
 			if @opml_uploader.save
-
-				require "nokogiri"
-
 				doc = Nokogiri::XML(File.open(@opml_uploader.file.path))
 
 				new_sources = [] # New (imported) sources
@@ -38,8 +37,8 @@ class OpmlUploadersController < ApplicationController
 							source = Source.create(name: sourceName, url: sourceXmlUrl, html_url: sourceHtmlUrl, last_update: Time.at(0)) # ... we create it.
 							new_sources.push(source)
 						else
-							if not new_sources.include?(source)
-								if not ignored_sources.include?(source)
+							unless new_sources.include?(source)
+								unless ignored_sources.include?(source)
 									ignored_sources.push(source)
 								end
 							end
