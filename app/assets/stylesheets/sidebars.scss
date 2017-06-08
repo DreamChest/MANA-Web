@@ -1,0 +1,76 @@
+// Inspired by Start Bootstrap - Simple Sidebar (http://startbootstrap.com/)
+
+$link-color: #777;
+$link-hover-fg: #555;
+$link-hover-bg: rgba(255, 255, 255, .2);
+$link-active-bg: #e7e7e7;
+$brand-fg: #999;
+$brand-hover-fg: #fff;
+
+.sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 250px;
+
+  li {
+    line-height: 40px;
+    text-indent: 20px;
+
+    a {
+      color: $link-color;
+      display: block;
+      text-decoration: none;
+    }
+
+    a:hover {
+      background: $link-hover-bg;
+      color: $link-hover-fg;
+      text-decoration: none;
+    }
+
+    a:active,
+    a:focus {
+      text-decoration: none;
+    }
+
+    &.active {
+      background: $link-active-bg;
+    }
+  }
+
+  .sidebar-brand {
+    font-size: 18px;
+    height: 65px;
+    line-height: 60px;
+  }
+}
+
+@media(min-width:768px) {
+  #wrapper {
+    padding-left: 250px;
+  }
+
+  #wrapper.toggled {
+    padding-left: 0;
+  }
+
+  #sidebar-wrapper {
+    width: 250px;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    width: 0;
+  }
+
+  #page-content-wrapper {
+    position: relative;
+  }
+
+  #wrapper.toggled #page-content-wrapper {
+    margin-right: 0;
+    position: relative;
+  }
+}
