@@ -1,9 +1,9 @@
 %ul.sidebar-nav
-  %li.sidebar-brand= t("sidebar.tag_filtering")
+  %li.sidebar-brand= t('sidebar.tag_filtering')
   - Tag.all.each do |t|
     %li
-      = check_box_tag t.name, t.name, false, { class: "tag_cb", url: entries_path(tags: "") }
+      = check_box_tag t.name, t.name, false, class: 'tag_cb', url: entries_path(tags: '')
       = t.name
 
 :javascript
-  $(document).ready(set_right_sidebar_listeners);
+  $(document).ready(setRightSidebarListeners);

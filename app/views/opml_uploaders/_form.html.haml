@@ -1,9 +1,9 @@
-= simple_form_for(@opml_uploader, remote: true, authenticity_token: true, html: { class: "dyn-form", for: "opml_uploader" }) do |f|
+= simple_form_for(@opml_uploader, remote: true, authenticity_token: true, html: { class: 'dyn-form', for: 'opml_uploader' }) do |f|
   = f.error_notification
 
   .form-inputs
-    = f.input :file, as: :file, label: t("words.opml_file")
+    = f.input :file, as: :file, label: t('words.opml_file')
 
   .form-actions
-    = f.button :submit, t("words.import"), class: "btn btn-primary load"
-    = image_tag "loading.gif", class: "loading-icon"
+    = f.button :submit, t('words.import'), class: 'btn btn-primary load'
+    = image_tag 'loading.gif', class: 'loading-icon'

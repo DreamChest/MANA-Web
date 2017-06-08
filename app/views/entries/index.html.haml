@@ -1,13 +1,13 @@
 %h1#page-title
-  = t("words.entry", count: 2)
+  = t('words.entry', count: 2)
   - unless @filter.nil?
-    %small= "(#{@filter})"
-    = link_to t("words.clear"), entries_path, class: "btn btn-xs btn-danger dyn-content", id: "clear-filters-btn"
+    %small (#{@filter})
+    = link_to t('words.clear'), entries_path, class: 'btn btn-xs btn-danger dyn-content', id: 'clear-filters-btn'
 
 %hr
 
-- unless @entries.empty?
-  = render "entries", entries: @entries
-  = render "load_more_div", filter: @filter, filter_type: @filter_type
+- if @entries.empty?
+  = I18n.translate('messages.no_entries')
 - else
-  = I18n.translate("messages.no_entries")
+  = render 'entries', entries: @entries
+  = render 'load_more_div', filter: @filter, filter_type: @filter_type

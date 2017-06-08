@@ -1,14 +1,14 @@
-- unless flash[:notice].nil? and flash[:error].nil?
+- unless flash[:notice].nil? && flash[:error].nil?
   :javascript
     $(document).ready(function() {
-      var notice = "#{flash[:notice]}"
-      var error = "#{flash[:error]}"
+      var notice = '#{flash[:notice]}'
+      var error = '#{flash[:error]}'
 
       if(notice) {
         $.notify({
           message: notice
         },{
-          type: "info"
+          type: 'info'
         });
       }
 
@@ -16,7 +16,7 @@
         $.notify({
           message: error
         },{
-          type: "danger"
+          type: 'danger'
         });
       }
 

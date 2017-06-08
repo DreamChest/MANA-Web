@@ -1,7 +1,7 @@
 %ul.sidebar-nav
-  %li.sidebar-brand= t("sidebar.source_filtering")
+  %li.sidebar-brand= t('sidebar.source_filtering')
   - Source.all.each do |s|
-    %li= link_to s.name, entries_path(source: s.name), class: "dyn-content"
+    %li= link_to s.name, entries_path(source: s.name), class: 'dyn-content'
 
 :javascript
-  $(document).ready(set_sidebar_listeners);
+  $(document).ready(setSidebarListeners);

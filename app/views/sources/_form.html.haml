@@ -1,4 +1,4 @@
-= simple_form_for(@source, remote: true, html: { class: "dyn-form", for: "source" }) do |f|
+= simple_form_for(@source, remote: true, html: { class: 'dyn-form', for: 'source' }) do |f|
   = f.error_notification
 
   .form-inputs
@@ -7,8 +7,8 @@
     = f.input :tagslist_attr, input_html: { value: Tag.list, default_values: @source.tagslist }
 
   .form-actions
-    = f.button :submit, class: "btn btn-primary load"
-    = image_tag "loading.gif", class: "loading-icon"
+    = f.button :submit, class: 'btn btn-primary load'
+    = image_tag 'loading.gif', class: 'loading-icon'
 
 :javascript
-  $(document).ready(handle_selectize);
+  $(document).ready(handleSelectize);

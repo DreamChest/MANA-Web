@@ -1,12 +1,12 @@
-= simple_form_for(@tag, remote: true, html: { class: "dyn-form", for: "tag" }) do |f|
+= simple_form_for(@tag, remote: true, html: { class: 'dyn-form', for: 'tag' }) do |f|
   = f.error_notification
 
   .form-inputs
     = f.input :name
-    = f.input :color, input_html: { value: @tag.color || "#ffffff", class: "jscolor" }
+    = f.input :color, input_html: { value: @tag.color || '#ffffff', class: 'jscolor' }
 
   .form-actions
-    = f.button :submit, class: "btn btn-primary"
+    = f.button :submit, class: 'btn btn-primary'
 
 :javascript
-  $(document).ready(handle_jscolor)
+  $(document).ready(handleJscolor)

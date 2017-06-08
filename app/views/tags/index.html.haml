@@ -1,10 +1,10 @@
-%h1#page-title= t("words.tags", count: 2)
+%h1#page-title= t('words.tags', count: 2)
 
 %table.table.table-striped.table-hover.table-responsive
   %thead
     %tr
-      %th= t("words.name")
-      %th= t("words.color")
+      %th= t('words.name')
+      %th= t('words.color')
       %th
       %th
       %th
@@ -14,12 +14,12 @@
       %tr{tag.no_sources_html_attr}
         %td= tag.name
         %td= tag.color
-        %td= link_to '', edit_tag_path(tag), class: "btn btn-info btn-warning fa fa-edit dyn-modal"
-        %td= link_to '', tag, :data => { :confirm => 'Are you sure?' }, class: "btn btn-danger fa fa-trash dyn-delete"
+        %td= link_to '', edit_tag_path(tag), class: 'btn btn-info btn-warning fa fa-edit dyn-modal'
+        %td= link_to '', tag, :data => { :confirm => 'Are you sure?' }, class: 'btn btn-danger fa fa-trash dyn-delete'
 
-= link_to '', new_tag_path, class: "btn btn-primary fa fa-plus dyn-modal"
+= link_to '', new_tag_path, class: 'btn btn-primary fa fa-plus dyn-modal'
 
 #clean-btn
-  = link_to clean_tags_url, class: "btn btn-primary dyn-content-full", data: { toggle: "tooltip" }, title: I18n.t("tooltips.clean_tags_btn") do
+  = link_to clean_tags_url, class: 'btn btn-primary dyn-content-full', data: { toggle: 'tooltip' }, title: I18n.t('tooltips.clean_tags_btn') do
     %i.fa.fa-magic
-    = t("words.clean")
+    = t('words.clean')
