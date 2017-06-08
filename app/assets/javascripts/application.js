@@ -10,12 +10,12 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require turbolinks
-//= require bootstrap
-//= require selectize
-//= require jscolor
-//= require bootstrap-notify
-//= require jquery.remotipart
-//= require_tree .
+// = require jquery
+// = require jquery_ujs
+// = require turbolinks
+// = require bootstrap
+// = require selectize
+// = require jscolor
+// = require bootstrap-notify
+// = require jquery.remotipart
+// = require_tree .

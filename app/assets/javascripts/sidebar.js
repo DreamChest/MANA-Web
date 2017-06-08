@@ -1,17 +1,20 @@
+// Global vars/funcs (for ESLint)
+/* global rightSidebarUncheck, setNavbarActive */
+
 // Handles sidebar nav links
-function handle_sidebar_active() {
-	$(".sidebar-nav").find(".active").removeClass("active");
-	$(this).parent().addClass("active");
-	right_sidebar_uncheck();
-	set_navbar_active();
+function handleSidebarActive() {
+  $('.sidebar-nav').find('.active').removeClass('active')
+  $(this).parent().addClass('active')
+  rightSidebarUncheck()
+  setNavbarActive()
 }
 
 // Unselects all elements of sidebar
-function sidebar_unselect() {
-	$(".sidebar-nav").find(".active").removeClass("active");
+function sidebarUnselect() {
+  $('.sidebar-nav').find('.active').removeClass('active')
 }
 
 // Sets sidebar listeners
-function set_sidebar_listeners() {
-	$(".sidebar-nav a").on("click", handle_sidebar_active);
+function setSidebarListeners() {
+  $('.sidebar-nav a').on('click', handleSidebarActive)
 }

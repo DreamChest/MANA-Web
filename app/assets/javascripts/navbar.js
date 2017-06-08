@@ -1,44 +1,47 @@
+// Global vars/funcs (for ESLint)
+/* global sidebarUnselect, rightSidebarUncheck */
+
 // Sets active navbar nav link according to current url
-function set_navbar_active() {
-	var loc = location.pathname;
+function setNavbarActive() {
+  var loc = location.pathname
 
-	if(loc=="/") loc = "/entries";
+  if (loc === '/') loc = '/entries'
 
-	$('.nav').find(".active").removeClass('active');
-	$('.nav a[href^="'+loc+'"]').closest('li').addClass('active');
+  $('.nav').find('.active').removeClass('active')
+  $('.nav a[href^="' + loc + '"]').closest('li').addClass('active')
 }
 
 // Handles navbar nav links
-function handle_navbar_active() {
-	$(".nav").find(".active").removeClass("active");
-	$(this).parent().addClass("active");
+function handleNavbarActive() {
+  $('.nav').find('.active').removeClass('active')
+  $(this).parent().addClass('active')
 
-	sidebar_unselect();
-	right_sidebar_uncheck();
+  sidebarUnselect()
+  rightSidebarUncheck()
 }
 
 // Toggles (left) sidebar
-function toggle_sidebar() {
-	$("#wrapper").toggleClass("toggled");
-	return false;
+function toggleSidebar() {
+  $('#wrapper').toggleClass('toggled')
+  return false
 }
 
 // Toggles right sidebar
-function toggle_sidebar_right() {
-	$("#wrapper").toggleClass("toggled-right");
-	return false;
+function toggleSidebarRight() {
+  $('#wrapper').toggleClass('toggled-right')
+  return false
 }
 
 // Handles "update all" button
-function handle_update_all() {
-	$(this).toggleClass("fa-spin");
-	$(this).blur();
+function handleUpdateAll() {
+  $(this).toggleClass('fa-spin')
+  $(this).blur()
 }
 
 // Sets listeners for the navbar
-function set_navbar_listeners() {
-	$(".nav a").not(".neveractive").click(handle_navbar_active);
-	$("#sidebar-toggle").click(toggle_sidebar);
-	$("#sidebar-toggle-right").click(toggle_sidebar_right);
-	$("#update_all").on("click", handle_update_all);
+function setNavbarListeners() {
+  $('.nav a').not('.neveractive').click(handleNavbarActive)
+  $('#sidebar-toggle').click(toggleSidebar)
+  $('#sidebar-toggle-right').click(toggleSidebarRight)
+  $('#update_all').on('click', handleUpdateAll)
 }
