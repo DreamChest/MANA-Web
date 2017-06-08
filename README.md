@@ -22,8 +22,8 @@ Prophet is currently in early phases of development and is highly incomplete and
 
 ### Environment
 
-- Ruby 2.3.0
-- Ruby on Rails 4.2.6
+- Ruby 2.4.x
+- Ruby on Rails 5.1.1
 - Any [ExecJS](https://github.com/rails/execjs) supported Javascript runtime
 - ImageMagick 6.4.9 (or at least MagickCore and MagickWand libs)
 
