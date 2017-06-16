@@ -1,4 +1,4 @@
-class OpmlUploader < ActiveRecord::Base
+class OpmlUploader < ApplicationRecord
 	has_attached_file :file
 	validates_attachment :file,
 		presence: true,

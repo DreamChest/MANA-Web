@@ -1,4 +1,4 @@
-class Entry < ActiveRecord::Base
+class Entry < ApplicationRecord
 	# string title
 	# string url
 	# boolean read

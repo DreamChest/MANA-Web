@@ -1,9 +1,9 @@
-class Tag < ActiveRecord::Base
+class Tag < ApplicationRecord
 	# string name
 	# string color
-	
+
 	has_and_belongs_to_many :sources
-	
+
 	validates :name, :color, presence: true
 
 	# Returns all tags list as a string
