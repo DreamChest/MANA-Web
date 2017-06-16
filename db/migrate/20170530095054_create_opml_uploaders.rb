@@ -1,4 +1,4 @@
-class CreateOpmlUploaders < ActiveRecord::Migration
+class CreateOpmlUploaders < ActiveRecord::Migration[5.1]
   def change
     create_table :opml_uploaders do |t|
 
