@@ -85,6 +85,7 @@ class Source < ApplicationRecord
     update(favicon: "#{Prophet::FAVICON_BASE_URL}#{favicon_name}")
     true
   rescue => ex
+    update(favicon: nil)
     logger.info ex.message
     false
   end

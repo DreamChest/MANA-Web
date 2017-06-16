@@ -49,6 +49,7 @@ class SourcesController < ApplicationController
         format.html { render :index }
         format.json do
           flash[:notice] = I18n.t('notices.source_created')
+          flash[:error] = I18n.t('errors.favicon_error') if @source.favicon.nil?
           render :show, status: :created, location: @source
         end
       else
@@ -65,18 +66,19 @@ class SourcesController < ApplicationController
 
     respond_to do |format|
       if @source.valid? && @source.fetch # If source can be saved (all validations passed)
-        if @source.changed? # If source URL changed
-          if @source.url_changed?
-            @source.reset_entries # Clear and parse entries from scratch
-            @source.fetch_favicon # Fetch the source favicon
-          end
-          @source.save # Source is saved
+        if @source.url_changed?
+          @source.reset_entries # Clear and parse entries from scratch
+          @source.fetch_favicon # Fetch the source favicon
+        elsif @source.favicon.nil?
+          @source.fetch_favicon
         end
+        @source.save # Source is saved
         @source.tag(params[:source]['tagslist_attr'].split(',')) # Source is tagged
 
         format.html { render :index }
         format.json do
           flash[:notice] = I18n.t('notices.source_saved', count: 1)
+          flash[:error] = I18n.t('errors.favicon_error') if @source.favicon.nil?
           render :show, status: :ok, location: @source
         end
       else
@@ -89,7 +91,7 @@ class SourcesController < ApplicationController
   # DELETE /sources/1
   # DELETE /sources/1.json
   def destroy
-    FileUtils.rm(@source.favicon_path) if Dir.exist?(@source.favicon_path)
+    FileUtils.rm(@source.favicon_path) if File.exist?(@source.favicon_path)
     @source.destroy
 
     respond_to do |format|
