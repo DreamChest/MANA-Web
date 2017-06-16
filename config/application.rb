@@ -26,7 +26,7 @@ module Prophet
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
 		config.after_initialize do
-			FileUtils::mkdir "public/assets/favicons" unless File.exists?("public/assets/favicons")
+			FileUtils::mkdir_p "public/assets/favicons" unless File.exists?("public/assets/favicons")
 		end
   end
 end

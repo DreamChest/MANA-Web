@@ -12,7 +12,7 @@ case $1 in
 		export RAILS_SERVE_STATIC_FILES=true
 		rake assets:precompile
 		rake db:migrate
-		rails s --binding 0.0.0.0 -p 3000 -e production -d
+		rails s --binding 0.0.0.0 -d
 		echo "Prophet started.";;
 	stop)
 		kill -9 $(cat tmp/pids/server.pid 2> /dev/null) 2> /dev/null
