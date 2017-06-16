@@ -1,5 +1,5 @@
 class Content < ApplicationRecord
-	# text html
+  # text html
 
-	belongs_to :entry
+  belongs_to :entry
 end
