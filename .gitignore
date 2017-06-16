@@ -21,10 +21,3 @@
 
 # Ignore files from Paperclip
 /public/system/
-
-# Own
-*.swp
-resetdb.sh
-tags
-todo
-*.taghl
