@@ -67,8 +67,7 @@ class SourcesController < ApplicationController
       if @source.valid? && @source.fetch # If source can be saved (all validations passed)
         if @source.changed? # If source URL changed
           if @source.url_changed?
-            @source.entries.clear # Clear old irrelevant entries
-            @source.parse # Feed is parsed and entries created
+            @source.reset_entries # Clear and parse entries from scratch
             @source.fetch_favicon # Fetch the source favicon
           end
           @source.save # Source is saved
@@ -116,6 +115,9 @@ class SourcesController < ApplicationController
   def update_entries
     @source.fetch
     @source.parse
+    if @source.favicon.nil?
+      flash.now[:error] = I18n.t('errors.favicon_error') unless @source.fetch_favicon
+    end
 
     flash.now[:notice] = I18n.t('notices.source_updated', count: 1, name: @source.name)
     render :index
@@ -127,10 +129,9 @@ class SourcesController < ApplicationController
   # GET /sources/update
   # Updates all sources (fetches entries for each source)
   def update_all
-    # Date of the most recent source (epoch if no entries)
-    mrd =
-      Entry.arrange.first.date ||
-      Time.at(0)
+    # Date of the most recent entry (epoch if no entries)
+    mrr = Entry.arrange.first
+    mrd = mrr.nil? ? Time.at(0) : mrr.date
 
     failed_sources = [] # Hash of failed sources
 
@@ -139,6 +140,7 @@ class SourcesController < ApplicationController
       begin
         s.fetch
         s.parse
+        s.fetch_favicon if s.favicon.nil?
       rescue
         failed_sources.push(s.name)
       end

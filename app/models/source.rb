@@ -43,6 +43,13 @@ class Source < ApplicationRecord
     update(html_url: feed.url, last_update: feed.entries.first.published)
   end
 
+  # Reset entries (clears and parse from scratch)
+  def reset_entries
+    entries.clear
+    update(last_update: Time.at(0))
+    parse
+  end
+
   # Tags the source with provided tags (param: array of tag names)
   def tag(taglist)
     tags.clear
@@ -76,5 +83,9 @@ class Source < ApplicationRecord
     ico.write(favicon_path)
 
     update(favicon: "#{Prophet::FAVICON_BASE_URL}#{favicon_name}")
+    true
+  rescue => ex
+    logger.info ex.message
+    false
   end
 end

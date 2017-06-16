@@ -5,5 +5,9 @@
 #opml-btn {
   display: inline;
   position: absolute;
-  right: 20px;
+  right: 15px;
+
+  a {
+    margin: 5px;
+  }
 }
