@@ -4,7 +4,7 @@
     .panel.panel-default.entry{ date: e.date.strftime('%Y-%m-%d %H:%M:%S') }
       .panel-heading
         %a.feedtitle{ href: "##{collapse_id}", data: { toggle: 'collapse', parent: '#accord' } }
-          = image_tag e.source.favicon || '', class: 'favicon', atl: e.source.name, title: e.source.name # TODO: add default favicon
+          = image_tag e.source.favicon, class: 'favicon', atl: e.source.name, title: e.source.name
           \|
           = e.title
         .tags

@@ -21,7 +21,7 @@ class Source < ApplicationRecord
     self.feed = Feedjira::Feed.fetch_and_parse(url)
     true # In case of success, it will be parsed later
   rescue => ex # Else, log the exception message and add error for controller
-    logger.info ex.message
+    logger.error ex.message
     errors.add(:url, I18n.t('forms.validations.errors.invalid_feed'))
     false
   end
@@ -68,25 +68,28 @@ class Source < ApplicationRecord
 
   # Returns the file path for the favicon
   def favicon_path
-    "#{Prophet::FAVICONS_DIR_PATH}/#{favicon_name}"
+    "#{Prophet::FAVICON_DIR_PATH}/#{favicon_name}"
   end
 
   # Gets the favicon for the source
   def fetch_favicon
-    uri = "#{html_url}/favicon.ico"
-
     open(Prophet::FAVICON_TEMP_PATH, 'wb') do |file|
-      file << open(uri, allow_redirections: :all).read
+      file << open("#{html_url}/favicon.ico", allow_redirections: :all).read
     end
 
     ico = Magick::Image.read(Prophet::FAVICON_TEMP_PATH).first
     ico.write(favicon_path)
 
-    update(favicon: "#{Prophet::FAVICON_BASE_URL}#{favicon_name}")
+    update(favicon: "#{Prophet::FAVICON_BASE_URL}/#{favicon_name}")
     true
   rescue => ex
-    update(favicon: nil)
-    logger.info ex.message
+    update(favicon: Prophet::FAVICON_PLACEHOLDER)
+    logger.error ex.message
     false
+  end
+
+  # Is the favicon present ? (set and not placeholder)
+  def favicon?
+    !(favicon.eql?(Prophet::FAVICON_PLACEHOLDER) || favicon.nil?)
   end
 end

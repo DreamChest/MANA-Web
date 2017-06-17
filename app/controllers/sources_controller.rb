@@ -49,7 +49,7 @@ class SourcesController < ApplicationController
         format.html { render :index }
         format.json do
           flash[:notice] = I18n.t('notices.source_created')
-          flash[:error] = I18n.t('errors.favicon_error') if @source.favicon.nil?
+          flash[:error] = I18n.t('errors.favicon_error') unless @source.favicon?
           render :show, status: :created, location: @source
         end
       else
@@ -69,7 +69,7 @@ class SourcesController < ApplicationController
         if @source.url_changed?
           @source.reset_entries # Clear and parse entries from scratch
           @source.fetch_favicon # Fetch the source favicon
-        elsif @source.favicon.nil?
+        elsif !@source.favicon?
           @source.fetch_favicon
         end
         @source.save # Source is saved
@@ -78,7 +78,7 @@ class SourcesController < ApplicationController
         format.html { render :index }
         format.json do
           flash[:notice] = I18n.t('notices.source_saved', count: 1)
-          flash[:error] = I18n.t('errors.favicon_error') if @source.favicon.nil?
+          flash[:error] = I18n.t('errors.favicon_error') unless @source.favicon?
           render :show, status: :ok, location: @source
         end
       else
@@ -117,7 +117,7 @@ class SourcesController < ApplicationController
   def update_entries
     @source.fetch
     @source.parse
-    if @source.favicon.nil?
+    unless @source.favicon?
       flash.now[:error] = I18n.t('errors.favicon_error') unless @source.fetch_favicon
     end
 

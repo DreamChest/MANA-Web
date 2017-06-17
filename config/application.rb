@@ -7,16 +7,6 @@ require 'fileutils'
 Bundler.require(*Rails.groups)
 
 module Prophet
-  # Constants
-
-  ## Favicons
-  FAVICON_BASE_URL = '/assets/favicons/'.freeze
-  FAVICONS_DIR_PATH = "public/#{FAVICON_BASE_URL}/".freeze
-  FAVICON_TEMP_PATH = 'tmp/favicon.ico'.freeze
-
-  ## Other
-  ENTRIES_LIMIT = 25
-
   # Main app class
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -26,7 +16,18 @@ module Prophet
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
     config.after_initialize do
-      FileUtils.mkdir_p Prophet::FAVICONS_DIR_PATH unless File.exist?(Prophet::FAVICONS_DIR_PATH)
+      FileUtils.mkdir_p Prophet::FAVICON_DIR_PATH unless File.exist?(Prophet::FAVICON_DIR_PATH)
     end
   end
+
+  # Constants
+
+  ## Favicons
+  FAVICON_BASE_URL = '/assets/favicons'.freeze
+  FAVICON_DIR_PATH = Rails.root.join("public#{FAVICON_BASE_URL}").freeze
+  FAVICON_TEMP_PATH = 'tmp/favicon.ico'.freeze
+  FAVICON_PLACEHOLDER = 'placeholder.png'.freeze
+
+  ## Other
+  ENTRIES_LIMIT = 25
 end
