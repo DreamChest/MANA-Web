@@ -1,0 +1,15 @@
+{
+    "extends": "standard",
+    "plugins": [
+        "standard",
+        "promise"
+    ],
+	"env": {
+		"browser": true,
+		"jquery": true
+	},
+	"rules": {
+		"space-before-function-paren": ["warn", "never"],
+		"no-unused-vars": ["warn", { "vars": "local" }]
+	}
+}
