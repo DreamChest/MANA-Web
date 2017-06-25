@@ -28,7 +28,7 @@ class Source < ApplicationRecord
 
   # Parse feed
   def parse
-    feed.entries.reverse.each do |e|
+    feed.entries.each do |e|
       next unless e.published > (last_update || Time.at(0))
       entries.create!(
         title: e.title,
@@ -40,7 +40,7 @@ class Source < ApplicationRecord
       )
     end
 
-    update(html_url: feed.url, last_update: feed.entries.first.published)
+    update(html_url: feed.url, last_update: entries.arrange.first.date)
   end
 
   # Reset entries (clears and parse from scratch)
