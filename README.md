@@ -1,9 +1,9 @@
 <div align="center">
-	<h1>Prophet</h1>
+  <h1>Prophet</h1>
 
-	<p>
-		<strong>RSS reader web app</strong>
-	</p>
+  <p>
+    <strong>RSS reader web app</strong>
+  </p>
 </div>
 
 [1]: https://github.com/DreamChest/Prophet/tree/legacy
