@@ -1,40 +1,36 @@
-# Prophet
+<div align="center">
+	<h1>Prophet</h1>
 
-Modern, lightweight, responsive, self-hosted RSS reader webapp made with ❤ in France.
+	<p>
+		<strong>RSS reader web app</p>
+	</p>
+</div>
 
-#### Disclaimer
+[1]: https://github.com/DreamChest/Prophet/tree/legacy
+[2]: https://github.com/DreamChest/Hermes
+[3]: https://github.com/DreamChest/Mercury
+[4]: https://github.com/DreamChest/Trivia
 
-Prophet is currently in early phases of development and is highly incomplete and may be buggy. Releases are tested and should be stable enough to be used safely. Please feel free to open an issue to report bugs, crashes or to request features :).
+## Intro
 
-## Features
+**DISCLAIMER**: This is the new version of Prophet which is still under heavy development and is not yet usable. For a working version, see the [legacy branch][1].
 
-- [x] Functional entries, sources and tags
-- [x] Entry preview
-- [x] Entry filtering by source or tag
-- [x] Dynamically loaded page (no redirect)
-- [ ] Fully responsive UI (about 90% responsive since the current design is far from final)
-- [x] Localized UI
-	- [x] English
-	- [x] French
-	- [ ] Other (will need contributors)
+This is the main repository for Prophet, a RSS reader/aggregator web application. Prophet is a multi-component project, the 3 main components are:
 
-## Getting started
+- The API backend: [Hermes][2]
+- The web client application: [Mercury][3] (coming soon)
+- The mobile client application: [Trivia][4] (coming soon)
 
-### Environment
+This repository serves only as a way to connect the different components and provide an installation guide for Prophet.
 
-- Ruby 2.4.x
-- Ruby on Rails 5.1.1
-- Any [ExecJS](https://github.com/rails/execjs) supported Javascript runtime
-- ImageMagick 6.4.9 (or at least MagickCore and MagickWand libs)
+## Installation guide
 
-### Quickstart
+Coming soon.
 
-1. `git clone https://github.com/DreamChest/Prophet && cd Prophet`
-2. `bundle install`
-3. `./prophet start`
+## Overall status
 
-Prophet will run in background, to stop it: `./prophet stop`
-
-## Licence
-
-[See LICENSE](https://github.com/DreamChest/Prophet/blob/master/LICENSE)
+Component | Status
+----------|-------
+[Hermes][2] | First release coming soon
+[Mercury][3] | In development
+[Trivia][4] | In development
