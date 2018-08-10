@@ -2,9 +2,7 @@
 
 Modern, lightweight, responsive, self-hosted RSS reader webapp made with ❤ in France.
 
-#### Disclaimer
-
-Prophet is currently in early phases of development and is highly incomplete and may be buggy. Releases are tested and should be stable enough to be used safely. Please feel free to open an issue to report bugs, crashes or to request features :).
+**DISCLAIMER**: This is the old ("legacy") version of Prophet which will no longer be maintained. The last release for this version is the [0.3.1](https://github.com/DreamChest/Prophet/releases/tag/0.3.1). For the new version, see the [master branch](https://github.com/DreamChest/Prophet/tree/master) and all releases above 1.0.
 
 ## Features
 
