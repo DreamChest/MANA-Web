@@ -11,8 +11,6 @@
 [3]: https://github.com/DreamChest/Mercury
 [4]: https://github.com/DreamChest/Trivia
 
-## Intro
-
 **DISCLAIMER**: This is the new version of Prophet which is still under heavy development and is not yet usable. For a working version, see the [legacy branch][1].
 
 This is the main repository for Prophet, a RSS reader/aggregator web application. Prophet is a multi-component project, the 3 main components are:
