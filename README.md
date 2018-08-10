@@ -2,7 +2,7 @@
 	<h1>Prophet</h1>
 
 	<p>
-		<strong>RSS reader web app</p>
+		<strong>RSS reader web app</strong>
 	</p>
 </div>
 
