@@ -1,7 +1,0 @@
-%h1#page-title #{t('words.editing')} #{t('words.source', count: 1).downcase}
-
-= render 'form'
-
-%br
-= link_to t('words.show'), @source, class: 'btn btn-info dyn-modal'
-= link_to t('words.back'), sources_path, class: 'btn btn-default dyn-content', id: 'back'
